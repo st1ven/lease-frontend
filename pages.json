@@ -1,0 +1,401 @@
+{
+	"pages": [{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "蜂窝租机",
+				"navigationBarTextStyle": "black",
+				"backgroundColor": "#F0F0F0",
+				"mp-alipay": {
+					"transparentTitle": "auto",
+					"titlePenetrate": "YES",
+					"allowsBounceVertical": "NO"
+					
+				}
+			}
+		}, 
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"backgroundColor": "#F0F0F0"
+			}
+		},
+		{
+			"path": "pages/category/category",
+			"style": {
+				"navigationBarTitleText": "",
+				"mp-alipay": {
+					"transparentTitle": "auto",
+					"titlePenetrate": "YES",
+					"allowsBounceVertical": "NO"
+				}
+			}
+		},
+		{
+			"path": "pages/category/categorygood",
+			"style": {
+				"navigationBarTitleText": "分类",
+				"backgroundColor": "#ffffff"
+			}
+		},
+		{
+			"path": "pages/second/second",
+			"style": {
+				"navigationBarTitleText": "活动专区"
+			}
+		},
+		{
+			"path": "pages/home/memberCenter",
+			"style": {
+				"navigationBarTitleText": "会员中心",
+				"mp-alipay": {
+				"usingComponents": {
+				"alipass-tool-kit": "plugin://alipassToolKit/alipass-tool-kit"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/home/memberurl",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/home/memberprivilege",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/assembly/redenvelopes",
+			"style": {
+				"navigationBarTitleText": "红包"
+			}
+		},
+		{
+			"path": "pages/assembly/redexpand",
+			"style": {
+				"navigationBarTitleText": "膨胀红包"
+			}
+		},
+		{
+			"path": "pages/index/activiyautumn",
+			"style": {
+				"navigationBarTitleText": ""
+				
+			}
+		},
+		{
+			"path": "pages/index/activitynew",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/activity/activitys",
+			"style": {
+				"navigationBarTitleText": "",
+				"mp-alipay": {
+					"usingComponents": {
+						"get-coupon": "plugin://couponPlugin/get-coupon"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/invitation/invitation",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/invitation/record",
+			"style": {
+				"navigationBarTitleText": "邀请记录"
+			}
+		},
+		{
+			"path": "pages/invitation/reward",
+			"style": {
+				"navigationBarTitleText": "奖励记录"
+			}
+		},
+		{
+			"path": "pages/invitation/details",
+			"style": {
+				"navigationBarTitleText": "活动规则"
+			}
+		},
+		{
+			"path": "pages/index/activity",
+			"style": {
+				"navigationBarTitleText": "",
+				"mp-alipay": {
+					"usingComponents": {
+						"get-coupon": "plugin://couponPlugin/get-coupon"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/index/activitytabbar",
+			"style": {
+				"navigationBarTitleText": "活动专区",
+				"mp-alipay": {
+					"usingComponents": {
+						"get-coupon": "plugin://couponPlugin/get-coupon"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/index/gongge",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/index/web",
+			"style": {
+				"navigationBarTitleText": "跳转"
+			}
+		},
+		{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/product-list/product-list",
+			"style": {
+				"navigationBarTitleText": "商品列表",
+				"enablePullDownRefresh": false,
+				"titleAlign": "center"
+			}
+		},  {
+			"path": "pages/identity/identity",
+			"style": {
+				"navigationBarTitleText": "实名认证",
+				"enablePullDownRefresh": false,
+				"titleAlign": "center"
+			}
+		},  
+		{
+			"path": "pages/identity/identityy",
+			"style": {
+				"navigationBarTitleText": "实名认证",
+				"enablePullDownRefresh": false,
+				"titleAlign": "center"
+			}	
+		},  {
+			"path": "pages/idcard/idcard",
+			"style": {
+				"navigationBarTitleText": "实名认证",
+				"enablePullDownRefresh": false,
+				"titleAlign": "center"
+			}
+		}, {
+			"path": "pages/second-detail/second-detail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/zone/zone",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/eve/eve",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/eve/wanzhuan",
+			"style": {
+				"navigationBarTitleText": "申请押金转租金",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/eve/introduce",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/order-list/xieyi",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/order-list/xieyilist",
+			"style": {
+				"navigationBarTitleText": "租赁服务·相关协议",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/goods-detail/goods-detail",
+			"style": {
+				"navigationBarTitleText": "商品详情",
+				"enablePullDownRefresh": false,
+				"mp-alipay": {
+					"usingComponents": {
+						"get-coupon": "plugin://couponPlugin/get-coupon"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/order-list/order-list",
+			"style": {
+				"navigationBarTitleText": "订单列表",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/order-list/prepayment",
+			"style": {
+				"navigationBarTitleText": "提前结算",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/order-list/shop",
+			"style": {
+				"navigationBarTitleText": "店铺",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/order-list/order-detail",
+			"style": {
+				"navigationBarTitleText": "确认订单",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/order-list/order",
+			"style": {
+				"navigationBarTitleText": "订单",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/order-list/logistics",
+			"style": {
+				"navigationBarTitleText": "物流信息",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/order-list/address",
+			"style": {
+				"navigationBarTitleText": "选择收货地址",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/home/problem",
+			"style": {
+				"navigationBarTitleText": "问题反馈",
+				"enablePullDownRefresh": false
+			}
+		}, 
+		{
+			"path": "pages/home/invitation",
+			"style": {
+				"navigationBarTitleText": "推广数据",
+				"enablePullDownRefresh": false
+			}
+		}, 
+		{
+			"path": "pages/home/collection",
+			"style": {
+				"navigationBarTitleText": "我的收藏",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/home/help",
+			"style": {
+				"navigationBarTitleText": "使用帮助",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/home/coupons",
+			"style": {
+				"navigationBarTitleText": "我的优惠劵",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/home/renewal",
+			"style": {
+				"navigationBarTitleText": "续租",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/home/cooperation",
+			"style": {
+				"navigationBarTitleText": "商务合作",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/home/agreement",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		}
+
+	],
+	"tabBar": {
+		"color": "#333333",
+		"selectedColor": "#92D3FF",
+		"list": [{
+				"text": "首页",
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tab-icon/index.webp",
+				"selectedIconPath": "static/tab-icon/index-s.webp"
+			},
+			{
+				"text": "分类",
+				"pagePath": "pages/category/category",
+				// "pagePath": "pages/category/categorygood",
+				"iconPath": "static/tab-icon/category.webp",
+				"selectedIconPath": "static/tab-icon/category-s.webp"
+			},
+			{
+				"text": "活动专区",
+				"pagePath": "pages/index/activitytabbar",
+				"iconPath": "static/tab-icon/second.webp",
+				"selectedIconPath": "static/tab-icon/second-s.webp"
+			},
+			{
+				"text": "我的",
+				"pagePath": "pages/home/home",
+				"iconPath": "static/tab-icon/home.webp",
+				"selectedIconPath": "static/tab-icon/home-s.webp"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uView",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"easycom": {
+		"iz-(.*)": "@/components/iz-$1/iz-$1.vue"
+	}
+}

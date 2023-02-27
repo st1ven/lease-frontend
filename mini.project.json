@@ -1,0 +1,17 @@
+{
+	"component2": true,
+	"appid": "2021003114689211",
+	"enableAppxNg": true,
+	"cloud": {
+	    "type": "miniappServerscss"
+	  },
+	  "miniprogramRoot": "./unpackage/dist/build/mp-alipay",
+	"node_modules_es6_whitelist": [
+		"mod1",
+		"@alipay/mod2",
+		"@alicloud/tea-typescript",
+		"alipay-serverscss-sdk",
+		"@alicloud/tea-typescript",
+		"mpserverscss-sdk-core"
+	]
+}

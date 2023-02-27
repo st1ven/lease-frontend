@@ -1,0 +1,587 @@
+<template>
+	<view class="iz-buy-popup">
+		<view class="buy-head">
+			<view class="buy-img">
+				<slot name="img">
+					<u-image :showLoading="true" :src='goods_data.image' width="189rpx" height="189rpx">
+					</u-image>
+				</slot>
+			</view>
+			<view class="buy-info">
+				<view class="buy-name">{{goods_data.title}}</view>
+				<view class="buy-price">
+					¥ <text class="price-num">{{goods_data.day_price}}</text>
+					<!-- - ¥<text class="price-num">24.21</text>--> /天
+				</view>
+				<view class="bug-msg">
+					<text>{{selected_text || ''}}</text>
+				</view>
+			</view>
+		</view>
+		
+		<!-- <view class="weidu" v-if="goods_data.each_price"> -->
+		<view class="weidu">
+			<view class="weidufen">
+				<text class="weidutextone">￥{{goods_data.each_price || '--'}}</text>
+				<text class="weidutexttwo">月租金</text>
+			</view>
+			<view class="weidufen">
+				<text class="weidutextone" v-if="goods_data.price >= 100">￥{{goods_data.price}}</text>
+				<text class="weidutextone" v-else>￥--</text>
+				<text class="weidutexttwo">总租金</text>
+			</view>
+			<view class="weidufen">
+				<text class="weidutextone">￥{{goods_data.buyout_price  || '--'}}</text>
+				<text class="weidutexttwo">买断价</text>
+			</view>
+		</view>
+		<view class="buy-cont">
+			<view class="">
+				<view class="" v-for="(item,index) in list">
+					<text class="title">{{item.name}}</text>
+					<view class="tig-btn-box" v-if="item.name != '套餐'">
+						
+						<view v-if="item.name != '套餐'" v-for="(lists,inx) in item.children" :key="inx"
+							@click="tigBtn({targetArr:lists,pInx:index,cInx:inx,type:1})"
+							:class="lists.isOn==true?'on':''"   class="tig-btn">
+							{{lists.name}}
+						</view>
+					</view>
+					<view class="tig-btn-box" style="display: flex;flex-direction: column;" v-if="item.name == '套餐'">
+						<view v-if="item.name == '套餐'"  class="tig-bin-two"  v-for="(lists,inx) in item.children" :key="inx" >
+							<view  @click="tigBtn({targetArr:lists,pInx:index,cInx:inx,type:1})"
+							:class="lists.isOn==true?'on':''" class="tig-btn" style="margin-bottom: 0rem;">
+							{{lists.name}}
+							</view>
+							<image v-if="lists.name == '租完买断/归还/续期' || lists.name == '租完买断'" @click="zuwan(2,{targetArr:lists,pInx:index,cInx:inx,type:1})" src="../../static/image/why-l.png" mode="widthFix" style="width: 18px;"></image>
+							<image v-if="lists.name == '租满即送(可随时买断)' || lists.name == '租完即送'" @click="zuwan(1,{targetArr:lists,pInx:index,cInx:inx,type:1})" src="../../static/image/why-l.png" mode="widthFix" style="width: 18px;"></image>
+						</view>
+					</view>
+				</view>
+
+				<view class="buy-num-box" v-if="totalNum !=0">
+					<text class="title">租赁数量</text>
+					<text class="inventory-num">库存{{totalNum}}</text>
+					<view class="num-box" name="minus">
+						<view class="box-tag" @click="boxTag(1)">
+							<u-icon name="minus" color="#999999" size="20rpx"></u-icon>
+						</view>
+						<view class="box-tag">{{inventoryNum}}</u-icon>
+						</view>
+						<view class="box-tag" @click="boxTag(0)">
+							<u-icon name="plus" color="#999999" size="20rpx"></u-icon>
+						</view>
+					</view>
+				</view>
+				<!-- 支付宝保障服务 -->
+				<view class="broken_screen" v-if="guard_data.id">
+					<text class="title">保障服务</text>
+					<text class="broken_msg">碎屏无需赔偿，加购更安心</text>
+					<!-- <view class="broken_info">
+						<u-icon name="zhifubao-circle-fill" color="#92D3FF" size="20" label="支付宝碎屏宝" labelSize="24rpx">
+						</u-icon>
+					</view> -->
+					<view class="tig-btn-box">
+						<view @click="tigBtn({targetArr:lists,pInx:index,cInx:inx,type:2})"
+							:class="guard_data.isOn==true?'on':''" class="tig-btn">
+							{{guard_data.guard_title}}￥{{guard_data.defaultamount}}
+						</view>
+					</view>
+				</view>
+			</view>
+			<u-popup :show="returnstatus" @close="close" :round="10" mode="bottom"   :closeable='true' customStyle="min-height:350;background: #fff;">
+				<iz-buy-return :goodsku="goodskuid" :goodid="good_id"></iz-buy-return>
+			</u-popup>
+			<u-popup :show="maiduanstatus" @close="close" :round="10" mode="bottom"   :closeable='true' customStyle="min-height:350;background: #fff;">
+				<iz-buy-buyout :goodsku="goodskuid" :goodid="good_id"></iz-buy-buyout>
+			</u-popup>
+			<view class="" v-if="tijiaorenzheng">
+				<u-loading-icon  color="#14a3e4" text="正在提交请稍后..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+			</view>
+				<view class="buy-ok"  v-if="totalNum !=0 && tokenstatus !=''">
+				
+				<button type="default"  open-type="getPhoneNumber" @getphonenumber="decryptPhoneNumber" style="border: 0;background: #0000;
+    color: #fff;">确定</button>
+			</view>
+			
+			<button class="buy-ok" open-type="getAuthorize" 
+							scope="userInfo" @getAuthorize="onGetAuthorize" @error="onAuthError" v-if="tokenstatus ==''">
+										授权登录
+			</button>
+			<view class="buy-ok" @click="baoqian"  v-if="totalNum == 0">
+				确定
+			</view>
+		</view>
+		<u-toast ref="uToast"></u-toast>
+	</view>
+
+</template>
+
+<script>
+	export default {
+		name: "iz-buy-popup",
+		props: {
+			goodsId: 0,
+			type: 0
+		},
+		data() {
+			
+			return {
+				canIUseAuthButton: my.canIUse('button.open-type.getAuthorize'),
+				inventoryNum: 1, //库存
+				totalNum: 0,
+				selected_text: '', //选择规则
+				good_id: this.goodsId,
+				goods_data: {},
+				day_price:"",
+				list: [],
+				ids: [],
+				orderId: '',
+				guard_data: {}, //保障方案
+				guard_id: '' ,//保障方案ID
+				token:'',
+				tokenstatus:'',
+				tijiaorenzheng:false,
+				maiduanstatus:false,
+				returnstatus:false,
+				goodskuid:''
+			}
+		},
+		watch: {
+			list(newVal, oldVal) {
+				this.list = newVal
+			},
+		},
+		mounted() {
+			this.init()
+			this.tokenstatus = uni.getStorageSync('token')
+		},
+		methods: {
+
+			close(){
+				this.maiduanstatus = false
+				this.returnstatus = false
+			},
+			zuwan(e,obj){
+				this.tigBtn(obj)
+				if(e  == 1){
+					this.returnstatus = true
+				}else if(e  == 2){
+					this.maiduanstatus = true
+				}
+			},
+			decryptPhoneNumber(res) {
+			 this.tijiaorenzheng = true
+			  my.getPhoneNumber({ 
+			    success: (res) => {
+				  var duixiang = JSON.parse(res.response)
+				  let opt = {
+				  	url: "/index/mobile?mobile="+encodeURIComponent(duixiang.response),
+				  }
+				  this.$request(opt).then(res => {
+					  if(res.code == '1'){
+						  this.buyOk()
+						  this.tijiaorenzheng = false
+					  }else{
+						  this.tijiaorenzheng = false
+						  this.$refs.uToast.show({
+							message: '授权失败',
+							type: 'error'
+						  })
+					  }
+					
+				  })
+				},
+			    fail: (res) => {
+					this.tijiaorenzheng = false
+					  this.$refs.uToast.show({
+						message: '授权失败',
+						type: 'error'
+					  })
+			    },
+			  });
+			},
+			baoqian(){
+				this.$refs.uToast.show({
+					message: '该规格暂无库存哦~',
+					type: 'error'
+				})
+				return
+			},
+			boxTag(num) {
+				if (num == 1) {
+					if (this.inventoryNum <= 0) {
+						this.$refs.uToast.show({
+							message: '数量不能少于1',
+							icon: 'error',
+							type: 'error'
+						})
+						return
+					}
+					this.inventoryNum = this.inventoryNum - 1
+				} else {
+					if (this.inventoryNum >= this.totalNum) {
+						this.$refs.uToast.show({
+							message: '数量不能多于库存量',
+							icon: 'error',
+							type: 'error'
+						})
+						return
+					}
+					this.inventoryNum = this.inventoryNum + 1
+				}
+			},
+			tigBtn(obj) {
+				if (obj.type == 1) {
+					this.list[obj.pInx].children.forEach((item, i) => {
+						if (obj.cInx == i) {
+							item.isOn = true
+						} else {
+							item.isOn = false
+						}
+					})
+					this.ids = []
+					for (let i = 0; i < this.list.length; i++) {
+						for (let j = 0; j < this.list[i].children.length; j++) {
+							if (this.list[i].children[j].isOn == true) {
+								this.ids.push(this.list[i].children[j].id)
+							}
+						}
+					}
+					this.ruleFunc(this.ids)
+				}
+
+				if (obj.type == 2) {
+					this.guard_data.isOn = !this.guard_data.isOn
+					this.guard_id = this.guard_data.isOn ? this.guard_data.id : ''
+				}
+
+			},
+			ruleFunc(ids) {
+				let id = ids.join()
+				this.goodskuid = id
+
+				let opt = {
+					url: '/goods/selected/rule',
+					data: {
+						goods_id: this.good_id,
+						rule_ids: id //规则ID
+					}
+				}
+				this.$request(opt).then(res => {
+					// 打印调用成功回调
+					this.selected_text = res.data.selected_text
+					this.totalNum = res.data.stock
+					this.orderId = res.data.goods_data.id
+					this.goods_data.image = res.data.goods_data.image
+					this.goods_data.day_price = res.data.goods_data.day_price
+					this.goods_data.price = res.data.goods_data.price
+					this.goods_data.each_price = res.data.goods_data.each_price
+					this.goods_data.buyout_price = res.data.goods_data.buyout_price
+				})
+			},
+			
+			//授权登录
+			onGetAuthorize() {
+				let _this = this
+				let loginObj = {}
+				uni.showLoading({
+					title: "登录中..."
+				})
+				my.getOpenUserInfo({
+					fail: res => {
+						// console.log(res);
+					},
+					success: res => {
+						// console.log(res);
+						const userInfo = JSON.parse(res.response).response // 以下方的报文格式解析两层 
+						if (userInfo.code != 10000) {
+							return uni.showToast({
+								title: userInfo.msg
+							});
+						}
+						loginObj.avatar = userInfo.avatar
+						loginObj.nickname = userInfo.nickName
+						loginObj.userid = uni.getStorageSync('yaouserid')
+						this.avatar = userInfo.avatar
+						this.nickName = userInfo.nickName
+						my.getAuthCode({
+							scopes: 'auth_base',
+							// scopes: ['auth_base','order_service'],
+							success: (authData) => {
+								loginObj.code = authData.authCode
+								_this.loginFunc(loginObj) //开始登录
+							}
+						});
+					},
+				});
+			},
+			// 授权失败回调
+			onAuthError() {
+				uni.showToast({
+					title: "授权失败"
+				});
+			},
+			loginFunc(loginObj) {
+				let opt = {
+					url: "/aliyun/login",
+					method: 'POST',
+					header: "application/x-www-form-urlencoded;charset=utf-8",
+					data: loginObj
+				}
+				this.$request(opt).then(res => {
+					// 打印调用成功回调
+					// console.log(res, ' -------获取登录信息-----')
+					uni.setStorageSync('token', res.data.token);
+					uni.setStorageSync('avatar', this.avatar || '');
+					uni.setStorageSync('nickName', this.nickName || '');
+					// this.avatar = uni.getStorageSync('avatar')
+					// this.nickName = uni.getStorageSync('nickName')
+					this.tokenstatus = res.data.token
+					// uni.$emit('tokenstatus',this.token)
+					
+					this.loginFlag = 1
+					setTimeout(() => {
+						uni.hideLoading()
+						// this.buyOk()
+						this.$refs.uToast.show({
+							message: '登录成功',
+							type: 'success'
+						})
+					}, 100)
+				})
+			},
+			
+			
+			buyOk() {
+
+				if (this.inventoryNum && (this.ids.length == this.list.length)) {
+					// this.confirmOrder()
+					// if( this.guard_data.id && this.guard_id==''){
+					// 	this.$refs.uToast.show({
+					// 		message: '请选择保障方案',
+					// 		icon: 'error',
+					// 		type: 'error'
+					// 	})
+					// 	return
+					// }
+					uni.navigateTo({
+						url: '/pages/order-list/order-detail?goods_sku_id=' + this.orderId + '&num=' + this
+							.inventoryNum + '&path=goods-detail&guard_id=' + this.guard_id
+					})
+				} else {
+
+					let title = this.list.map(item => item.name)
+					this.$refs.uToast.show({
+						message: '请选择' + title + ',数量哦~',
+						icon: 'error',
+						type: 'error'
+					})
+				}
+			},
+
+			init() {
+				let opt = {
+					url: '/goods/rule',
+					data: {
+						goods_id: this.good_id
+					}
+				}
+				this.$request(opt).then(res => {
+					// 打印调用成功回调
+					let rule = res.data.rule
+					this.ids = []
+					for (let i = 0; i < rule.length; i++) {
+						for (let j = 0; j < rule[i].children.length; j++) {
+							// rule[i].children[j].isOn = false
+							//只把属性长度为1的选中第一个选项
+							// if(rule[i].children.length =='1' && j == '0'){
+							if(j == '0'){
+								rule[i].children[j].isOn = true
+								//只把属性长度为1的选中第一个选项
+								// this.ids.push(rule[i].children[j].id)
+								// this.ruleFunc(this.ids)	
+								/*属性为1的选项结束并需要注意吧下面的this.ruleFunc(this.ids)注释和this.ids.push(rule[i].children[0].id)注释掉*/
+								this.ids.push(rule[i].children[0].id)
+							}else{
+								rule[i].children[j].isOn = false
+							}
+						}
+					}
+
+					this.ruleFunc(this.ids)	
+					this.list = rule
+					this.goods_data = res.data.goods_data
+					this.selected_text = res.data.selected_text
+					this.totalNum = res.data.stock
+					res.data.guard_data = res.data.guard_data.id ? res.data.guard_data : {}
+					this.guard_data = res.data.guard_data
+					this.guard_data.isOn = true
+				})
+			}
+
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.weidu{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		border-bottom: 1px solid #E5E5E5;
+		height: 70rpx;
+	}
+	.weidufen{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.weidutextone{
+		color: red;
+		font-size: 12px;
+		font-weight: bold;
+	}
+	.weidutexttwo{
+		font-size: 12px;
+		font-weight: bold;
+		color: #545454;
+	}
+	.iz-buy-popup {
+		background-color: #fff;
+		padding: 65rpx 50rpx 0;
+
+		.buy-head {
+			// height: 233rpx;
+			// border-bottom: 1px solid #E5E5E5;
+			display: flex;
+
+			.buy-img {
+				height: 189rpx
+			}
+
+			.buy-info {
+				font-size: 22rpx;
+				color: #333333;
+				padding: 16rpx 0 0 44rpx;
+
+				.buy-name {
+					font-size: 24rpx;
+					font-weight: bold;
+				}
+
+				.buy-price {
+					color: #E60000;
+					font-size: 24rpx;
+
+					.price-num {
+						font-weight: bold;
+						font-size: 48rpx;
+						margin-bottom: 23rpx;
+					}
+				}
+			}
+
+		}
+
+		.buy-cont {
+			max-height: 850rpx;
+			min-height: 400rpx;
+			overflow-y: scroll;
+			color: #1F1F1F;
+			padding: 10rpx 0rpx 20rpx;
+
+			.title {
+				font-size: 24rpx;
+				font-weight: bold;
+				margin-bottom: 16rpx;
+			}
+
+			.buy-ok {
+				width: 626rpx;
+				height: 80rpx;
+				background: linear-gradient(179deg, #92D3FF 0%, #14a3e4 100%);
+				border-radius: 20rpx;
+				text-align: center;
+				line-height: 80rpx;
+				color: #fff;
+				margin-top: 27rpx;
+			}
+
+			.buy-num-box {
+				display: flex;
+				// margin-top: 50rpx;
+
+				.inventory-num {
+					margin-left: 27rpx;
+					font-size: 20rpx;
+					color: #999999;
+					vertical-align: middle;
+				}
+
+				.num-box {
+					width: 228rpx;
+					margin-left: 200rpx;
+					border: 1rpx solid #E5E5E5;
+					display: flex;
+					box-sizing: border-box;
+
+					.box-tag:nth-of-type(2) {
+						border-left: 1rpx solid #E5E5E5;
+						border-right: 1rpx solid #E5E5E5;
+						width: 130rpx;
+						text-align: center;
+						font-size: 30rpx;
+					}
+
+					.box-tag:first-child,
+					.box-tag:last-child {
+						padding: 11rpx 15rpx;
+					}
+				}
+			}
+
+			.broken_screen {
+
+
+				.broken_msg {
+					color: #F22F2F;
+					font-size: 18rpx;
+					padding: 4rpx;
+					border: 1rpx solid #F22F2F;
+					margin-left: 34rpx;
+				}
+
+				.broken_info {
+					padding-top: 34rpx;
+				}
+			}
+
+			.tig-btn-box {
+				display: flex;
+				padding: 10rpx 0 0 0rpx;
+				flex-wrap: wrap;
+
+				.tig-btn {
+					padding: 8rpx 10rpx;
+					border-radius: 10rpx;
+					font-size: 26rpx;
+					margin-right: 20rpx;
+					margin-bottom: 21rpx;
+					background-color: #F1F1F1;
+				}
+
+				.on {
+					border: 1px solid #92D3FF;
+					background-color: #E1F2FF;
+				}
+			}
+		}
+	}
+	.tig-bin-two{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin-bottom: 0.21rem;
+	}
+</style>

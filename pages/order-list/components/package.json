@@ -1,0 +1,43 @@
+{
+  "_from": "simple-address",
+  "_id": "simple-address@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-j2NSS7kQNDe9yUkbCBZWZJ+gIiQ=",
+  "_location": "/simple-address",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "simple-address",
+    "name": "simple-address",
+    "escapedName": "simple-address",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmmirror.com/simple-address/download/simple-address-1.0.0.tgz",
+  "_shasum": "8f63524bb9103437bdc9491b081656649fa02224",
+  "_spec": "simple-address",
+  "_where": "D:\\work\\test\\lease-phone",
+  "author": {
+    "name": "uni插件市场 SimpleJalon"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "uni-app三级联动地址选取组件",
+  "keywords": [
+    "uni-app",
+    "address-select"
+  ],
+  "license": "ISC",
+  "main": "simple-address.vue",
+  "name": "simple-address",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}

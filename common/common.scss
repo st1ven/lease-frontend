@@ -1,0 +1,92 @@
+.flex {
+	display: flex !important;
+	flex-direction: row !important;
+}
+
+.flex-1 {
+	flex: 1 !important;
+}
+
+.flex-center {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+.flex-col {
+	flex-direction: column !important;
+}
+
+.align-end {
+	align-items: flex-end !important;
+}
+
+.align-center {
+	align-items: center !important;
+}
+
+.ml-auto {
+	margin-left: auto;
+}
+
+.mr-auto {
+	margin-right: auto;
+}
+
+.ft-bold {
+	font-weight: bold;
+}
+
+@for $i from 16 through 32{
+	.ft-#{$i} {
+			font-size: $i * 1rpx; 
+	}
+}
+
+$list: 10 15 20 25 30;
+
+@each $i in $list {
+    .p-#{$i} {
+			padding: #{$i}rpx;
+    }
+		
+		.px-#{$i} {
+			padding-left: #{$i}rpx;
+			padding-right: #{$i}rpx;
+		}
+		
+		.py-#{$i} {
+			padding-top: #{$i}rpx;
+			padding-bottom: #{$i}rpx;
+		}
+		
+		.pt-#{$i} {
+			padding-top: #{$i}rpx;
+		}
+		
+		.m-#{$i} {
+			margin: #{$i}rpx;
+		}
+		
+		.mx-#{$i} {
+			margin-left: #{$i}rpx;
+			margin-right: #{$i}rpx;
+		}
+		
+		.my-#{$i} {
+			margin-top: #{$i}rpx;
+			margin-bottom: #{$i}rpx;
+		}
+		
+		.mt-#{$i} {
+			margin-top: #{$i}rpx;
+		}
+		
+		.ml-#{$i} {
+			margin-left: #{$i}rpx;
+		}
+		
+		.mb-#{$i} {
+			margin-bottom: #{$i}rpx;
+		}
+}
