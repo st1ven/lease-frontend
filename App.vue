@@ -4,7 +4,7 @@
 		onShow: function() {},
 		onHide: function() {},
 		onPageNotFound: function (res) {
-		    // 跳转到 404 页面：
+		    // 跳转到 404 页面
 			uni.switchTab({
 				url: "pages/index/index", // 404 页面的路径
 			});
