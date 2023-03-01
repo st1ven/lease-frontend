@@ -24,17 +24,17 @@
 
 	// 标题
 	.title-color {
-		color: #1F1F1F;
+		color: #171B25;
 	}
 
 	// 副标题 查看更多
 	.sub-color {
-		color: #666666;
+		color: #61687C;
 	}
 	
 	// 主颜色
 	.main-color {
-		color: #333333;
+		color: #414960;
 	}
 
 	.goods-price {
@@ -43,12 +43,12 @@
 	}
 
 	.price-company {
-		color: #E60000;
+		color: #FF5B56;
 		font-size: 18rpx;
 	}
 
 	.price-number {
-		color: #E60000;
+		color: #FF5B56;
 		font-size: 30rpx;
 		font-weight: bold;
 		margin: 0 5rpx;

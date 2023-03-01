@@ -1,10 +1,9 @@
 <template>
 	<view>
 		<!-- 搜索 & 轮播  首页 -->
-		<view class="tab-box" :style="{background:'linear-gradient(1deg, #ffffff 0%, '+ backgroundcolor +' 100%)'}">	
+		<view class="tab-box" :style="{background:'linear-gradient(1deg, #ffffff 0%, '+ backgroundcolor +' 100%)', paddingTop:statusBarHeight + titleBarHeight}">
 			<view class="search-box" @click="JumpSearch" >
-				
-				<u-icon size="26" name="search" color="#999999" />
+				<u-icon size="26" name="search" color="#9FA3B0" />
 				<text class="title">输入关键词</text>
 			</view>
 			<u-swiper @click="bann" indicator @change="bannqiehan" :list="list" :circular="true"/>
@@ -13,20 +12,34 @@
 			</view>
 		</view>
 		<view class="gonggao" v-if="imagee.dynamic != '0'">
-			<text class="zulin">租赁<text style="color: red;">动态</text></text>
-			
-			<text v-if="(imagee.gonggao).length < 15 " class="tishi">{{imagee.gonggao}}</text>
-			<u-notice-bar v-else :text="''+imagee.gonggao+''" direction="row" icon=" " bgColor=" " speed="60" color="#000"></u-notice-bar>
+			<view class="content">
+				<text class="zulin">租赁<text style="color: #FFAA00;">动态</text></text>
+				<text v-if="(imagee.gonggao).length < 15 " class="tishi">{{imagee.gonggao}}</text>
+				<u-notice-bar v-else :text="''+imagee.gonggao+''" direction="row" icon=" " bgColor=" " speed="60" color="#414960"></u-notice-bar>
+			</view>
 		</view> 
-		<view class="gongge" >
-			<u-skeleton :loading="loading" avatar rows="2"></u-skeleton>
-			<u-grid col="5" :border="false">
-				<u-grid-item v-for="(baseListItem,baseListIndex) in baseList"
-                    :key="baseListIndex" @click="gongge(baseListItem)">
-					<u-image :src="baseListItem.image" mode="aspectFit" shape="circle"  width="96rpx" height="96rpx"></u-image>	
-					<text class="grid-text">{{baseListItem.name}}</text>
-				</u-grid-item>
-			</u-grid>
+		<view class="gongge">
+			<u-skeleton :loading="loading" rows="1"></u-skeleton>
+			<swiper class="swiper" :indicator-dots="true" indicator-color="#D5D7DC" indicator-active-color="#9FA3B0">
+				<swiper-item>
+					<u-grid col="5" :border="false">
+						<u-grid-item v-for="(baseListItem,baseListIndex) in baseList.slice(0, 5)"
+							:key="baseListIndex" @click="gongge(baseListItem)">
+							<u-image :src="baseListItem.image" mode="aspectFit" shape="circle"  width="96rpx" height="96rpx"></u-image>
+							<text class="grid-text">{{baseListItem.name}}</text>
+						</u-grid-item>
+					</u-grid>
+				</swiper-item>
+				<swiper-item>
+					<u-grid col="5" :border="false">
+						<u-grid-item v-for="(baseListItem,baseListIndex) in baseList.slice(5)"
+							:key="baseListIndex" @click="gongge(baseListItem)">
+							<u-image :src="baseListItem.image" mode="aspectFit" shape="circle"  width="96rpx" height="96rpx"></u-image>
+							<text class="grid-text">{{baseListItem.name}}</text>
+						</u-grid-item>
+					</u-grid>
+				</swiper-item>
+			</swiper>
 		</view>
 		<!-- #ifdef MP-ALIPAY -->
 
@@ -36,7 +49,7 @@
 		 </view>
 		 <!-- #endif -->
 		<view class="bigkuang">
-			<u-skeleton :loading="loading" avatar rows="2"></u-skeleton>
+			<u-skeleton :loading="loading" rows="2"></u-skeleton>
 		</view>
 		<view class="bigkuang">
 			
@@ -180,6 +193,7 @@
 				baseList: [],
 				
 				windowTop:'',
+				statusBarHeight:'',
 				titleBarHeight:'',
 				activity:[],
 				phonevivo:[],
@@ -375,8 +389,8 @@
 			getStateBarHeight() {
 				let info = uni.getSystemInfoSync()
 				this.windowtop = info.windowTop
+				this.statusBarHeight = info.statusBarHeight
 				this.titleBarHeight = info.titleBarHeight
-				
 			},
 			gonggeurl(){
 				let opt = {
@@ -597,17 +611,22 @@
 		height: 60px;
 	}
 	.gonggao{
-		padding: 2% 0px 2% 5%;
-		display: flex;
-		font-size: 16px;
-		align-items: center;
+		padding: 6px 16px;
+		font-size: 14px;
 		background-color: rgb(255, 255, 255);
-		margin-bottom: 3px;
+		.content {
+			display: flex;
+			align-items: center;
+			background-color: #FAFAFB;
+			border-radius: 4px;
+			padding: .5% 2%;
+		}
 	}
 	.zulin{
-		border-right: 3px solid rgb(197, 197, 197);
+		border-right: 1px solid #D5D7DC;
 		padding-right: 8px;
 		font-weight: 600;
+		color: #414960;
 	}
 	.tishi{
 		padding-left: 8px;
@@ -624,13 +643,13 @@
 		min-height: 100px;
 	}
 	.grid-text {
-	        font-size: 14px;
-	        color: #000;
-			padding: 10rpx 0 20rpx 0rpx;
-	        /* #ifndef APP-PLUS */
-	        box-sizing: border-box;
-	        /* #endif */
-	    }
+		font-size: 14px;
+		color: #414960;
+		padding: 10rpx 0 40rpx 0rpx;
+		/* #ifndef APP-PLUS */
+		box-sizing: border-box;
+		/* #endif */
+	}
 	.line {
 		width: 83rpx;
 		height: 1rpx;
@@ -659,8 +678,8 @@
 			border-radius: 10rpx;
 			// #endif
 			// #ifdef MP-ALIPAY
-			width: 90%;
-			margin: 0 5%;
+			width: 92%;
+			margin: 0 4%;
 			height: 60rpx;
 			border-radius: 10rpx;
 			// #endif
@@ -672,7 +691,7 @@
 
 			/deep/ .u-icon {
 				opacity: 0.6;
-				margin: 0 15rpx 0 30rpx;
+				margin: 0 15rpx 0 15rpx;
 			}
 
 			.title {

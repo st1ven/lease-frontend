@@ -1,23 +1,11 @@
-
 import Vue from 'vue'
 import App from './App'
-// #ifdef MP-ALIPAY
-import uma from 'umtrack-alipay';
-uma.init({
-    appKey:'6369f21d88ccdf4b7e606f18',
-    debug:false 
-});
+
 my.onPageNotFound(res => {
   my.switchTab({
     url: '/pages/index/index'
   });
 });
-uma.install =function(Vue){
-Vue.prototype.$uma = uma
-}
-Vue.use(uma)
-// #endif
-
 
 // vuex
 import store from './store'

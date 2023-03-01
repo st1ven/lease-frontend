@@ -1,11 +1,11 @@
 {
 	"component2": true,
-	"appid": "2021003114689211",
+	"appid": "2021003160663109",
 	"enableAppxNg": true,
 	"cloud": {
-	    "type": "miniappServerscss"
-	  },
-	  "miniprogramRoot": "./unpackage/dist/build/mp-alipay",
+		"type": "miniappServerscss"
+	},
+	"miniprogramRoot": "",
 	"node_modules_es6_whitelist": [
 		"mod1",
 		"@alipay/mod2",
