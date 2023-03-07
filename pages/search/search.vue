@@ -4,16 +4,15 @@
 		<view class="search-box">
 			<!-- <u-search actionText="搜索" show-action animation /> -->
 			<u-search placeholder="请输入关键词" actionText="搜索" :clearabled="true" v-model="searchTxt"
-				@custom="searchCustom(searchTxt)" @search="searchCustom(searchTxt)"></u-search>
+				@custom="searchCustom(searchTxt)" @search="searchCustom(searchTxt)" animation></u-search>
 		</view>
 		<text class="title">
-			热搜榜单
+			<text style="color: #FF5B56;">热搜</text>榜单
 		</text>
 		<view class="hot-li" v-for="(item, index) in hotList" @click="searchCustom(item.title)">
-			<view class="hot-rank">{{index+1}}</view>
-			<view class="hot-txt  u-line-1">{{item.title}}</view>
+			<view class="hot-rank" :class="'hot-rank-'+(index+1)">{{index+1}}</view>
+			<view class="hot-txt u-line-1">{{item.title}}</view>
 		</view>
-
 	</view>
 </template>
 
@@ -24,7 +23,6 @@
 			return {
 				searchTxt: "",
 				hotList: [],
-
 			};
 		},
 		onShow() {
@@ -40,16 +38,11 @@
 			init(){
 				let opt = {
 					url: '/search/goods',
-					data: {
-						status: this.tabStatus,
-						pageSize: this.pageSize,
-						pageIndex: this.pageIndex
-					}
+					data: {}
 				}
 				this.$request(opt).then(res => {
 					// 打印调用成功回调
-					this.hotList = res.data 
-					 
+					this.hotList = res.data
 				})
 			}
 		}
@@ -65,20 +58,58 @@
 			padding: 30rpx;
 		}
 
+		/deep/ .u-search__content {
+			border-radius: 10rpx!important;
+			background: #F1F2F5!important;
+		}
+
+		/deep/ .u-search__content__input {
+			background-color: #F1F2F5!important;
+		}
+
+		/deep/ .u-search__action {
+			color: #414960!important;
+		}
+
 		.title {
 			margin: 30rpx;
-			color: #1F1F1F;
+			font-weight: 600;
+			color: #414960;
 			font-size: 30rpx;
 		}
 
 		.hot-li {
 			font-size: 28rpx;
-			color: #1F1F1F;
+			color: #414960;
 			display: flex;
-			padding: 16rpx 0rpx 16rpx 36rpx;
-			border-bottom: 1px solid #f1f1f1;
+			padding: 32rpx 0rpx 26rpx 40rpx;
+			border-bottom: 1px solid #FAFAFB;
 			.hot-rank {
-				margin-right: 10rpx;
+				width: 32rpx;
+				height: 32rpx;
+				line-height: 32rpx;
+				text-align: center;
+				border-radius: 4px;
+				color: #FF5B56;
+				margin-right: 16rpx;
+			}
+			.hot-rank-1 {
+				color: #fff;
+				font-size: 24rpx;
+				font-weight: bold;
+				background-color: #FF5B56;
+			}
+			.hot-rank-2 {
+				color: #fff;
+				font-size: 24rpx;
+				font-weight: bold;
+				background-color: #ff6921;
+			}
+			.hot-rank-3 {
+				color: #fff;
+				font-size: 24rpx;
+				font-weight: bold;
+				background-color: #FFAA00;
 			}
 			.hot-txt {
 				width: 90%;

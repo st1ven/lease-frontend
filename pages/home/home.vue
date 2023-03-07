@@ -47,14 +47,6 @@
 			
 		</iz-card>
 		
-		<view class="recommend-box">
-			<text class="line"></text>
-			<text class="title">为您推荐</text>
-			<text class="line"></text>
-		</view>
-		<view class="goods-box">
-			<iz-goods-item ImgBoxH="333rpx" :newList="newList" />
-		</view>
 		<u-toast ref="uToast"></u-toast>
 		<!-- 联系我们 -->
 		<Contact ref="contact" type="0"></Contact>
@@ -382,26 +374,6 @@
 			border: 1px solid #f0f0f000;
 			padding: 0 15px;
 			border-radius: 10px;
-		}
-	}
-
-	.recommend-box {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: row;
-		margin: 15rpx 0;
-
-		.line {
-			width: 83rpx;
-			height: 1rpx;
-			background: #333333;
-		}
-
-		.title {
-			margin: 0 30rpx;
-			font-size: 28rpx;
-			color: #1F1F1F;
 		}
 	}
 

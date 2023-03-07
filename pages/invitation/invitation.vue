@@ -42,9 +42,9 @@
 						</view>
 						<view class="" style="padding-bottom: 10px;display: flex;flex-direction: row;justify-content: center;">
 							<fengwologin v-if="tokenstatus ==''" titlee='授权登录' :stylee='configg.page_json.ButtonC' :stylecolor="stylecolor"/>
-							<button v-else class="buy-ok" :style="{background:configg.page_json.ButtonC,color:stylecolor}" open-type="share"><view class="yaoqing" @click="yaoqinghaoyou">
-								
-							邀请好友</view></button>
+							<button v-else class="buy-ok" :style="{background:configg.page_json.ButtonC,color:stylecolor}" open-type="share">
+								<view class="yaoqing" @click="yaoqinghaoyou">邀请好友</view>
+							</button>
 						</view>						
 					</view>
 				</view>

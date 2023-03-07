@@ -1,3 +1,3 @@
 module.exports = {
-    baseUrl: 'https://api.jiulove.cn' 
+    baseUrl: 'https://apitest.jiulove.cn' 
 }

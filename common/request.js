@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.jiulove.cn"; //域名抽取
+const BASE_URL = "https://apitest.jiulove.cn"; //域名抽取
 const HEADER = {
 	'content-type': 'multipart/form-data'
 }; //头部

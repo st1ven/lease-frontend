@@ -1,105 +1,108 @@
 <template>
 	<view>
 		<!-- 搜索 & 轮播  首页 -->
-		<view class="tab-box" :style="{background:'linear-gradient(1deg, #ffffff 0%, '+ backgroundcolor +' 100%)', paddingTop:statusBarHeight + titleBarHeight}">
-			<view class="search-box" @click="JumpSearch" >
+		<view class="tab-box"
+			:style="{background:'linear-gradient(1deg, #ffffff 0%, '+ backgroundcolor +' 100%)', paddingTop:statusBarHeight + titleBarHeight}">
+			<view class="search-box" @click="JumpSearch">
 				<u-icon size="26" name="search" color="#9FA3B0" />
 				<text class="title">输入关键词</text>
 			</view>
-			<u-swiper @click="bann" indicator @change="bannqiehan" :list="list" :circular="true"/>
-			<view class="bannerbottom">
-					<image  v-for="(item,index) in imagee.bannerbottom" :key="index" :src="item" mode="widthFix"></image>
-			</view>
+			<u-swiper @click="bann" indicator @change="bannqiehan" :list="list" :circular="true" />
 		</view>
 		<view class="gonggao" v-if="imagee.dynamic != '0'">
 			<view class="content">
 				<text class="zulin">租赁<text style="color: #FFAA00;">动态</text></text>
 				<text v-if="(imagee.gonggao).length < 15 " class="tishi">{{imagee.gonggao}}</text>
-				<u-notice-bar v-else :text="''+imagee.gonggao+''" direction="row" icon=" " bgColor=" " speed="60" color="#414960"></u-notice-bar>
+				<u-notice-bar v-else :text="''+imagee.gonggao+''" direction="row" icon=" " bgColor=" " speed="60"
+					color="#414960"></u-notice-bar>
 			</view>
-		</view> 
+		</view>
 		<view class="gongge">
 			<u-skeleton :loading="loading" rows="1"></u-skeleton>
 			<swiper class="swiper" :indicator-dots="true" indicator-color="#D5D7DC" indicator-active-color="#9FA3B0">
 				<swiper-item>
 					<u-grid col="5" :border="false">
-						<u-grid-item v-for="(baseListItem,baseListIndex) in baseList.slice(0, 5)"
-							:key="baseListIndex" @click="gongge(baseListItem)">
-							<u-image :src="baseListItem.image" mode="aspectFit" shape="circle"  width="96rpx" height="96rpx"></u-image>
+						<u-grid-item v-for="(baseListItem,baseListIndex) in baseList.slice(0, 5)" :key="baseListIndex"
+							@click="gongge(baseListItem)">
+							<u-image :src="baseListItem.image" mode="aspectFit" shape="circle" width="96rpx"
+								height="96rpx"></u-image>
 							<text class="grid-text">{{baseListItem.name}}</text>
 						</u-grid-item>
 					</u-grid>
 				</swiper-item>
 				<swiper-item>
 					<u-grid col="5" :border="false">
-						<u-grid-item v-for="(baseListItem,baseListIndex) in baseList.slice(5)"
-							:key="baseListIndex" @click="gongge(baseListItem)">
-							<u-image :src="baseListItem.image" mode="aspectFit" shape="circle"  width="96rpx" height="96rpx"></u-image>
+						<u-grid-item v-for="(baseListItem,baseListIndex) in baseList.slice(5)" :key="baseListIndex"
+							@click="gongge(baseListItem)">
+							<u-image :src="baseListItem.image" mode="aspectFit" shape="circle" width="96rpx"
+								height="96rpx"></u-image>
 							<text class="grid-text">{{baseListItem.name}}</text>
 						</u-grid-item>
 					</u-grid>
 				</swiper-item>
 			</swiper>
 		</view>
-		<!-- #ifdef MP-ALIPAY -->
-
-		<view v-if="imagee.followopen == '1'" style="padding: 4px 12px 0 12px;">
-			<view :style="{backgroundImage:'url('+imagee.follow+')'}"  class="guanzhu" @click="huiyuan()">
-			</view>
-		 </view>
-		 <!-- #endif -->
-		<view class="bigkuang">
-			<u-skeleton :loading="loading" rows="2"></u-skeleton>
+		<view class="bannerbottom">
+			<image v-for="(item,index) in imagee.bannerbottom" :key="index" :src="item" mode="widthFix"></image>
 		</view>
+		<!-- #ifdef MP-ALIPAY -->
+		<view v-if="imagee.followopen == '1'" style="padding: 4px 12px 0 12px;">
+			<view :style="{backgroundImage:'url('+imagee.follow+')'}" class="guanzhu" @click="huiyuan()">
+			</view>
+		</view>
+		<!-- #endif -->
 		<view class="bigkuang">
-			
 			<view class="bigimage">
 				<view class="imageimage" style="padding-right: 2px;">
-					<u-swiperbot @click="bannbottom" indicatorMode="dot" interval="4000" indicator  height="100%" :list="listimage.map(item => item.image)" :circular="true" />
+					<u-swiperbot @click="bannbottom" indicatorMode="dot" interval="4000" indicator height="100%"
+						:list="listimage.map(item => item.image)" :circular="true" />
 				</view>
-				<image :lazy-load="true" class="imageimage"  :src="imagee.imageright" style="margin-left: 2px;" mode="widthFix" @click='haohuoright()'></image>
-			</view>
-			<view class="smartimage">
-				<image  :lazy-load="true" class="smartimageimage" :src="imagee.imageleft" mode="widthFix" @click='haohuolefturl()'></image>
-				<image  :lazy-load="true" class="smartimageimage" :src="imagee.image3" mode="widthFix" @click="huiyuanding()"></image>
-				<image  :lazy-load="true" class="smartimageimage" :src="imagee.image2" mode="widthFix" @click='huodongding()'></image>
+				<view class="imageimage" style="margin-left: 2px; display: flex; flex-direction: column; gap: 4px;">
+					<image :lazy-load="true" :src="imagee.bigright1" mode="widthFix"
+						style="width: 100%; border-radius: 4px;" @click='haohuoright()'></image>
+					<image :lazy-load="true" :src="imagee.bigright2" mode="widthFix"
+						style="width: 100%; border-radius: 4px;" @click='huiyuanding()'></image>
+				</view>
 			</view>
 		</view>
-
 		<view style="background: #fff;">
-			<view class=""  style="background: #fff;" v-for="(item,index) in activity" :key="index">
+			<view style="background: #fff;" v-for="(item,index) in activity" :key="index">
 				<view class="changtu" @click="huodongtiao(item)" style="height: auto;">
-					<u-image :src="item.banner_image" mode="widthFix" radius="7px" width="100%" >
+					<u-image :src="item.banner_image" mode="widthFix" radius="7px" width="100%">
 					</u-image>
 				</view>
 			</view>
 		</view>
 		<!-- 生活号 -->
-		<view class="bannergood" style="padding: 10px 12px 0;">
-			<lifestyle sceneId="6fdff7bd819d4a28b170d00ef6d750c6" /> 
+		<view class="" style="padding: 10px 12px 0;">
+			<lifestyle sceneId="6fdff7bd819d4a28b170d00ef6d750c6" />
 		</view>
-		
+
 		<!-- 热门推荐 -->
-		
+
 		<view class="rank-box boxx">
-			<image style="width: 100%;border-radius: 12px;" :src="imagee.imagehot" mode="widthFix" @click='JumpHot({indexFlag:3,id:47})'></image>
+			<image style="width: 100%;" :src="imagee.imagehot" mode="widthFix" @click='JumpHot({indexFlag:3,id:47})'>
+			</image>
 
 			<scroll-view scroll-x="true" class="flex">
-			
-				<view class="diso dioo" style="display: flex;flex-direction: row;flex-wrap: nowrap;flex-wrap: wrap;justify-content: space-between;">
-	
-				<view class="rank-item" style="margin-left: 2rpx;" v-for="(item,i) in hotList.slice(0,6)" :key="i" @click="JumpDetail(item)">
-					<view class="uimage">
-						<u-image :lazy-load="true" width="113rpx" height="113rpx" :src="item.image"><template v-slot:loading>
-					    <u-loading-icon color="#1890ff"></u-loading-icon>
-					  </template></u-image>
-				     </view>
-					<text class="u-line-1 ft-24 my-10" style="width: 208rpx; ">{{item.title}}</text>
-					<view class="goods-price">
-						<text class="price-number">¥{{item.day_price}}</text>
-						<text class="price-company">/天起</text>
+
+				<view class="diso dioo"
+					style="display: flex;flex-direction: row;flex-wrap: nowrap;flex-wrap: wrap;justify-content: space-between;">
+
+					<view class="rank-item" style="margin-left: 2rpx;" v-for="(item,i) in hotList.slice(0,6)" :key="i"
+						@click="JumpDetail(item)">
+						<view class="uimage">
+							<u-image :lazy-load="true" width="113rpx" height="113rpx" :src="item.image"><template
+									v-slot:loading>
+									<u-loading-icon color="#1890ff"></u-loading-icon>
+								</template></u-image>
+						</view>
+						<text class="u-line-1 ft-24 my-10" style="width: 208rpx; ">{{item.title}}</text>
+						<view class="goods-price">
+							<text class="price-number">¥{{item.day_price}}</text>
+							<text class="price-company">/天起</text>
+						</view>
 					</view>
-				</view>
 
 				</view>
 
@@ -108,65 +111,75 @@
 		</view>
 
 		<view v-if="loadding" style="padding-top: 20px;">
-			<u-loading-icon  color="#14a3e4" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+			<u-loading-icon color="#ffaa00" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 		</view>
 		<view class="zhuanqu" v-for="(item,index) in phoneList" :key="index">
 			<view class="bannerbig">
-				<view class="bannergood" style="padding: 12px 12px 0;">
-					<image style="width: 100%;border-radius: 12px;" :src="item.index_image" mode="widthFix" @click="tiaozhuan(item.id)"></image>
-				</view>
+				<view class="bannergood">
+					<image style="width: 100%;" :src="item.index_image" mode="widthFix" @click="tiaozhuan(item.id)"></image>
 					<scroll-view scroll-x="true" class="flex">
 						<!-- #ifdef H5 -->
 						<view class="diso">
-						<!-- #endif -->
-						<view class="rank-item" style="padding: 16px 12px;margin-left: 8rpx;" v-for="(ite,i) in item.list" :key="i" @click="JumpDetail(ite)">
-							<view class="uimage">
-								<u-image :lazy-load="true"  width="113rpx" height="113rpx" :src="ite.image" />
-							 </view>
-							<text class="u-line-2 ft-24 my-10" style="width: 178rpx;height: 52rpx;margin-bottom: 8px;">{{ite.title}}</text>
-							<view class="goods-price">
-								<text class="price-number">¥{{ite.day_price}}</text>
-								<text class="price-company">/天</text>
+							<!-- #endif -->
+							<view class="rank-item" style="padding: 0 12px 16px;margin-left: 8rpx;"
+								v-for="(ite,i) in item.list" :key="i" @click="JumpDetail(ite)">
+								<view class="uimage">
+									<u-image :lazy-load="true" width="180rpx" height="180rpx" :src="ite.image" />
+								</view>
+								<text class="u-line-2 ft-24 my-10"
+									style="width: 220rpx;height: 52rpx;margin-bottom: 8px;">{{ite.title}}</text>
+								<view class="goods-price">
+									<text class="price-number">¥{{ite.day_price}}</text>
+									<text class="price-company">/天</text>
+								</view>
 							</view>
-						</view>
-						<!-- #ifdef H5 -->
+							<!-- #ifdef H5 -->
 						</view>
 						<!-- #endif -->
 					</scroll-view>
-			</view>
-		</view>
-		
-		<view class="zhuanqu" v-for="(item,index) in pcList" :key="index">
-			<view class="bannerbig">
-				<view class="bannergood" style="padding: 12px 12px 0;">
-					<image style="width: 100%;border-radius: 12px;" :src="item.index_image" mode="widthFix"  @click="tiaozhuan(item.id)"></image>
 				</view>
-					<scroll-view scroll-x="true" class="flex">
-						<!-- #ifdef H5 -->
-						<view class="diso">
-						<!-- #endif -->
-						<view class="rank-item" style="padding: 14px 12px;margin-left: 8rpx;" v-for="(ite,i) in item.list" :key="i" @click="JumpDetail(ite)">
-							<view class="uimage">
-								<u-image :lazy-load="true"  width="113rpx" height="113rpx" :src="ite.image" />
-							 </view>
-							<text class="u-line-2 ft-24 my-10" style="width: 178rpx;height: 52rpx;margin-bottom: 8px;">{{ite.title}}</text>
-							<view class="goods-price">
-								<text class="price-number">¥{{ite.day_price}}</text>
-								<text class="price-company">/天</text>
-							</view>
-						</view>
-						<!-- #ifdef H5 -->
-						</view>
-						<!-- #endif -->
-					</scroll-view>
 			</view>
 		</view>
 
-		<view class="recommend-goods" style="margin-top: 10px;background-color: #f0f0f0;">
+		<view class="zhuanqu" v-for="(item,index) in pcList" :key="index">
+			<view class="bannerbig">
+				<view class="bannergood">
+					<image style="width: 100%;" :src="item.index_image" mode="widthFix" @click="tiaozhuan(item.id)"></image>
+					<scroll-view scroll-x="true" class="flex">
+						<!-- #ifdef H5 -->
+						<view class="diso">
+							<!-- #endif -->
+							<view class="rank-item" style="padding: 0 12px 16px;margin-left: 8rpx;"
+								v-for="(ite,i) in item.list" :key="i" @click="JumpDetail(ite)">
+								<view class="uimage">
+									<u-image :lazy-load="true" width="180rpx" height="180rpx" :src="ite.image" />
+								</view>
+								<text class="u-line-2 ft-24 my-10"
+									style="width: 220rpx;height: 52rpx;margin-bottom: 8px;">{{ite.title}}</text>
+								<view class="goods-price">
+									<text class="price-number">¥{{ite.day_price}}</text>
+									<text class="price-company">/天</text>
+								</view>
+							</view>
+							<!-- #ifdef H5 -->
+						</view>
+						<!-- #endif -->
+					</scroll-view>
+				</view>
+			</view>
+		</view>
+
+		<view class="recommend-box">
 			<text class="line"></text>
+			<text class="title">新品速递</text>
 			<text class="line"></text>
+		</view>
+		<view v-if="loadding" style="padding-top: 20px;">
+			<u-loading-icon color="#ffaa00" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+		</view>
+		<view class="recommend-goods" style="margin-top: 10px;">
 			<view class="recommend-goods-ul">
-				<iz-goods-item ImgBoxH="333rpx" :credit="true" :newList="newList" />
+				<iz-goods-item ImgBoxH="333rpx" :credit="true" :newList="newList" Bgc="#f6f6fb" textLine="u-line-2" />
 			</view>
 		</view>
 
@@ -182,46 +195,45 @@
 				phoneList: [],
 				phoneIndex: 0,
 				phoneArr: [],
-				phoneiphone:[],
-				
+				phoneiphone: [],
+
 				pcList: [],
 				pcIndex: 0,
 				newList: [],
 				hotList: [],
-				good:[],
-				imagee:{},
+				good: [],
+				imagee: {},
 				baseList: [],
-				
-				windowTop:'',
-				statusBarHeight:'',
-				titleBarHeight:'',
-				activity:[],
-				phonevivo:[],
-				phoneoppo:[],
-				phonexiaomi:[],
-				phonehuawei:[],
-				listimage:[],
-				userid:{},
-				scrollstatus:1,
-				loading:true,
-				loadding:true,
-				backgroundcolor:'',
+
+				windowTop: '',
+				statusBarHeight: '',
+				titleBarHeight: '',
+				activity: [],
+				phonevivo: [],
+				phoneoppo: [],
+				phonexiaomi: [],
+				phonehuawei: [],
+				listimage: [],
+				userid: {},
+				scrollstatus: 1,
+				loading: true,
+				loadding: true,
+				backgroundcolor: '',
 				// #ifdef MP-ALIPAY
 				canUse: my.canIUse('lifestyle'),
 				show: true,
-				checkFollow: true, 
-				templateId:''
+				checkFollow: true,
+				templateId: ''
 				// #endif 
 			}
 		},
-		onPageScroll(object)
-		    {
-				if(this.pcList == '' && this.scrollstatus == '1'){
-					this.scrollstatus = 2
-					this.phoneHttp() //手机
-					this.pcHttp() //电脑
-					this.newListHttp() //最新上架
-				}
+		onPageScroll(object) {
+			if (this.pcList == '' && this.scrollstatus == '1') {
+				this.scrollstatus = 2
+				this.phoneHttp() //手机
+				this.pcHttp() //电脑
+				this.newListHttp() //最新上架
+			}
 		},
 		onLoad() {
 			this.user = my.getLaunchOptionsSync()
@@ -236,35 +248,19 @@
 			this.activityimage()
 
 			this.hotListHttp() //热门推荐		
-			if(this.pcList !=''){
+			if (this.pcList != '') {
 				this.phoneHttp() //手机
 				this.pcHttp() //电脑
 				this.newListHttp() //最新上架
 			}
 		},
-		
+
 		created() {
-					// 获取设备信息
-					this.getStateBarHeight();
-					
-				},
+			// 获取设备信息
+			this.getStateBarHeight();
+		},
 		methods: {
-			huodongding(){
-				let opt = {
-					url: '/index/dingyue?biaoshi=indexcopus'
-				}
-				this.$request(opt).then(res => {
-				var dingyueid = res.data
-				my.requestSubscribeMessage({
-					//优惠券到期提醒，优惠券领取提醒
-					entityIds: dingyueid,
-					complete: (res) => {
-						this.huodong()
-					}
-				});
-				})
-			},
-			huiyuanding(){
+			huiyuanding() {
 				let opt = {
 					url: '/index/dingyue?biaoshi=indexinvite'
 				}
@@ -277,9 +273,9 @@
 						}
 					});
 				})
-				
+
 			},
-			huiyuanyao(){
+			huiyuanyao() {
 				let opt = {
 					url: '/index/huiyuanyao'
 				}
@@ -291,17 +287,17 @@
 				})
 			},
 
-			tiaozhuan(e){
+			tiaozhuan(e) {
 				uni.navigateTo({
 					url: "../product-list/product-list?sortFlag=1&category_ids=" + e
 				})
 			},
-			bannqiehan(e){
+			bannqiehan(e) {
 				let index = e.current
 				this.backgroundcolor = this.good[index].backgroundcolor
 			},
-			
-			haohuoright(){
+
+			haohuoright() {
 				let opt = {
 					url: '/index/haohuoright'
 				}
@@ -312,24 +308,7 @@
 					})
 				})
 			},
-			haohuolefturl(){
-				let opt = {
-					url: '/index/haohuolefturl'
-				}
-				this.$request(opt).then(res => {
-					const path = res.data.value
-					if(res.url.value == '1'){
-						my.ap.navigateToAlipayPage({
-						  path
-						});
-					}else{
-						uni.navigateTo({
-							url: path
-						})
-					}
-				})
-			},
-			huiyuan(){
+			huiyuan() {
 				let opt = {
 					url: '/index/getmemberurl'
 				}
@@ -337,17 +316,16 @@
 					var urll = res.data.url
 					var plugin = requirePlugin("alipassToolKit") // 引用名称需与 app.json 中定义名称相同
 					let params = {
-					  url: urll,//开卡链接，通过上文 获取投放链接 获取
-					    callback: function (res) {
-					      if (res.success === true) {
-					      }
-					    }
-					  }
-					 plugin.openCard(params);// 接口参数说明如下
+						url: urll, //开卡链接，通过上文 获取投放链接 获取
+						callback: function(res) {
+							if (res.success === true) {}
+						}
+					}
+					plugin.openCard(params); // 接口参数说明如下
 				})
 			},
-			cookiee(){
-				if(this.userid){
+			cookiee() {
+				if (this.userid) {
 					uni.setStorage({
 						key: 'yaouserid',
 						data: this.userid.userid,
@@ -355,22 +333,22 @@
 					let opt = {
 						url: '/index/yaoqing',
 						data: {
-							yaouserid:this.userid.userid,
+							yaouserid: this.userid.userid,
 						}
-						
+
 					}
 					this.$request(opt).then(res => {
 						// 打印调用成功回调
 						// console.log(res)
 					})
-				}else{
+				} else {
 					uni.setStorage({
 						key: 'yaouserid',
 						data: '0',
 					});
 				}
 			},
-			huodong(){
+			huodong() {
 				let opt = {
 					url: '/index/huodongurl'
 				}
@@ -381,9 +359,9 @@
 					})
 				})
 			},
-			huodongtiao(item){
+			huodongtiao(item) {
 				uni.navigateTo({
-					url:"./activity?id=" + item.id + "&title=" + item.name
+					url: "./activity?id=" + item.id + "&title=" + item.name
 				})
 			},
 			getStateBarHeight() {
@@ -392,66 +370,66 @@
 				this.statusBarHeight = info.statusBarHeight
 				this.titleBarHeight = info.titleBarHeight
 			},
-			gonggeurl(){
+			gonggeurl() {
 				let opt = {
 					url: '/index/gonggeur'
 				}
 				this.$request(opt).then(res => {
-				this.loading = false	
-				this.baseList = res.data
+					this.loading = false
+					this.baseList = res.data
 				})
 			},
 			gongge(name) {
-				if(name.classification == '1'){
-				uni.navigateTo({
-					　　url: "/pages/index/gongge?id=" + name.categoryid +"&title=" + name.name
+				if (name.classification == '1') {
+					uni.navigateTo({
+						url: "/pages/index/gongge?id=" + name.categoryid + "&title=" + name.name
 					})
-				}else{
+				} else {
 					uni.navigateTo({
 						url: "../product-list/product-list?sortFlag=" + 1 + '&category_ids=' + name.categoryid
 					})
-				}	
+				}
 			},
-			activityimage(){
+			activityimage() {
 				let opt = {
 					url: '/index/activityimage'
 				}
 				this.$request(opt).then(res => {
 					// 打印调用成功回调
-				// this.imagee = res.data
-				this.activity = res.data
-				// console.log(res)
+					// this.imagee = res.data
+					this.activity = res.data
+					// console.log(res)
 				})
 			},
-			image(){
+			image() {
 				let opt = {
 					url: '/index/image'
 				}
 				this.$request(opt).then(res => {
 					// 打印调用成功回调
-				this.imagee = res.data
+					this.imagee = res.data
 				})
 			},
-			bann(index){
-				if(this.good[index].good_url == '' || this.good[index].good_url == null){
+			bann(index) {
+				if (this.good[index].good_url == '' || this.good[index].good_url == null) {
 					uni.navigateTo({
 						url: "../goods-detail/goods-detail?id=" + this.good[index].good_id
 					})
-				}else{
+				} else {
 					uni.navigateTo({
 						url: this.good[index].good_url
-					})	
+					})
 				}
 			},
-			bannbottom(index){
-				if(this.listimage[index].good_url == '' || this.listimage[index].good_url == null){
+			bannbottom(index) {
+				if (this.listimage[index].good_url == '' || this.listimage[index].good_url == null) {
 					uni.navigateTo({
 						url: "../goods-detail/goods-detail?id=" + this.listimage[index].good_id
 					})
-				}else{
+				} else {
 					uni.navigateTo({
 						url: this.listimage[index].good_url
-					})	
+					})
 				}
 			},
 			JumpSearch() {
@@ -460,7 +438,7 @@
 				})
 			},
 			JumpDetail(obj) {
-				
+
 				uni.navigateTo({
 					url: "../goods-detail/goods-detail?id=" + obj.id
 				})
@@ -492,7 +470,7 @@
 				}
 				this.$request(opt).then(res => {
 					// 打印调用成功回调
-					
+
 					this.phoneList = res.data
 					this.loadding = false
 				})
@@ -549,71 +527,73 @@
 </script>
 
 <style lang="scss" scoped>
-	.guanzhu{
-		color:blueviolet;
+	.guanzhu {
+		color: blueviolet;
 		display: flex;
 		justify-content: space-around;
 		align-content: center;
-		height:100rpx ;
+		height: 100rpx;
 		background-size: 100% 100%;
 		align-items: center;
 		justify-content: flex-end;
 		padding: 0 10px 0pt 0pt;
 		border-radius: 8px;
 	}
-	.bigkuang{
+
+	.bigkuang {
 		display: flex;
 		flex-direction: column;
 	}
-	.bigimage{
+
+	.bigimage {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
-		padding: 10px 12px;
+		padding: 8px 12px;
 	}
-	.imageimage{
+
+	.imageimage {
 		border-radius: 8px;
 		width: 50%;
 	}
-	.smartimage{
-		display: flex;
-		padding: 0 12px;
-	}
-	.smartimageimage{
-		border-radius: 8px;
-		padding: 0 2px;
-	}
-	.bannerbottom{
+
+	.bannerbottom {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
 		justify-content: space-around;
 		padding: 5px 15px 0;
 	}
-	.uimage{
+
+	.uimage {
 		margin: 0 auto;
 	}
-	.boxx{
+
+	.boxx {
 		width: 94%;
 		margin-left: 3%;
-		border-radius: 10px;
+		border-radius: 8px;
 		background-size: 100% 100%;
 	}
-	.gongge{
+
+	.gongge {
 		background-color: #fff;
 		padding: 2% 2% 0 2%;
 		min-height: 80px;
 	}
-	.changtu{
-		padding:0 3.5% 2% 3.5%;
+
+	.changtu {
+		padding: 0 3.5% 2% 3.5%;
 		background-color: #fff;
 		margin-bottom: 3px;
 		height: 60px;
 	}
-	.gonggao{
+
+	.gonggao {
 		padding: 6px 16px;
 		font-size: 14px;
 		background-color: rgb(255, 255, 255);
+
 		.content {
 			display: flex;
 			align-items: center;
@@ -622,17 +602,20 @@
 			padding: .5% 2%;
 		}
 	}
-	.zulin{
+
+	.zulin {
 		border-right: 1px solid #D5D7DC;
 		padding-right: 8px;
 		font-weight: 600;
 		color: #414960;
 	}
-	.tishi{
+
+	.tishi {
 		padding-left: 8px;
 		font-size: 15px;
 	}
-	.dioo{
+
+	.dioo {
 		flex-wrap: wrap;
 		background: #fff;
 		width: 94%;
@@ -642,6 +625,7 @@
 		// padding: 20px 0;
 		min-height: 100px;
 	}
+
 	.grid-text {
 		font-size: 14px;
 		color: #414960;
@@ -650,11 +634,13 @@
 		box-sizing: border-box;
 		/* #endif */
 	}
-	.line {
-		width: 83rpx;
-		height: 1rpx;
-		background: #333333;
-	}	
+
+	.bannergood {
+		margin: 12px 12px 0;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFF 10%);
+		border-radius: 8px;
+	}
+
 	.tab-box {
 		// #ifdef H5
 		padding-top: 30rpx;
@@ -684,7 +670,7 @@
 			border-radius: 10rpx;
 			// #endif
 			display: flex;
-			
+
 			align-items: center;
 			flex-direction: row;
 			background: #F9F9F9;
@@ -711,15 +697,16 @@
 			margin: 20rpx 30rpx 0 30rpx;
 		}
 	}
-	.diso{
+
+	.diso {
 		display: flex;
 	}
-	
+
 	.rank-box {
 		margin-top: 15rpx;
 		// padding: 30rpx 0;
 		background-color: #FFFFFF;
-		
+
 		.title-box {
 			display: flex;
 			align-items: center;
@@ -741,7 +728,7 @@
 
 		scroll-view {
 			width: 100%;
-			margin-top: 30rpx;
+			// margin-top: 30rpx;
 			white-space: nowrap;
 		}
 
@@ -756,21 +743,44 @@
 		margin-left: 20rpx;
 		width: 30%;
 		flex-direction: column;
-		padding: 20rpx 0 10rpx 0;
 		align-items: center;
-		background: #ffffff;
-		border-radius: 10px;
-		padding: 12px 2px;
+		color: #414960;
+		// background: #ffffff;
+		// border-radius: 10px;
+		padding: 10px 2px;
+
 		image {
 			margin: 0 auto;
 		}
 
-		&:last-child {
-			margin-right: 30rpx;
-		}
+		// &:last-child {
+		// 	margin-right: 30rpx;
+		// }
 
 		&>text {
 			// text-align: center;
+		}
+	}
+
+
+	.recommend-box {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: row;
+		margin: 35rpx 0 10rpx;
+
+		.line {
+			width: 83rpx;
+			height: 1rpx;
+			background: #D5D7DC;
+		}
+
+		.title {
+			margin: 0 30rpx;
+			font-size: 32rpx;
+			color: #414960;
+			font-weight: bold;
 		}
 	}
 
@@ -786,6 +796,7 @@
 			font-weight: bold;
 		}
 	}
+
 	/deep/ .u-tabs__wrapper__nav {
 		width: 88%;
 		margin: 0 auto;

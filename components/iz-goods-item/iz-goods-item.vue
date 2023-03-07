@@ -1,5 +1,5 @@
 <template>
-	<view class="iz-goods-tpl" :style="'background-color:'+Bgc || '#f0f0f0'">
+	<view class="iz-goods-tpl" :style="'background-color:'+Bgc || '#f6f6fb'">
 		<view class="iz-goods-item" v-for="(item,index) in Lists" :key="index" :style="itemStyle"
 			@click="JumpDetail(item)">
 			<view class="iz-img-box" :style="'height:'+ImgBoxH">
@@ -11,15 +11,19 @@
 					</u-image> 
 				</slot>
 			</view>
-			<u-divider :hairline="true" lineColor="#eaeaea"></u-divider>
-			<view class="goods-title u-line-1">
+			<view class="goods-title" :class="textLine || 'u-line-1'">
 				{{item.title}}
+			</view>
+			<view class="goods-tags" v-if="credit==true">
+				<view class="goods-tag tag-red">{{conditionMap[item.condition]}}</view>
+				<view class="goods-tag">{{activityMap[item.activity]}}</view>
+				<view class="goods-tag" v-if="credit==true">信用免押</view>
 			</view>
 			<view class="goods-price">
 				<!-- <text class="price-company">¥</text> -->
 				<text class="price-number">¥{{item.day_price}}</text>
 				<text class="price-company">/天</text>
-				<view class="goods-tag" v-if="credit==true">信用免押</view>
+				<view class="goods-info">{{item.show_sales}}人已租</view>
 			</view>
 		</view>
 	</view>
@@ -38,10 +42,9 @@
 				default: '100%',
 			},
 			Bgc: String,
-
+			textLine: String,
 			credit: true,
 			newList: {},
-
 		},
 		computed: {
 			itemStyle() {
@@ -58,7 +61,17 @@
 		},
 		data() {
 			return {
-				Lists: this.newList
+				Lists: this.newList,
+				activityMap: {
+					hot: '热门推荐',
+					day: '每日新品',
+					new: '最新上市',
+					popular: '爆款电脑'
+				},
+				conditionMap: {
+					new: '全新',
+					second: '二手'
+				}
 			};
 		},
 		methods: {
@@ -73,22 +86,23 @@
 
 <style lang="scss" scoped>
 	.iz-goods-tpl {
-		padding: 0 40rpx;
+		padding: 0 12px 8px;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		background-color: #F0F0F0;
+		background-color: #f6f6fb;
 		width: 100%;
 		box-sizing: border-box;
 	}
 
 	.iz-goods-item {
-		margin : 15rpx 0;
+		margin: 15rpx 0;
 		border-radius: 14rpx;
 		background-color: #FFFFFF;
 
 		.iz-img-box {
 			display: flex;
+			border-radius: 14rpx;
 			align-items: center;
 			justify-content: center;
 			background: #FFFFFF;
@@ -96,7 +110,7 @@
 
 		.goods-title {
 			font-size: 24rpx;
-			color: #1F1F1F;
+			color: #414960;
 			margin: 15rpx;
 		}
 
@@ -104,14 +118,34 @@
 			margin: 0 15rpx 15rpx 15rpx;
 		}
 
-		.goods-tag {
-			color: #95D1F9;
+		.goods-info {
+			color: #9FA3B0;
 			font-size: 18rpx;
 			font-weight: 400;
 			margin-left: auto;
+		}
+
+		.goods-tags {
+			display: flex;
+			gap: 8rpx;
+			margin: 15rpx;
+		}
+
+		.goods-tag {
+			color: #4D79FF;
+			font-size: 18rpx;
+			font-weight: 400;
+			width: max-content;
 			border-radius: 8rpx;
 			padding: 5rpx 10rpx;
-			border: 1rpx solid #B5E1FF;
+			border: .5px solid #4D79FF;
+			background: rgba(77, 121, 255, 0.1);
+		}
+
+		.tag-red {
+			color: #FF5B56;
+			border: .5px solid #FF5B56;
+			background: rgba(255, 91, 86, 0.1);
 		}
 	}
 </style>

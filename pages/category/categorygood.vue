@@ -3,41 +3,47 @@
 		<!-- 自定义导航 分类-->
 		<view class="fixed-box">
 			<u-scroll-list :indicator="false" style="background-color: #fff;">
-				<view class="uscroll" v-for="(item, index) in tarlist" :key="index" style="" @click="fenleibig(item.id,index)">
-					<image :src="item.image" mode="heightFix" style="height: 120rpx;padding: 0px 5px;" ></image>
-					<text v-if="activetext == index" style="font-size: 15px;font-weight:500;color: #93D3FF;">{{item.name}}</text>
-					<text v-else style="font-size: 10px;">{{item.name}}</text>
+				<view class="uscroll" v-for="(item, index) in tarlist" :key="index" style=""
+					@click="fenleibig(item.id,index)">
+					<image :src="item.image" mode="heightFix" style="height: 120rpx;padding: 0px 5px;"></image>
+					<text v-if="activetext == index"
+						style="font-size: 12px;font-weight:bold;color: #FFAA00;">{{item.name}}</text>
+					<text v-else style="font-size: 12px; color: #61687C;">{{item.name}}</text>
 				</view>
 			</u-scroll-list>
 		</view>
 		<view class="content-box">
 			<!-- 侧边导航栏 -->
-			<scroll-view scroll-y="true" style="background-color:#ececec;" :scroll-into-view="'nav-' + activeIndex" scroll-with-animation="true">
+			<scroll-view scroll-y="true" :scroll-into-view="'nav-' + activeIndex" scroll-with-animation="true">
 				<view :class="activeIndex === i ? 'active' : ''" v-for="(item,i) in sidebarList" :key="i" :id="item.id"
 					class="tab-item" @click="genleigood(item.id,i)">
 					{{item.name}}
 				</view>
 			</scroll-view>
 			<!-- 内容 -->
-			<view class="content" >
+			<view class="content">
 				<view v-for="(item,inx) in targetList" :key="inx" class="cate-item" @click="more(item)">
 					<view class="contentview">
 						<view class="imageleft" style="width: 30%;text-align: center;">
-							<u-image  mode="widthFix" width="60px" :src="item.image">
+							<u-image mode="widthFix" width="60px" :src="item.image">
 							</u-image>
 						</view>
 						<view class="wenzxi" style="width: 70%;">
 							<text class="u-line-2 ft-24 my-10" style="text-align: left;">{{item.title}}</text>
 							<view style="display: flex;">
-							<text v-if="item.activity == 'hot'" style="font-size: 12px;font-weight: 800;width:40%;color: #fff;background-color: #ff5500;border-radius: 8px 0;">热租</text>
-							<text v-if="item.activity == 'new'" style="font-size: 12px;font-weight: 800;width:40%;color: #fff;background-color:#ff00ea;border-radius: 8px 0;">爆款</text>
-							<text v-if="item.activity != 'new' && item.activity != 'hot'" style="font-size: 12px;font-weight: 800;width:40%;color: #fff;background-color:#ffaa00;border-radius: 8px 0;">推荐</text>
-							<text style="font-size: 14px;font-weight: 800;color: red;text-align: right;">{{item.day_price}}/日</text>
+								<text v-if="item.activity == 'hot'"
+									style="font-size: 12px;font-weight: 800;width:40%;color: #fff;background-color: #ff5500;border-radius: 8px 0;">热租</text>
+								<text v-if="item.activity == 'new'"
+									style="font-size: 12px;font-weight: 800;width:40%;color: #fff;background-color:#ff00ea;border-radius: 8px 0;">爆款</text>
+								<text v-if="item.activity != 'new' && item.activity != 'hot'"
+									style="font-size: 12px;font-weight: 800;width:40%;color: #fff;background-color:#ffaa00;border-radius: 8px 0;">推荐</text>
+								<text
+									style="font-size: 14px;font-weight: 800;color: red;text-align: right;">{{item.day_price}}/日</text>
 							</view>
 						</view>
 					</view>
 				</view>
-				
+
 			</view>
 		</view>
 	</view>
@@ -51,41 +57,41 @@
 				sidebarList: [],
 				targetList: [],
 				allList: [],
-				tarlist:[],
-				heightele:0,
-				goodlist:[],
-				fenleiid:0,
-				fenleinewid:0,
-				activetext:0
+				tarlist: [],
+				heightele: 0,
+				goodlist: [],
+				fenleiid: 0,
+				fenleinewid: 0,
+				activetext: 0
 			};
 		},
 		created() {
-			
+
 			this.fenlei()
 		},
 		methods: {
-			fenleibig(item,index){
+			fenleibig(item, index) {
 				this.activetext = index || 0
 				let opt = {
 					url: "/category/fenleismart",
-					data:{
-						pid:item
+					data: {
+						pid: item
 					}
 				}
 				let _this = this
 				this.$request(opt).then(res => {
 					this.sidebarList = res.data
-						this.genleigood(this.sidebarList[0].id) 
+					this.genleigood(this.sidebarList[0].id)
 				})
 			},
-			genleigood(id,index){
+			genleigood(id, index) {
 				this.activeIndex = index || 0
 
 				this.fenleinewid = id
 				let opt = {
 					url: "/category/fenleigood",
-					data:{
-						pid:id
+					data: {
+						pid: id
 					}
 				}
 				let _this = this
@@ -94,7 +100,7 @@
 					this.goodlist = res.data
 				})
 			},
-			fenlei(){
+			fenlei() {
 				let opt = {
 					url: "/category/fenleibig",
 				}
@@ -103,19 +109,19 @@
 					// 打印调用成功回调
 					console.log(res)
 					this.tarlist = res.data
-					this.fenleibig(this.tarlist[0].id,0)
+					this.fenleibig(this.tarlist[0].id, 0)
 				})
 			},
 			sidebarClick(i) {
 				this.activeIndex = i
-				this.targetList =this.allList[i].children? this.allList[i].children : []
+				this.targetList = this.allList[i].children ? this.allList[i].children : []
 			},
 			more(obj) {
 				uni.navigateTo({
 					url: "../goods-detail/goods-detail?id=" + obj.id
 				})
 			},
-			search(){
+			search() {
 				uni.navigateTo({
 					url: "../search/search"
 				})
@@ -146,19 +152,21 @@
 </script>
 
 <style lang="scss" scoped>
-	.uscroll{
+	.uscroll {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		padding: 2px 5px 0 8px;
 	}
-	.contentview{
+
+	.contentview {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
 		align-items: stretch;
 		width: 100%;
 	}
+
 	.fixed-box {
 		position: fixed;
 		left: 0;
@@ -170,6 +178,7 @@
 		padding-bottom: 0rpx;
 		box-shadow: 0px 1rpx 0px 0px rgba(68, 67, 67, 0.13);
 		background-color: #fff;
+
 		.search-box {
 			width: 400rpx;
 			display: flex;
@@ -198,9 +207,8 @@
 
 		.tab-item {
 			width: 170rpx;
-			
 			height: 90rpx;
-			color: #1F1F1F;
+			color: #61687C;
 			font-size: 24rpx;
 			font-weight: 400;
 			line-height: 90rpx;
@@ -208,29 +216,29 @@
 		}
 
 		.active {
-			color: #1F1F1F;
-			font-size: 30rpx;
+			color: #414960;
+			font-size: 24rpx;
 			font-weight: bold;
 			position: relative;
 			background-color: #FFFFFF;
-			border-radius: 0 10rpx 10rpx 0;
 		}
-		.activetext{
-			color: #1F1F1F;
+
+		.activetext {
+			color: #414960;
 			font-size: 20rpx;
 			font-weight: bold;
 			position: relative;
 			background-color: #FFFFFF;
-			border-radius: 0 10rpx 10rpx 0;
 		}
-		.activetext:after{
+
+		.activetext:after {
 			color: #ff557f;
 			font-size: 20rpx;
 			font-weight: bold;
 			position: relative;
 			background-color: #55ff7f;
-			border-radius: 0 10rpx 10rpx 0;
 		}
+
 		.active:after {
 			content: '';
 			display: block;
@@ -238,8 +246,9 @@
 			top: 50%;
 			width: 10rpx;
 			height: 38rpx;
-			background: #93D3FF;
+			background: #FFAA00;
 			transform: translateY(-50%);
+			border-radius: 0 10rpx 10rpx 0;
 		}
 
 		scroll-view {
@@ -251,14 +260,14 @@
 		.content {
 			position: absolute;
 			top: 0px;
-			left: 91px;
+			left: 170rpx;
 			right: 0;
 			// bottom: 0;
 			padding: 16px 16px;
 			background: #ffffff;
 			background-size: contain;
 			background-attachment: fixed;
-			background-repeat:no-repeat;
+			background-repeat: no-repeat;
 			// border-radius: 7px 7px 0 0;
 			border-radius: 0 7px;
 			display: flex;
@@ -277,7 +286,7 @@
 				display: flex;
 				align-items: center;
 				flex-direction: column;
-					
+
 				.image-box {
 					height: 123rpx;
 					// width: 90rpx;

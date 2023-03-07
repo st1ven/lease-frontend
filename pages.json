@@ -43,7 +43,7 @@
 			"path": "pages/category/categorygood",
 			"style": {
 				"navigationBarTitleText": "分类",
-				"backgroundColor": "#ffffff"
+				"backgroundColor": "#f6f6fb"
 			}
 		},
 		{
@@ -379,8 +379,8 @@
 			},
 			{
 				"text": "分类",
-				"pagePath": "pages/category/category",
-				// "pagePath": "pages/category/categorygood",
+				// "pagePath": "pages/category/category",
+				"pagePath": "pages/category/categorygood",
 				"iconPath": "static/tab-icon/category.png",
 				"selectedIconPath": "static/tab-icon/category-s.png"
 			},
