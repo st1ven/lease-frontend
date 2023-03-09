@@ -140,7 +140,7 @@
 			padding: 14px 12px;
 
 			&__item {
-				color: #333333;
+				color: #414960;
 				flex: 1;
 				text-align: center;
 				font-size: 15px;

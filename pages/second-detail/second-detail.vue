@@ -55,7 +55,7 @@
 	.goods-box {
 		height: 100vh;
 		position: relative;
-		background-color: #f0f0f0;
+		background-color: #F6F6FB;
 		.product-list-tip {
 			position: absolute;
 			top: 50%;

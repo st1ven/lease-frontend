@@ -10,14 +10,14 @@
 					<text class="price-number">{{goods_data.day_price}}</text>
 					<text class="price-company">元/天起</text>
 				</view>
-				<text style="font-size: 12px;color: #999;">
+				<text style="font-size: 12px;color: #9FA3B0;">
 					销量：{{goods_data.sales}}
 				</text>
 			</view>
 			<view class="title">
 				{{goods_data.title}}
 			</view>
-			<text class="ft-24" style="color: #333333;">国行现货 下单速发</text>
+			<text class="ft-24" style="color: #414960;">国行现货 下单速发</text>
 			<view class="price-msg">
 				<view class="goods-tag">信用免押</view>
 				<text class="price-tag">官方质保省心 | 租后服务无忧 </text>
@@ -33,8 +33,8 @@
 		</view>
 		<!-- 商品详情、租赁说明，常用说明 -->
 		<view class="detail-box">
-			<u-tabs :list="tabList" @click="tabClick" :scrollable="false" lineColor="#92D3FF" :inactiveStyle='{
-						color: "#606266",
+			<u-tabs :list="tabList" @click="tabClick" :scrollable="false" lineColor="#ffaa00" :inactiveStyle='{
+						color: "#61687C",
 						transform: "scale(1)"}' :activeStyle="{
 						 transform: 'scale(1.05)'
 					}"></u-tabs>
@@ -69,7 +69,7 @@
 		<view class="buy-box">
 		
 			<view class="buy-li">
-				<u-icon name="home" labelSize="22rpx" labelColor="#666" label="首页" color="#666" labelPos="bottom"
+				<u-icon name="home" labelSize="22rpx" labelColor="#61687C" label="首页" color="#61687C" labelPos="bottom"
 					@click="goIndex()" size="42rpx">
 				</u-icon>
 			</view>
@@ -286,7 +286,7 @@
 					this.detailtarget.content = this.goods_data.content
 					this.collectlist = {
 						icon: res.data.is_like == "1" ? "star-fill" : "star",
-						fontColor: res.data.is_like == "1" ? "#4CC5F8" : "#666"
+						fontColor: res.data.is_like == "1" ? "#ffaa00" : "#61687C"
 					}
 				})
 			},
@@ -315,7 +315,7 @@
 				this.$request(opt).then(res => {
 					this.collectlist = {
 						icon: this.collectlist.icon == "star" ? "star-fill" : "star",
-						fontColor: this.collectlist.fontColor == "#4CC5F8" ? "#666" : "#4CC5F8"
+						fontColor: this.collectlist.fontColor == "#ffaa00" ? "#61687C" : "#ffaa00"
 					}
 					let msg = this.collectlist.icon == "star" ? '取消收藏成功' : res.msg
 					this.$refs.uToast.show({
@@ -339,7 +339,7 @@
 	}
 	.page {
 		height: 100vh;
-		background-color: #f0f0f0;
+		background-color: #F6F6FB;
 	}
 
 	.goods-detail-page {
@@ -359,7 +359,7 @@
 			}
 
 			.title {
-				color: #333333;
+				color: #414960;
 				margin: 15rpx 0;
 				font-size: 28rpx;
 				letter-spacing: 2rpx;
@@ -384,7 +384,7 @@
 
 				.price-tag {
 					font-size: 20rpx;
-					color: #999;
+					color: #9FA3B0;
 					margin-left: 13rpx;
 				}
 
@@ -416,7 +416,7 @@
 			background-color: #fefefd;
 
 			.coupons-title {
-				color: #1F1F1F;
+				color: #171B25;
 				font-size: 30rpx;
 				font-weight: bold;
 				text-align: center;
@@ -455,7 +455,7 @@
 			.store-btn {
 				line-height: 36rpx;
 				width: 106rpx;
-				border: 1rpx solid #666666;
+				border: 1rpx solid #61687C;
 				border-radius: 18px;
 				font-size: 20rpx;
 				padding-left: 15rpx;
@@ -464,7 +464,7 @@
 
 			.store {
 				font-size: 20rpx;
-				color: #666;
+				color: #61687C;
 				margin-top: 16rpx;
 				margin-bottom: 22rpx;
 				font-weight: normal;
@@ -493,13 +493,13 @@
 			}
 
 			.buy-li:first-child {
-				border-right: 1px solid #999;
+				border-right: 1px solid #9FA3B0;
 			}
 
 			.buy-btn {
 				width: 285rpx;
 				height: 81rpx;
-				background: linear-gradient(139deg, #92D3FF 0%, #14a3e4 100%);
+				background: #ffaa00;
 				border-radius: 20rpx;
 				line-height: 81rpx;
 				text-align: center;

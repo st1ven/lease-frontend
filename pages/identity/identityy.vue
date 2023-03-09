@@ -42,7 +42,7 @@
 				进入人脸认证
 			</view>
 			<view class="" v-if="renzheng" style="padding-top: 20px;">
-				<u-loading-icon  color="#14a3e4" text="正在同步实名认证结果" size="16" :vertical="true" textSize="14"></u-loading-icon>
+				<u-loading-icon  color="#ffaa00" text="正在同步实名认证结果" size="16" :vertical="true" textSize="14"></u-loading-icon>
 			</view>
 			
 		</view>
@@ -212,12 +212,12 @@
 
 <style lang="scss" scoped>
 	.identity-page {
-		background-color: #F0f0f0;
+		background-color: #F6F6FB;
 		height: 100vh;
 
 		.head {
 			height: 382rpx;
-			background: linear-gradient(-62deg, #92D3FF 0%, #2BA1F1 100%);
+			background: #ffaa00;
 			color: #fff;
 			text-align: center;
 			padding-top: 60rpx;
@@ -225,7 +225,7 @@
 			.head-img-box {
 				height: 151rpx;
 				width: 151rpx;
-				background-color: #F0f0f0;
+				background-color: #F6F6FB;
 				margin: 0 auto 40rpx;
 			}
 
@@ -290,7 +290,7 @@
 			.btn {
 				height: 88rpx;
 				line-height: 88rpx;
-				background-color: #14a3e4;
+				background-color: #ffaa00;
 				color: #fff;
 				font-size: 30rpx;
 				text-align: center;

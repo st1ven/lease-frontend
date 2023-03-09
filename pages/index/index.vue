@@ -792,7 +792,7 @@
 		background-color: #fff;
 
 		.recommend-goods-title {
-			color: #1F1F1F;
+			color: #171B25;
 			font-size: 32rpx;
 			text-align: center;
 			padding: 15rpx;

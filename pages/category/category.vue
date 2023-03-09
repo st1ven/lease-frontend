@@ -3,7 +3,7 @@
 		<!-- 自定义导航 分类-->
 		<view class="fixed-box">
 			<view class="search-box" @click="search()">
-				<u-icon name="search" color="#999999" />
+				<u-icon name="search" color="#9FA3B0" />
 				<text class="title">请输入</text>
 			</view >
 		</view>
@@ -126,7 +126,7 @@
 			width: 170rpx;
 			
 			height: 90rpx;
-			color: #1F1F1F;
+			color: #171B25;
 			font-size: 24rpx;
 			font-weight: 400;
 			line-height: 90rpx;
@@ -134,7 +134,7 @@
 		}
 
 		.active {
-			color: #1F1F1F;
+			color: #171B25;
 			font-size: 30rpx;
 			font-weight: bold;
 			position: relative;
@@ -149,7 +149,7 @@
 			top: 50%;
 			width: 10rpx;
 			height: 38rpx;
-			background: #93D3FF;
+			background: #ffaa00;
 			transform: translateY(-50%);
 		}
 
@@ -198,7 +198,7 @@
 				text {
 					// width: 80%;
 					width: 100%;
-					color: #1F1F1F;
+					color: #171B25;
 					font-weight: 400;
 					font-size: 22rpx;
 					text-align: center;

@@ -330,7 +330,7 @@
             left: 0,
             top: 0,
             background: '#fff',
-            border: 'solid 1px #999',
+            border: 'solid 1px #9FA3B0',
             opacity: .6,
             borderRadius: '100%',
             height: size + 'px',

@@ -321,7 +321,7 @@
 
 						.li-msg {
 							font-size: 16rpx;
-							color: #E60000;
+							color: #FF5B56;
 							text-align: left;
 
 							.price {

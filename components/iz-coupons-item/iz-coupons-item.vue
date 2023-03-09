@@ -270,7 +270,7 @@
 			}
 
 			.primie {
-				color: #666666;
+				color: #61687C;
 				font-size: 20rpx;
 				font-weight: 400;
 				letter-spacing: 2rpx;
@@ -286,7 +286,7 @@
 			flex-direction: column;
 
 			.time {
-				color: #999999;
+				color: #9FA3B0;
 				font-size: 20rpx;
 				letter-spacing: 2rpx;
 			}
@@ -305,7 +305,7 @@
 		}
 
 		.btn-no {
-			background-color: #14a3e4;
+			background-color: #ffaa00;
 		}
 
 		.iz-coupons-item {

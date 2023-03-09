@@ -361,7 +361,7 @@
 		background-color: #fff;
 
 		.recommend-goods-title {
-			color: #1F1F1F;
+			color: #171B25;
 			font-size: 32rpx;
 			text-align: center;
 			padding: 15rpx;
@@ -373,7 +373,7 @@
 		padding: 12px;
 		height: 20vh;
 		background: url('../../static/image/honeycomb.png');
-		background-color: #FFAA00;
+		background-color: #ffaa00;
 		background-size: 50%;
 		background-repeat: no-repeat;
 		background-position: 100% 0;
@@ -388,7 +388,7 @@
 		font-size: 18px;
 		font-weight: bold;
 		margin-left: 14px;
-		background-color: #f0f0f000;
+		background-color: #F6F6FB00;
 		border: 1px solid #f0f0f000;
 		padding: 0;
 		width: 100%;

@@ -17,7 +17,7 @@ export default {
             color: '#303133'
         }),
         inactiveStyle: () => ({
-            color: '#606266'
+            color: '#61687C'
         }),
         lineWidth: 20,
         lineHeight: 3,

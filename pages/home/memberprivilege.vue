@@ -201,7 +201,7 @@
 			}
 	
 			.more {
-				color: #666666;
+				color: #61687C;
 				font-size: 24rpx;
 				margin-left: auto;
 			}

@@ -41,7 +41,7 @@
 						<text>{{item.goods_title}}</text>
 						<text style="font-size: 12px;
 		font-weight: bold;
-		color: red;">￥{{item.goods_amount}}</text>
+		color: #FF5B56;">￥{{item.goods_amount}}</text>
 					</view>
 					<view class="explaintitle">
 						<text style="font-size: 12px;font-weight:100;color: #2a2a2a;">套餐:{{item.goods_sku_text}}</text>
@@ -156,7 +156,7 @@
 		align-items: stretch;
 	}
 	.num{
-		color: red;
+		color: #FF5B56;
 		font-size: 12px;
 		font-weight: bold;
 	}
@@ -191,7 +191,7 @@
 			flex-direction: column;
 	
 			.title {
-				color: #1F1F1F;
+				color: #171B25;
 				font-size: 28rpx;
 				margin-bottom: 15rpx;
 			}

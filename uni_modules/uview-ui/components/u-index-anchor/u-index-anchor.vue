@@ -33,7 +33,7 @@
 	 * @description 
 	 * @tutorial https://uviewui.com/components/indexList.html
 	 * @property {String | Number}	text	列表锚点文本内容
-	 * @property {String}			color	列表锚点文字颜色 ( 默认 '#606266' )
+	 * @property {String}			color	列表锚点文字颜色 ( 默认 '#61687C' )
 	 * @property {String | Number}	size	列表锚点文字大小，单位默认px ( 默认 14 )
 	 * @property {String}			bgColor	列表锚点背景颜色 ( 默认 '#dedede' )
 	 * @property {String | Number}	height	列表锚点高度，单位默认px ( 默认 32 )

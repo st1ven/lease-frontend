@@ -108,7 +108,7 @@
 			},
 			// label的颜色
 			elLabelColor() {
-				return this.labelColor ? this.labelColor : (this.parentData.labelColor ? this.parentData.labelColor : '#606266')
+				return this.labelColor ? this.labelColor : (this.parentData.labelColor ? this.parentData.labelColor : '#61687C')
 			},
 			// 组件的形状
 			elShape() {

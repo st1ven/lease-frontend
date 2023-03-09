@@ -22,7 +22,7 @@
  * @property {String | Number}	decimals	要显示的小数位数，见官网说明（默认 0 ）
  * @property {Boolean}			useEasing	滚动结束时，是否缓动结尾，见官网说明（默认 true ）
  * @property {String}			decimal		十进制分割 （ 默认 "." ）
- * @property {String}			color		字体颜色（ 默认 '#606266' )
+ * @property {String}			color		字体颜色（ 默认 '#61687C' )
  * @property {String | Number}	fontSize	字体大小，单位px（ 默认 22 ）
  * @property {Boolean}			bold		字体是否加粗（默认 false ）
  * @property {String}			separator	千位分隔符，见官网说明

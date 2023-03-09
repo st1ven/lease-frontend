@@ -1,12 +1,11 @@
 <template>
-	<!--  -->
 	<view>
 		<view class="swiper-box">
-			<u-swiper indicator previousMargin="30" nextMargin="30" circular :autoplay="false" radius="5"
-			 @click="bann" :list="bannerList" />
+			<u-swiper indicator previousMargin="30" nextMargin="30" circular :autoplay="false" radius="5" @click="bann"
+				:list="bannerList" />
 		</view>
-
-		<view class="zhuanqu" v-for="(item,i) in secondList" :key="i"  v-if="item.list[0]" :style="{backgroundImage:'url('+imageurl+')'}">
+		<view class="zhuanqu" v-for="(item,i) in secondList" :key="i" v-if="item.list[0]"
+			:style="{backgroundImage:'url('+imageurl+')'}">
 			<view class="title-box" v-if="item.list[0]">
 				<text class="title">{{item.name}}</text>
 				<view class="flex align-center ml-auto" @click="JumpDetail(item.id)">
@@ -14,33 +13,25 @@
 					<u-icon color="#fff" size="14" name="arrow-right-double" />
 				</view>
 			</view>
-			<view class="flex flexxx" style="
-    
-">
+			<view class="flex flexxx">
 				<scroll-view scroll-x="true" class="flex">
-					<view class="goods-box" >
+					<view class="goods-box">
 						<view v-for="(list,index) in item.list" :key="index" class="goods-item" @click="Jumplist(list)">
-							
 							<image mode="aspectFit" :src="list.image" />
-							<view class="title u-line-2" >
+							<view class="title u-line-2">
 								{{list.title}}
 							</view>
 							<view class="goods-price">
 								<!-- <text class="price-company">¥</text> -->
 								<text class="price-number">¥{{list.day_price}}</text>
-								<text class="price-company">/天</text>
-								<view class="goods-tag">
-									{{tittle.slice(0,2)}}
-								</view>
+								<text class="price-company">/天起</text>
 							</view>
 						</view>
 					</view>
 				</scroll-view>
 			</view>
-			
 		</view>
 		<!-- 二手手机专区 End -->
-
 	</view>
 </template>
 
@@ -50,14 +41,13 @@
 			return {
 				secondList: [],
 				bannerList: [],
-				good:[],
-				tittle:'',
-				imageurl:'',
+				good: [],
+				imageurl: '',
 			};
 		},
 		onShow() {
 			this.swiperList()
-			
+
 		},
 		onLoad(obj) {
 			uni.setNavigationBarTitle({
@@ -65,21 +55,20 @@
 			});
 			this.init(obj.id)
 			this.gonggeimg()
-			this.tittle = obj.title
 		},
 		methods: {
-			tanchuceng(){
+			tanchuceng() {
 				uni.showActionSheet({
 					itemList: ['A', 'B', 'C'],
-					success: function (res) {
+					success: function(res) {
 						console.log('选中了第' + (res.tapIndex + 1) + '个按钮');
 					},
-					fail: function (res) {
+					fail: function(res) {
 						console.log(res.errMsg);
 					}
 				});
 			},
-			bann(index){
+			bann(index) {
 				uni.navigateTo({
 					url: "../goods-detail/goods-detail?id=" + this.good[index].good_id
 				})
@@ -124,7 +113,7 @@
 				}
 				this.$request(opt).then(res => {
 					// 打印调用成功回调
-					
+
 					this.secondList = res.data
 				})
 			},
@@ -136,9 +125,10 @@
 <style lang="scss" scoped>
 	.swiper-box {
 		padding: 30rpx;
-		background-color: #F0F0F0;
+		background-color: #F6F6FB;
 	}
-	.zhuanqu{
+
+	.zhuanqu {
 		// background-image: url(https://oss.jiulove.cn/uploads/20220311/ba86729c56c76a4806e7e73d88d676f3.png);
 		width: 96%;
 		margin: 0 2% 2%;
@@ -146,13 +136,15 @@
 		padding-bottom: 15px;
 		background-repeat: round;
 	}
-	.flexxx{
+
+	.flexxx {
 		background: #fff;
 		width: 94%;
 		margin-left: 3%;
 		border-radius: 10px;
 		padding: 10px 0 10px;
 	}
+
 	.title-box {
 		display: flex;
 		align-items: center;
@@ -160,7 +152,7 @@
 		padding: 30rpx 30rpx;
 
 		.title {
-			color: #1F1F1F;
+			color: #171B25;
 			font-size: 30rpx;
 			font-weight: bold;
 		}
@@ -192,7 +184,7 @@
 				text-overflow: ellipsis;
 				white-space: nowrap;
 				font-size: 22rpx;
-				color: #1F1F1F;
+				color: #171B25;
 				letter-spacing: 2rpx;
 				margin: 0rpx;
 			}

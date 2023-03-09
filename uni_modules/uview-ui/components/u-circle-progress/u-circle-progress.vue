@@ -147,7 +147,7 @@
 
 			&__circle {
 				box-sizing: border-box;
-				// background-color: red;
+				// background-color: #FF5B56;
 				border-left-color: transparent;
 				border-bottom-color: transparent;
 				border-top-left-radius: 50px;
@@ -176,7 +176,7 @@
 				position: absolute;
 				right: 0;
 				box-sizing: border-box;
-				// background-color: red;
+				// background-color: #FF5B56;
 				border-top-color: transparent;
 				border-right-color: transparent;
 				border-top-left-radius: 50px;

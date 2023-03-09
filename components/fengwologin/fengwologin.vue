@@ -100,7 +100,7 @@
 	.buy-ok {
 		width: 626rpx;
 		height: 80rpx;
-		/* background: linear-gradient(179deg, #fff1bd 0%, #ffb818 100%); */
+		/* background: #ffaa00; */
 		border-radius: 20rpx;
 		text-align: center;
 		line-height: 80rpx;

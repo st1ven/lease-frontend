@@ -13,7 +13,7 @@ export default {
         text: '',
         copyText: '',
         size: 14,
-        color: '#606266',
+        color: '#61687C',
         bgColor: 'transparent',
         direction: 'top',
         zIndex: 10071,

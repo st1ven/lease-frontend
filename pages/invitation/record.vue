@@ -17,7 +17,7 @@
 					<image :src="item.avatar || backgroundimage.avatar_image" :lazy-load="true" mode="widthFix" style="width: 10%;border-radius: 15px;"></image>
 					<view class="" style="margin-left: 10%;">
 						<view class="toptext" style="font-size: 14px;">{{item.nickname}}</view>
-						<view style="font-size: 12px;color: #999;">{{item.createtime}}</view>
+						<view style="font-size: 12px;color: #9FA3B0;">{{item.createtime}}</view>
 					</view>
 					<view class=""></view>
 			</view>

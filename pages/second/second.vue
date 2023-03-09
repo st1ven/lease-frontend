@@ -11,7 +11,7 @@
 				<text class="title">{{item.name}}</text>
 				<view class="flex align-center ml-auto" @click="JumpDetail(item)">
 					<text class="more">查看更多</text>
-					<u-icon color="#666666" size="14" name="arrow-right-double" />
+					<u-icon color="#61687C" size="14" name="arrow-right-double" />
 				</view>
 			</view>
 			<view class="flex">
@@ -97,7 +97,7 @@
 <style lang="scss" scoped>
 	.swiper-box {
 		padding: 30rpx;
-		background-color: #F0F0F0;
+		background-color: #F6F6FB;
 	}
 
 	.title-box {
@@ -107,13 +107,13 @@
 		padding: 30rpx 30rpx;
 
 		.title {
-			color: #1F1F1F;
+			color: #171B25;
 			font-size: 30rpx;
 			font-weight: bold;
 		}
 
 		.more {
-			color: #666666;
+			color: #61687C;
 			font-size: 24rpx;
 			margin-left: auto;
 		}
@@ -136,7 +136,7 @@
 
 			.title {
 				font-size: 22rpx;
-				color: #1F1F1F;
+				color: #171B25;
 				letter-spacing: 2rpx;
 				margin: 0rpx;
 			}

@@ -455,7 +455,7 @@
 	.address .result{
 	  width: 100%;
 	  background: #fafbfc;
-	  color: #666;
+	  color: #61687C;
 	}
 	.address-page {
 		background-color: #fff;
@@ -485,7 +485,7 @@
 				}
 
 				.txt-title {
-					color: #1f1f1f;
+					color: #171B25;
 					font-size: 28rpx;
 					padding-bottom: 12rpx;
 				}
@@ -532,8 +532,7 @@
 				line-height: 80rpx;
 				border-radius: 20rpx;
 				color: #fff;
-
-				background: linear-gradient(139deg, #92D3FF 0%, #4CC5F8 100%);
+				background: #ffaa00;
 			}
 
 			.input-li {
@@ -569,7 +568,7 @@
 					line-height: 60rpx;
 					font-size: 24rpx;
 					text-align: right;
-					color: #92D3FF;
+					color: #ffaa00;
 					display: flex;
 					justify-content: center;
 					align-items: center;

@@ -15,7 +15,7 @@
 						</view>
 						<text class="msg-tag">{{ shopData.mer_type}}</text>
 						<text class="msg-icon">
-							<u-icon name="map" color="#333" size="32rpx" :label="shopData.mer_address" labelPos="left"
+							<u-icon name="map" color="#414960" size="32rpx" :label="shopData.mer_address" labelPos="left"
 								labelSize="24rpx">
 							</u-icon>
 						</text>
@@ -215,7 +215,7 @@
 		justify-content: space-between;
 	}
 	.shop-page {
-		background-color: #F0F0F0;
+		background-color: #F6F6FB;
 		position: relative;
 
 		.shop-cont {
@@ -245,7 +245,7 @@
 
 					.msg-title {
 						font-size: 30rpx;
-						color: #333;
+						color: #414960;
 
 						// margin-bottom: 10rpx;
 					}
@@ -281,7 +281,7 @@
 					display: flex;
 
 					.content-box-l {
-						background-color: #f0f0f0;
+						background-color: #F6F6FB;
 
 					}
 
@@ -316,7 +316,7 @@
 
 							text {
 								width: 100%;
-								color: #1F1F1F;
+								color: #171B25;
 								font-weight: 400;
 								font-size: 22rpx;
 								text-align: center;
@@ -331,7 +331,7 @@
 					.tab-item {
 						width: 170rpx;
 						height: 90rpx;
-						color: #1F1F1F;
+						color: #171B25;
 						font-size: 24rpx;
 						font-weight: 400;
 						line-height: 90rpx;
@@ -339,7 +339,7 @@
 					}
 
 					.active {
-						color: #1F1F1F;
+						color: #171B25;
 						font-size: 30rpx;
 						font-weight: bold;
 						position: relative;
@@ -354,7 +354,7 @@
 						top: 50%;
 						width: 10rpx;
 						height: 38rpx;
-						background: #93D3FF;
+						background: #ffaa00;
 						transform: translateY(-50%);
 					}
 
@@ -403,7 +403,7 @@
 			}
 
 			view.on {
-				color: #92D3FF;
+				color: #ffaa00;
 			}
 		}
 	}

@@ -269,7 +269,8 @@
 			"path": "pages/order-list/order-list",
 			"style": {
 				"navigationBarTitleText": "订单列表",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#f6f6fb"
 			}
 		}, {
 			"path": "pages/order-list/prepayment",

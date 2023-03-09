@@ -20,7 +20,7 @@
 				<view class="address"> {{addressArr.province+addressArr.city+addressArr.area+addressArr.address}}
 				</view>
 				<text class="address_arrow">
-					<u-icon name="arrow-right" color="#999999" size="28rpx"></u-icon>
+					<u-icon name="arrow-right" color="#9FA3B0" size="28rpx"></u-icon>
 				</text>
 			</view>
 			<view class="address_bar" @click="address()" v-else>
@@ -29,7 +29,7 @@
 				</view>
 				<view class="address"> 注意：地址请写详细例如（XX楼XX栋） </view>
 				<text class="address_arrow">
-					<u-icon name="arrow-right" color="#999999" size="28rpx"></u-icon>
+					<u-icon name="arrow-right" color="#9FA3B0" size="28rpx"></u-icon>
 				</text>
 			</view>
 			<!-- <view class="idCard-box">
@@ -106,9 +106,9 @@
 				<view class="zujinkuang">
 				<view class="rent-li">
 					<text>首期租金 </text> 
-					<!-- <text v-if="rentinfo.youhui == '1' && rentinfo.discount_price != 0 " style="color: red;" class="li-r">￥{{rentinfo.bottom_rent}} - {{rentinfo.discount_price}}(券) = {{(rentinfo.bottom_rent - rentinfo.discount_price).toFixed(2)}}</text> -->
+					<!-- <text v-if="rentinfo.youhui == '1' && rentinfo.discount_price != 0 " style="color: #FF5B56;" class="li-r">￥{{rentinfo.bottom_rent}} - {{rentinfo.discount_price}}(券) = {{(rentinfo.bottom_rent - rentinfo.discount_price).toFixed(2)}}</text> -->
 					
-					<text v-if="youhuiprice != ''" style="color: red;" class="li-r">￥{{rentinfo.top_rent}} - {{youhuiprice}}(券) = {{(rentinfo.top_rent - youhuiprice).toFixed(2)}}</text>
+					<text v-if="youhuiprice != ''" style="color: #FF5B56;" class="li-r">￥{{rentinfo.top_rent}} - {{youhuiprice}}(券) = {{(rentinfo.top_rent - youhuiprice).toFixed(2)}}</text>
 					<text v-else class="li-r">￥{{rentinfo.top_rent==null?0:rentinfo.top_rent}} </text>
 				</view>
 
@@ -149,7 +149,7 @@
 			</view> -->
 			<view class="sesame" @click="youhuiquanopen">
 				<text class="title-l">优惠券</text>
-				<text class="title-r" style="color: red;font-size: 12px;" v-if="youhuiprice == '' || youhuiprice == '0'">{{youhuiquan.length || 0}}张可用></text>
+				<text class="title-r" style="color: #FF5B56;font-size: 12px;" v-if="youhuiprice == '' || youhuiprice == '0'">{{youhuiquan.length || 0}}张可用></text>
 				<text class="title-r" v-else>￥ {{youhuiprice || 0.00}} </text>
 			</view>
 			<!-- <view class="idCard-box">
@@ -218,7 +218,7 @@
 			<view class="agreement-box">
 				<text class="agreement-radio">
 					<u-checkbox-group>
-						<u-checkbox @change="radioChange" activeColor="#92D3FF" :name="agreementFlag" shape="circle"
+						<u-checkbox @change="radioChange" activeColor="#ffaa00" :name="agreementFlag" shape="circle"
 							v-model="agreementFlag"></u-checkbox>
 					</u-checkbox-group>
 				</text>
@@ -254,11 +254,11 @@
 							</text>
 						</text>
 						<!-- <view v-if="rentinfo.youhui == '1' && index+1 == '1' && rentinfo.discount_price != 0 ">
-							<text style="color: red;">-￥{{(item.rent - rentinfo.discount_price).toFixed(2)}}(券)</text>
+							<text style="color: #FF5B56;">-￥{{(item.rent - rentinfo.discount_price).toFixed(2)}}(券)</text>
 						</view> -->
 						<view>
-							<!-- <text v-if="rentinfo.youhui == '1' && index+1 == '1' && rentinfo.discount_price != 0 " style="color: red;">-￥{{(item.rent - rentinfo.discount_price).toFixed(2)}}(券)</text> -->
-							<text v-if="youhuiprice != '' && index+1 == '1'" style="color: red;">-￥{{(item.rent - youhuiprice).toFixed(2)}}(券)</text>
+							<!-- <text v-if="rentinfo.youhui == '1' && index+1 == '1' && rentinfo.discount_price != 0 " style="color: #FF5B56;">-￥{{(item.rent - rentinfo.discount_price).toFixed(2)}}(券)</text> -->
+							<text v-if="youhuiprice != '' && index+1 == '1'" style="color: #FF5B56;">-￥{{(item.rent - youhuiprice).toFixed(2)}}(券)</text>
 							<text v-else>-￥{{item.rent}}</text>
 						</view>
 						
@@ -288,18 +288,18 @@
 						<view class="" @click="ceshi(item)" v-for="(item, index) in youhuiquan" :key="index">
 							
 						
-						<view v-if="yixuan == item.id" style="position: absolute;background: red;border-radius: 10px 0 50px;padding: 5px;">
+						<view v-if="yixuan == item.id" style="position: absolute;background: #FF5B56;border-radius: 10px 0 50px;padding: 5px;">
 							<u-icon name="checkbox-mark" color="#fff" size="20"></u-icon>
 						</view>
 						<view class="" style="background: #fff; padding: 15px 20px;border-radius: 10px;margin-bottom: 10px;">
 							
 							<view class="youhuiquantext">
 								<text style="font-size: 15px;font-weight: 800;">{{item.activity_name}}</text>
-								<text style="font-size: 20px;font-weight: 800;color: red;">￥{{item.amount}}</text>
+								<text style="font-size: 20px;font-weight: 800;color: #FF5B56;">￥{{item.amount}}</text>
 							</view>
 							<view class="youhuiquantext">
 								<text style="font-size: 10px;color: #a5a5a5;">有效期至{{item.valid_end_time}}</text>
-								<text style="font-size: 10px;color: red;">满{{item.floor_amount}}可用</text>
+								<text style="font-size: 10px;color: #FF5B56;">满{{item.floor_amount}}可用</text>
 							</view>
 							<u-divider :textSize='10' lineColor='#ffbebe' text="使用说明"></u-divider>
 			
@@ -918,12 +918,12 @@
 		color: #757575;
 	}
 	.baokuang{
-		// background-color: #f0f0f0;
+		// background-color: #F6F6FB;
 		// border-radius: 10rpx;
 	}
 	.shiming{
 		    padding: 16px 16px;
-		    background: linear-gradient(179deg, #92D3FF 0%, #14a3e4 100%);
+		    background: #ffaa00;
 		    color: #fff;
 		    text-align: center;
 		    font-size: 16px;
@@ -935,7 +935,7 @@
 		    align-items: flex-end;
 	}
 	.order-detail {
-		background-color: #f0f0f0;
+		background-color: #F6F6FB;
 		width: 100%;
 		overflow: hidden;
 
@@ -946,7 +946,7 @@
 		// height: 100vh;
 		.order-status {
 			height: 209rpx;
-			background: linear-gradient(79deg, #000000 0%, #54b2f1 0%, #67f2fb 100%);
+			background: #ffaa00;
 			border-radius: 0 0 30rpx 30rpx;
 
 			.status-box {
@@ -984,7 +984,7 @@
 
 						.time-m,
 						.time-s {
-							color: #92D3FF;
+							color: #ffaa00;
 							padding: 3rpx 6rpx;
 							border-radius: 10rpx;
 							font-size: 22rpx;
@@ -1011,7 +1011,7 @@
 
 			.address {
 				font-size: 24rpx;
-				color: #999;
+				color: #9FA3B0;
 			}
 
 			.address_arrow {
@@ -1021,7 +1021,7 @@
 			}
 
 			.address-info {
-				color: #1f1f1f;
+				color: #171B25;
 				font-size: 30rpx;
 				margin-bottom: 20rpx;
 
@@ -1036,7 +1036,7 @@
 			justify-content: space-between;
 			width: 94%;
 			margin-left: 3%;
-			color: #999;
+			color: #9FA3B0;
 			align-items: center;
 		}
 		.idCard-box {
@@ -1061,12 +1061,12 @@
 
 				.order-info {
 					font-size: 24rpx;
-					color: #999;
+					color: #9FA3B0;
 					// line-height: 42rpx;
 
 					.info-title {
 						font-size: 28rpx;
-						color: #1F1F1F;
+						color: #171B25;
 						margin-bottom: 25rpx;
 					}
 				}
@@ -1092,7 +1092,7 @@
 
 					.date-icon {
 						border-radius: 50%;
-						background-color: #4CC5F8;
+						background-color: #ffaa00;
 						position: relative;
 
 						.icon-box {
@@ -1104,7 +1104,7 @@
 							left: 13rpx;
 							top: 13rpx;
 							font-size: 20rpx;
-							color: #4CC5F8;
+							color: #ffaa00;
 						}
 					}
 
@@ -1114,7 +1114,7 @@
 
 					.time {
 						font-size: 20rpx;
-						color: #999;
+						color: #9FA3B0;
 					}
 				}
 			}
@@ -1129,7 +1129,7 @@
 
 			.rent-li {
 				font-size: 24rpx;
-				color: #999;
+				color: #9FA3B0;
 				line-height: 50rpx;
 
 				.li-r {
@@ -1196,7 +1196,7 @@
 
 				.accessories-li {
 					font-size: 20rpx;
-					color: #999;
+					color: #9FA3B0;
 					border-bottom: 1rpx solid #E5E5E5;
 
 					.note {
@@ -1209,7 +1209,7 @@
 
 					.li-title {
 						font-size: 24rpx;
-						color: #1F1F1F;
+						color: #171B25;
 						padding: 22rpx 0 26rpx;
 					}
 
@@ -1248,7 +1248,7 @@
 			box-sizing: border-box;
 
 			.agreement-box {
-				color: #333;
+				color: #414960;
 				font-size: 28rpx;
 				line-height: 80rpx;
 				display: flex;
@@ -1261,13 +1261,13 @@
 				}
 
 				.color-txt {
-					color: #92D3FF
+					color: #ffaa00
 				}
 			}
 
 			.total-amount {
 				font-size: 24rpx;
-				color: #333;
+				color: #414960;
 				margin-left: -8rpx;
 				display: flex;
 				align-items: center;
@@ -1284,7 +1284,7 @@
 					// height: 87rpx;
 					padding: 29rpx 50rpx;
 					// line-height: 87rpx;
-					background: #92D3FF;
+					background: #ffaa00;
 					color: #fff;
 					text-align: center;
 					margin-left: 20rpx;
@@ -1295,7 +1295,7 @@
 
 				.color-red {
 					font-size: 38rpx;
-					color: #E60000;
+					color: #FF5B56;
 					margin: 0 22rpx 0 0;
 
 				}
@@ -1322,7 +1322,7 @@
 				border-radius: 27rpx;
 				padding: 0rpx 24rpx;
 				text-align: center;
-				border: 1px solid #333333;
+				border: 1px solid #414960;
 				margin-left: 14rpx;
 			}
 		}

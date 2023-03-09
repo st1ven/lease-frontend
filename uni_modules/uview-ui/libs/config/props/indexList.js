@@ -10,7 +10,7 @@
 export default {
     // indexList 组件
     indexList: {
-        inactiveColor: '#606266',
+        inactiveColor: '#61687C',
         activeColor: '#5677fc',
         indexList: () => [],
         sticky: true,

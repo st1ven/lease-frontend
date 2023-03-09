@@ -48,7 +48,7 @@
 		justify-content: space-between;
 
 		.title {
-			color: #333333;
+			color: #414960;
 			font-size: 24rpx;
 		}
 	}

@@ -14,7 +14,7 @@ export default {
         bgColor: 'transparent',
         icon: true,
         fontSize: 14,
-        color: '#606266',
+        color: '#61687C',
         loadingIcon: 'spinner',
         loadmoreText: '加载更多',
         loadingText: '正在加载...',

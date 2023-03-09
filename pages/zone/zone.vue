@@ -130,7 +130,7 @@
 
 			.goods-title {
 				font-size: 24rpx;
-				color: #1F1F1F;
+				color: #171B25;
 				margin: 15rpx;
 			}
 

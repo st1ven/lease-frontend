@@ -10,7 +10,7 @@
 		<view class="screening-box" v-if="sortFlag==0">
 			<view class="screening-tip" @click.self="arrowDown(1)">
 				<view class="icon-text">
-					<u-icon :name="arrowNum==1?'arrow-up':'arrow-down'" space="8rpx" color="#333" size="28rpx">
+					<u-icon :name="arrowNum==1?'arrow-up':'arrow-down'" space="8rpx" color="#414960" size="28rpx">
 					</u-icon>
 				</view>
 				<text>{{jiage}}</text>
@@ -21,7 +21,7 @@
 			</view>
 			<view class="screening-tip" @click.self="arrowDown(2)">
 				<view class="icon-text">
-					<u-icon :name="arrowNum==2?'arrow-up':'arrow-down'" space="8rpx" color="#333" size="28rpx"></u-icon>
+					<u-icon :name="arrowNum==2?'arrow-up':'arrow-down'" space="8rpx" color="#414960" size="28rpx"></u-icon>
 				</view>
 				<text>{{xinjiu}}</text>
 				<view class="arrow-ul" v-if="arrowNum==2">
@@ -31,7 +31,7 @@
 			</view>
 			<view class="screening-tip" @click.self="arrowDown(3)">
 				<view class="icon-text">
-					<u-icon :name="arrowNum==3?'arrow-up':'arrow-down'" space="8rpx" color="#333" size="28rpx"></u-icon>
+					<u-icon :name="arrowNum==3?'arrow-up':'arrow-down'" space="8rpx" color="#414960" size="28rpx"></u-icon>
 				</view>
 				<text>{{xiaoliang}}</text>
 				<view class="arrow-ul" v-if="arrowNum==3">

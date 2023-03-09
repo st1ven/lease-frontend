@@ -20,8 +20,8 @@
 			<image v-if="userprice.userpriceinfo == ''" :src="backgroundimage.noyao_image" mode="widthFix" style="width: 100%;"></image>
 			<view class="touni" v-else v-for="(item, index) in userprice.userpriceinfo":key="index">
 						<view class="toptext" style="font-size: 14px;">￥{{item.money}}</view>
-						<view style="font-size: 12px;color: #999;">{{item.createtime}}</view>
-						<view  style="font-size: 12px;color: #999;">{{item.status}}</view>
+						<view style="font-size: 12px;color: #9FA3B0;">{{item.createtime}}</view>
+						<view  style="font-size: 12px;color: #9FA3B0;">{{item.status}}</view>
 			</view>
 		</view>
 		<view class="" style="padding-bottom: 10px;display: flex;flex-direction: row;justify-content: center;">

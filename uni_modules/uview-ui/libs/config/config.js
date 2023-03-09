@@ -20,7 +20,7 @@ export default {
         'u-error': '#fa3534',
         'u-info': '#909399',
         'u-main-color': '#303133',
-        'u-content-color': '#606266',
+        'u-content-color': '#61687C',
         'u-tips-color': '#909399',
         'u-light-color': '#c0c4cc'
     },

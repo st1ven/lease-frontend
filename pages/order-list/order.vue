@@ -604,7 +604,7 @@
 
 <style lang="scss" scoped>
 	.order-detail {
-		background-color: #f0f0f0;
+		background-color: #F6F6FB;
 		width: 100%;
 		overflow: hidden;
 
@@ -615,7 +615,7 @@
 		// height: 100vh;
 		.order-status {
 			height: 209rpx;
-			background: linear-gradient(79deg, #000000 0%, #54b2f1 0%, #67f2fb 100%);
+			background: #ffaa00;
 			border-radius: 0 0 30rpx 30rpx;
 
 			.status-box {
@@ -653,7 +653,7 @@
 
 						.time-m,
 						.time-s {
-							color: #92D3FF;
+							color: #ffaa00;
 							padding: 3rpx 6rpx;
 							border-radius: 10rpx;
 							font-size: 22rpx;
@@ -681,7 +681,7 @@
 
 			.address {
 				font-size: 24rpx;
-				color: #999;
+				color: #9FA3B0;
 			}
 
 			.address_arrow {
@@ -691,7 +691,7 @@
 			}
 
 			.address-info {
-				color: #1f1f1f;
+				color: #171B25;
 				font-size: 30rpx;
 				margin-bottom: 20rpx;
 
@@ -724,12 +724,12 @@
 
 				.order-info {
 					font-size: 24rpx;
-					color: #999;
+					color: #9FA3B0;
 					// line-height: 42rpx;
 
 					.info-title {
 						font-size: 28rpx;
-						color: #1F1F1F;
+						color: #171B25;
 						margin-bottom: 25rpx;
 					}
 				}
@@ -755,7 +755,7 @@
 
 					.date-icon {
 						border-radius: 50%;
-						background-color: #4CC5F8;
+						background-color: #ffaa00;
 						position: relative;
 
 						.icon-box {
@@ -767,7 +767,7 @@
 							left: 13rpx;
 							top: 13rpx;
 							font-size: 20rpx;
-							color: #4CC5F8;
+							color: #ffaa00;
 						}
 					}
 
@@ -777,7 +777,7 @@
 
 					.time {
 						font-size: 20rpx;
-						color: #999;
+						color: #9FA3B0;
 					}
 				}
 			}
@@ -792,7 +792,7 @@
 
 			.rent-li {
 				font-size: 24rpx;
-				color: #999;
+				color: #9FA3B0;
 				line-height: 50rpx;
 
 				.li-r {
@@ -800,7 +800,7 @@
 				}
 
 				.copy {
-					color: #4CC5F8;
+					color: #ffaa00;
 					margin-left: 10rpx;
 				}
 			}
@@ -854,7 +854,7 @@
 
 				.accessories-li {
 					font-size: 20rpx;
-					color: #999;
+					color: #9FA3B0;
 					border-bottom: 1rpx solid #E5E5E5;
 
 					.note {
@@ -867,7 +867,7 @@
 
 					.li-title {
 						font-size: 24rpx;
-						color: #1F1F1F;
+						color: #171B25;
 						padding: 22rpx 0 26rpx;
 					}
 
@@ -906,7 +906,7 @@
 			box-sizing: border-box;
 
 			.agreement-box {
-				color: #333;
+				color: #414960;
 				font-size: 24rpx;
 				line-height: 50rpx;
 				// margin-bottom: 45rpx;
@@ -917,13 +917,13 @@
 				}
 
 				.color-txt {
-					color: #92D3FF
+					color: #ffaa00
 				}
 			}
 
 			.total-amount {
 				font-size: 24rpx;
-				color: #333;
+				color: #414960;
 				margin-left: -8rpx;
 
 				.amount-icon {
@@ -937,7 +937,7 @@
 					// height: 87rpx;
 					padding: 29rpx 50rpx;
 					// line-height: 87rpx;
-					background: #92D3FF;
+					background: #ffaa00;
 					color: #fff;
 					text-align: center;
 					margin-left: 20rpx;
@@ -947,7 +947,7 @@
 
 				.color-red {
 					font-size: 38rpx;
-					color: #E60000;
+					color: #FF5B56;
 					margin: 0 22rpx 0 0;
 
 				}
@@ -976,7 +976,7 @@
 				border-radius: 10rpx;
 				padding: 0rpx 24rpx;
 				text-align: center;
-				border: 1px solid #333333;
+				border: 1px solid #414960;
 				margin: 30rpx 14rpx;
 			}
 		}

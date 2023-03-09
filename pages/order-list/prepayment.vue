@@ -7,7 +7,7 @@
 				<view class="li-top">
 					<view class="txt-checkbox">
 						<u-checkbox-group>
-							<u-checkbox size="40rpx" activeColor="#92D3FF" :disabled="item.checkboxFlag" @change="liClick(item,index,true) "
+							<u-checkbox size="40rpx" activeColor="#ffaa00" :disabled="item.checkboxFlag" @change="liClick(item,index,true) "
 								:checked="item.checked" :shape="'circle'">
 							</u-checkbox>
 						</u-checkbox-group>
@@ -27,10 +27,10 @@
 					
 				</view>
 				<view class="li-bottom" v-if="item.yuqijine != 0">
-					<view class="time" style="color: red;">
+					<view class="time" style="color: #FF5B56;">
 						违约金:{{item.yuqijine}}
 					</view>
-					<view class="pay"  style="color: red;">
+					<view class="pay"  style="color: #FF5B56;">
 						已逾期
 					</view>
 				</view>
@@ -155,7 +155,7 @@
 
 <style lang="scss" scoped>
 	.prepayment-page {
-		background-color: #F0F0F0;
+		background-color: #F6F6FB;
 		padding: 13rpx 16rpx 0;
 		position: relative;
 		height: 100vh;
@@ -184,7 +184,7 @@
 				position: relative;
 				font-size: 28rpx;
 				box-sizing: border-box;
-				color: #1F1F1F;
+				color: #171B25;
 				padding: 15rpx 0 15rpx 83rpx;
 				// display: flex;
 				background-color: #fff;
@@ -210,7 +210,7 @@
 					}
 
 					.pay {
-						color: #92D3FF;
+						color: #ffaa00;
 					}
 				}
 
@@ -264,7 +264,7 @@
 			}
 
 			.prepayment-btn.on {
-				background: linear-gradient(139deg, #92D3FF 0%, #4CC5F8 100%);
+				background: #ffaa00;
 			}
 		}
 

@@ -154,7 +154,7 @@
 
 <style lang="scss" scoped>
 	.renewal-page {
-		background-color: #f0f0f0;
+		background-color: #F6F6FB;
 		height: 100vh;
 
 		.renewal-ul {
@@ -165,7 +165,7 @@
 			}
 
 			.li.on {
-				background-color: #92D3FF;
+				background-color: #ffaa00;
 				color: #fff;
 			}
 
@@ -191,7 +191,7 @@
 			.lists {
 				height: 83rpx;
 				line-height: 83rpx;
-				color: #333;
+				color: #414960;
 				border-bottom: 1rpx solid #E5E5E5;
 
 				.lists-r {
@@ -204,7 +204,7 @@
 			height: 83rpx;
 			line-height: 83rpx;
 			background-color: #fff;
-			color: #333;
+			color: #414960;
 			margin-top: 24rpx;
 			border-radius: 14rpx;
 			font-size: 28rpx;
@@ -222,7 +222,7 @@
 			color: #fff;
 			margin: 48rpx auto;
 			line-height: 88rpx;
-			background: linear-gradient(139deg, #92D3FF 0%, #4CC5F8 100%);
+			background: #ffaa00;
 			border-radius: 14rpx;
 		}
 	}

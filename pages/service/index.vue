@@ -148,7 +148,7 @@
 	}
 
 	.help-page {
-		background-color: #FFAA00;
+		background-color: #ffaa00;
 		// height: 100vh;
 
 		.help-header {

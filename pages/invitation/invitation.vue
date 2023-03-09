@@ -477,7 +477,7 @@
 	}
 
 	.title {
-		color: #14a3e4;
+		color: #ffaa00;
 		padding: 36rpx 0;
 		font-size: 36rpx;
 		text-align: center;
@@ -519,7 +519,7 @@
 		width: 170rpx;
 		padding-left: 18rpx;
 		font-size: 32rpx;
-		color: #14a3e4;
+		color: #ffaa00;
 	}
 
 	.li-input {

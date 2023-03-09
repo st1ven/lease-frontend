@@ -12,7 +12,7 @@ export default {
         inactiveStyle: {
             type: [String, Object],
             default: () => ({
-                color: '#606266',
+                color: '#61687C',
                 fontSize: '14px'
             })
         },

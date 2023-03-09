@@ -224,7 +224,7 @@
 					width: 170rpx;
 					padding-left: 18rpx;
 					font-size: 32rpx;
-					color: #14a3e4;
+					color: #ffaa00;
 				}
 
 				.li-input {

@@ -105,7 +105,7 @@
 	 * @property {String | Number}	text		需要显示的提示文字
 	 * @property {String | Number}	copyText	点击复制按钮时，复制的文本，为空则使用text值
 	 * @property {String | Number}	size		文本大小（默认 14 ）
-	 * @property {String}			color		字体颜色（默认 '#606266' ）
+	 * @property {String}			color		字体颜色（默认 '#61687C' ）
 	 * @property {String}			bgColor		弹出提示框时，文本的背景色（默认 'transparent' ）
 	 * @property {String}			direction	弹出提示的方向，top-上方，bottom-下方（默认 'top' ）
 	 * @property {String | Number}	zIndex		弹出提示的z-index，nvue无效（默认 10071 ）

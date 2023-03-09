@@ -13,11 +13,11 @@
 			</view>
 		</view>
 		<view class="logistics-box">
-			<u-steps current="0" direction="column" activeColor="#92D3FF" inactiveColor="#999" :dot="true">
+			<u-steps current="0" direction="column" activeColor="#ffaa00" inactiveColor="#9FA3B0" :dot="true">
 				<view class="" v-for="(item,index) in stepList" :key="index">
 					<u-steps-item :title="item.status +'--'+ item.time" :desc="item.context" v-if="index==0">
 						<text class="slot-icon" slot="icon">
-							<u-icon name="checkmark-circle-fill" color="#92D3FF" size="30rpx"></u-icon>
+							<u-icon name="checkmark-circle-fill" color="#ffaa00" size="30rpx"></u-icon>
 						</text>
 					</u-steps-item>
 					<u-steps-item :title="item.status+'--' + item.time" :desc="item.context" v-else>
@@ -105,7 +105,7 @@
 
 <style lang="scss" scoped>
 	.logistics-page {
-		background-color: #f0f0f0;
+		background-color: #F6F6FB;
 		height: 100vh;
 		padding: 15rpx;
 
@@ -123,10 +123,10 @@
 			.head-box {
 				margin-top: 30rpx;
 				font-size: 24rpx;
-				color: #1f1f1f;
+				color: #171B25;
 
 				.copy {
-					color: #92D3FF;
+					color: #ffaa00;
 					margin-left: 15rpx;
 				}
 
@@ -144,7 +144,7 @@
 		}
 
 		/deep/ .u-text__value--main {
-			color: #92D3FF;
+			color: #ffaa00;
 			margin-bottom: 5rpx;
 		}
 
@@ -153,7 +153,7 @@
 		}
 
 		/deep/ .u-text__value--content {
-			color: #999
+			color: #9FA3B0
 		}
 
 		/deep/ .u-steps-item__wrapper__dot {

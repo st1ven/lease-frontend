@@ -192,7 +192,7 @@
 					bottom: 20rpx;
 					right: 20rpx;
 					border-radius: 20rpx;
-					border: 1rpx solid #333;
+					border: 1rpx solid #414960;
 					padding: 8rpx 12rpx;
 					font-size: 16rpx;
 				}

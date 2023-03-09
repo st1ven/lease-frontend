@@ -210,7 +210,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		// background-color: #F0F0F0;
+		// background-color: #F6F6FB;
 		width: 100%;
 		box-sizing: border-box;
 	}
@@ -231,7 +231,7 @@
 	
 		.goods-title {
 			font-size: 24rpx;
-			color: #1F1F1F;
+			color: #171B25;
 			margin: 15rpx;
 		}
 	
@@ -361,7 +361,7 @@
 		border-radius: 10rpx;
 		background-size: 100% 100%;
 		position: relative;
-		// background-image: linear-gradient(139deg, #92D3FF 0%, #14a3e4 100%);
+		// background-image: linear-gradient(139deg, #ffaa00 0%, #ffaa00 100%);
 		
 		&-text {
 			font-size: 30rpx;

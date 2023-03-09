@@ -64,12 +64,12 @@
 					<text class="inventory-num">库存{{totalNum}}</text>
 					<view class="num-box" name="minus">
 						<view class="box-tag" @click="boxTag(1)">
-							<u-icon name="minus" color="#999999" size="20rpx"></u-icon>
+							<u-icon name="minus" color="#9FA3B0" size="20rpx"></u-icon>
 						</view>
 						<view class="box-tag">{{inventoryNum}}</u-icon>
 						</view>
 						<view class="box-tag" @click="boxTag(0)">
-							<u-icon name="plus" color="#999999" size="20rpx"></u-icon>
+							<u-icon name="plus" color="#9FA3B0" size="20rpx"></u-icon>
 						</view>
 					</view>
 				</view>
@@ -78,7 +78,7 @@
 					<text class="title">保障服务</text>
 					<text class="broken_msg">碎屏无需赔偿，加购更安心</text>
 					<!-- <view class="broken_info">
-						<u-icon name="zhifubao-circle-fill" color="#92D3FF" size="20" label="支付宝碎屏宝" labelSize="24rpx">
+						<u-icon name="zhifubao-circle-fill" color="#ffaa00" size="20" label="支付宝碎屏宝" labelSize="24rpx">
 						</u-icon>
 					</view> -->
 					<view class="tig-btn-box">
@@ -96,7 +96,7 @@
 				<iz-buy-buyout :goodsku="goodskuid" :goodid="good_id"></iz-buy-buyout>
 			</u-popup>
 			<view class="" v-if="tijiaorenzheng">
-				<u-loading-icon  color="#14a3e4" text="正在提交请稍后..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+				<u-loading-icon  color="#ffaa00" text="正在提交请稍后..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 			</view>
 				<view class="buy-ok"  v-if="totalNum !=0 && tokenstatus !=''">
 				
@@ -438,7 +438,7 @@
 		align-items: center;
 	}
 	.weidutextone{
-		color: red;
+		color: #FF5B56;
 		font-size: 12px;
 		font-weight: bold;
 	}
@@ -462,7 +462,7 @@
 
 			.buy-info {
 				font-size: 22rpx;
-				color: #333333;
+				color: #414960;
 				padding: 16rpx 0 0 44rpx;
 
 				.buy-name {
@@ -471,7 +471,7 @@
 				}
 
 				.buy-price {
-					color: #E60000;
+					color: #FF5B56;
 					font-size: 24rpx;
 
 					.price-num {
@@ -488,7 +488,7 @@
 			max-height: 850rpx;
 			min-height: 400rpx;
 			overflow-y: scroll;
-			color: #1F1F1F;
+			color: #171B25;
 			padding: 10rpx 0rpx 20rpx;
 
 			.title {
@@ -500,7 +500,7 @@
 			.buy-ok {
 				width: 626rpx;
 				height: 80rpx;
-				background: linear-gradient(179deg, #92D3FF 0%, #14a3e4 100%);
+				background: #ffaa00;
 				border-radius: 20rpx;
 				text-align: center;
 				line-height: 80rpx;
@@ -515,7 +515,7 @@
 				.inventory-num {
 					margin-left: 27rpx;
 					font-size: 20rpx;
-					color: #999999;
+					color: #9FA3B0;
 					vertical-align: middle;
 				}
 
@@ -568,12 +568,13 @@
 					font-size: 26rpx;
 					margin-right: 20rpx;
 					margin-bottom: 21rpx;
-					background-color: #F1F1F1;
+					background-color: #F1F2F5;
 				}
 
 				.on {
-					border: 1px solid #92D3FF;
-					background-color: #E1F2FF;
+					color: #ffaa00;
+					border: 1px solid #ffaa00;
+					background-color: rgba($color: #ffaa00, $alpha: 0.1);
 				}
 			}
 		}

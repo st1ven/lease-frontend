@@ -14,7 +14,7 @@
 					</get-coupon>
 				</view>
 				<view v-if="loadding" style="padding-top: 20px;">
-					<u-loading-icon  color="#14a3e4" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+					<u-loading-icon  color="#ffaa00" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 				</view>
 				<image :src="xinxi.background_image" mode="widthFix" style="width: 100%;"></image>
 					<view class="iz-goods-tpl" :style="'background-color:'+Bgc || '#f0f0f0'">
@@ -181,7 +181,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		// background-color: #F0F0F0;
+		// background-color: #F6F6FB;
 		width: 100%;
 		box-sizing: border-box;
 	}
@@ -206,7 +206,7 @@
 	
 		.goods-title {
 			font-size: 24rpx;
-			color: #1F1F1F;
+			color: #171B25;
 			margin: 15rpx;
 		}
 	

@@ -18,7 +18,7 @@ export default {
         value: '',
         focus: false,
         bold: false,
-        color: '#606266',
+        color: '#61687C',
         fontSize: 18,
         size: 35,
         disabledKeyboard: false,

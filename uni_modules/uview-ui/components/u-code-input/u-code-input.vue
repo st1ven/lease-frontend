@@ -53,7 +53,7 @@
 	 * @property {String | Number}	value				预置值
 	 * @property {Boolean}			focus				是否自动获取焦点 （默认 false ）
 	 * @property {Boolean}			bold				字体和输入横线是否加粗 （默认 false ）
-	 * @property {String}			color				字体颜色 （默认 '#606266' ）
+	 * @property {String}			color				字体颜色 （默认 '#61687C' ）
 	 * @property {String | Number}	fontSize			字体大小，单位px （默认 18 ）
 	 * @property {String | Number}	size				输入框的大小，宽等于高 （默认 35 ）
 	 * @property {Boolean}			disabledKeyboard	是否隐藏原生键盘，如果想用自定义键盘的话，需设置此参数为true （默认 false ）

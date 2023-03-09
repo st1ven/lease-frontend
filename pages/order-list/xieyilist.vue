@@ -41,7 +41,7 @@
 
 <style>
 	.pages{
-		/* background-color: #f0f0f0; */
+		/* background-color: #F6F6FB; */
 		/* background-color: #fff; */
 		padding: 10px;
 		height: 100%;

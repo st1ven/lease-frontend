@@ -17,7 +17,7 @@ export default {
         decimals: 0,
         useEasing: true,
         decimal: '.',
-        color: '#606266',
+        color: '#61687C',
         fontSize: 22,
         bold: false,
         separator: ''
