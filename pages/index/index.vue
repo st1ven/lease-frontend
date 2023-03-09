@@ -5,7 +5,7 @@
 			:style="{background:'linear-gradient(1deg, #ffffff 0%, '+ backgroundcolor +' 100%)', paddingTop:statusBarHeight + titleBarHeight}">
 			<view class="search-box" @click="JumpSearch">
 				<u-icon size="26" name="search" color="#9FA3B0" />
-				<text class="title">输入关键词</text>
+				<text class="title">iPhone 14 Pro</text>
 			</view>
 			<u-swiper @click="bann" indicator @change="bannqiehan" :list="list" :circular="true" />
 		</view>
@@ -174,7 +174,7 @@
 			<text class="title">新品速递</text>
 			<text class="line"></text>
 		</view>
-		<view v-if="loadding" style="padding-top: 20px;">
+		<view v-if="loaadding" style="padding-top: 20px;">
 			<u-loading-icon color="#ffaa00" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 		</view>
 		<view class="recommend-goods" style="margin-top: 10px;">
@@ -218,6 +218,7 @@
 				scrollstatus: 1,
 				loading: true,
 				loadding: true,
+				loaadding: true,
 				backgroundcolor: '',
 				// #ifdef MP-ALIPAY
 				canUse: my.canIUse('lifestyle'),
@@ -520,6 +521,7 @@
 					if (res.code == 1) {
 						this.newList = res.data.data
 					}
+					this.loaadding = false
 				})
 			}
 		}
@@ -682,7 +684,8 @@
 
 			.title {
 				opacity: 0.8;
-				color: #909090;
+				color: #9FA3B0;
+				line-height: 60rpx;
 				// #ifdef H5
 				font-size: 24rpx;
 				// #endif

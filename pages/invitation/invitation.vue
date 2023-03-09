@@ -1,57 +1,75 @@
 <template>
 	<view>
-		<view class=""  :style="{backgroundImage:'url('+configg.background_image+')'}" style="padding:  0 0 20px 0;">
+		<view class="" :style="{backgroundImage:'url('+configg.background_image+')'}" style="padding:  0 0 20px 0;">
 			<view class="huodonganniu">
-				<text @click="huodongguize" class="huodongbu" :style="{background:configg.page_json.ActivityB,color:configg.page_json.ActivityC,boxShadow:configg.page_json.ActivityS}">{{configg.page_json.Activity}}</text>
-				<text @click="jianglijiludingyue" class="huodongbu" :style="{background:configg.page_json.RewardB,color:configg.page_json.RewardC,boxShadow:configg.page_json.RewardS}">{{configg.page_json.Reward}}</text>
+				<text @click="huodongguize" class="huodongbu"
+					:style="{background:configg.page_json.ActivityB,color:configg.page_json.ActivityC,boxShadow:configg.page_json.ActivityS}">{{configg.page_json.Activity}}</text>
+				<text @click="jianglijiludingyue" class="huodongbu"
+					:style="{background:configg.page_json.RewardB,color:configg.page_json.RewardC,boxShadow:configg.page_json.RewardS}">{{configg.page_json.Reward}}</text>
 			</view>
 			<image :src="configg.top_image" mode="widthFix" style="width: 100%;"></image>
-			
+
 			<view class="" style="padding: 10px;">
 				<view class="widthdrow">
 					<text>可提现金额：{{userinfo.userinfo.money || 0}}元</text>
-					<text v-if="tokenstatus ==''" class="tixiantext" style="background: linear-gradient(179deg, #8b8b8b 0%, #cdcdcd 100%);" @click="qingdenglu">提现到支付宝</text>
-					<button v-else  type="default" class="tixiantext" open-type="getPhoneNumber" @getphonenumber="decryptPhoneNumber" :style="{background:configg.page_json.ButtonC}" style="color: rgb(255, 255, 255);padding: 1px 15px;font-size: 12px;line-height: 1.7;margin: 1px;height: 25px;" @click="tixianchu">提现到支付宝</button>
+					<text v-if="tokenstatus ==''" class="tixiantext"
+						style="background: linear-gradient(179deg, #8b8b8b 0%, #cdcdcd 100%);"
+						@click="qingdenglu">提现到支付宝</text>
+					<button v-else type="default" class="tixiantext" open-type="getPhoneNumber"
+						@getphonenumber="decryptPhoneNumber" :style="{background:configg.page_json.ButtonC}"
+						style="color: rgb(255, 255, 255);padding: 1px 15px;font-size: 12px;line-height: 1.7;margin: 1px;height: 25px;"
+						@click="tixianchu">提现到支付宝</button>
 				</view>
 				<view class="yaoqingtishi">
-					<text class="widthdrowtext"  :style="{background:configg.page_json.ButtonC}">每邀请一名用户成功租机，您可以获得{{configg.price}}元现金</text>
+					<text class="widthdrowtext"
+						:style="{background:configg.page_json.ButtonC}">每邀请一名用户成功租机，您可以获得{{configg.price}}元现金</text>
 					<view class="da">
 						<scroll-view scroll-x="true" class="flex">
-						<view class="four">
-							
-							<view class="fourthree">
-								
-								<image :src="configg.add_image" mode="widthFix" style="width:50px;border-radius: 10px;"></image>
-								<text style="font-size: 12px;margin-top: 10px;">待邀请</text>
+							<view class="four">
+
+								<view class="fourthree">
+
+									<image :src="configg.add_image" mode="widthFix"
+										style="width:50px;border-radius: 10px;"></image>
+									<text style="font-size: 12px;margin-top: 10px;">待邀请</text>
+								</view>
+								<view class="fourthree" v-for="(item,index) in userinfo.useryao">
+									<image v-if="item.avatar == ''" :src="configg.avatar_image" mode="widthFix"
+										style="width:50px;border-radius: 10px;"></image>
+									<image v-else :src="item.avatar" mode="widthFix"
+										style="width:50px;border-radius: 10px;"></image>
+									<text style="font-size: 12px;margin-top: 10px;">{{item.nickname}}</text>
+								</view>
+
 							</view>
-							<view class="fourthree" v-for="(item,index) in userinfo.useryao">
-								<image v-if="item.avatar == ''" :src="configg.avatar_image" mode="widthFix" style="width:50px;border-radius: 10px;"></image>
-								<image v-else :src="item.avatar" mode="widthFix" style="width:50px;border-radius: 10px;"></image>
-								<text style="font-size: 12px;margin-top: 10px;">{{item.nickname}}</text>
-							</view>
-							
-						</view>
 						</scroll-view>
-						<view class="fourtwo" style="display: flex;justify-content: space-between;margin-bottom: 15px;padding: 0px 20px;">
+						<view class="fourtwo"
+							style="display: flex;justify-content: space-between;margin-bottom: 15px;padding: 0px 20px;">
 							<text class="" style="font-size: 14px;">
 								成功邀请：{{userinfo.sum || 0}}人
 							</text>
-							<text class=""  @click="yaoqingjiludingyue" style="font-size: 14px;color:rgb(54 54 54 / 62%);">
+							<text class="" @click="yaoqingjiludingyue"
+								style="font-size: 14px;color:rgb(54 54 54 / 62%);">
 								查看全部>
 							</text>
 						</view>
-						<view class="" style="padding-bottom: 10px;display: flex;flex-direction: row;justify-content: center;">
-							<fengwologin v-if="tokenstatus ==''" titlee='授权登录' :stylee='configg.page_json.ButtonC' :stylecolor="stylecolor"/>
-							<button v-else class="buy-ok" :style="{background:configg.page_json.ButtonC,color:stylecolor}" open-type="share">
+						<view class=""
+							style="padding-bottom: 10px;display: flex;flex-direction: row;justify-content: center;">
+							<fengwologin v-if="tokenstatus ==''" titlee='授权登录' :stylee='configg.page_json.ButtonC'
+								:stylecolor="stylecolor" />
+							<button v-else class="buy-ok"
+								:style="{background:configg.page_json.ButtonC,color:stylecolor}" open-type="share">
 								<view class="yaoqing" @click="yaoqinghaoyou">邀请好友</view>
 							</button>
-						</view>						
+						</view>
 					</view>
 				</view>
-				<view class="" style="background-color: rgba(240, 248, 255, 0.25);border-radius: 10px;padding: 10px;margin-top: 10px;">
-					<image @click="huodongguize" :src="configg.bottom_image" mode="widthFix" style="width: 100%;border-radius: 10px;"></image>
+				<view class=""
+					style="background-color: rgba(240, 248, 255, 0.25);border-radius: 10px;padding: 10px;margin-top: 10px;">
+					<image @click="huodongguize" :src="configg.bottom_image" mode="widthFix"
+						style="width: 100%;border-radius: 10px;"></image>
 				</view>
-				
+
 			</view>
 		</view>
 		<u-popup :show="show" @close="close" mode="center" :round="10" :closeable='true' closeIconPos='top-right'>
@@ -63,23 +81,24 @@
 				<view class="" style="width: 280px;font-size: 14px;padding: 10px 15px;background: #f9a239;color: #fff;">
 					{{configg.page_json.Tips}}
 				</view>
-				
+
 				<view class="form-box">
-					
+
 					<view class="form">
 						<view class="form-li">
 							<view class="li-input">
-								
-								<input type="number" class="inpuuu" :placeholder="'可提现￥'+userinfo.userinfo.money" v-model="tixianprice"></input>
+
+								<input type="number" class="inpuuu" :placeholder="'可提现￥'+userinfo.userinfo.money"
+									v-model="tixianprice"></input>
 							</view>
 						</view>
-				
+
 						<view class="input-btn" @click="Confirm()">
 							提交申请
 						</view>
 					</view>
 				</view>
-				
+
 			</view>
 		</u-popup>
 	</view>
@@ -88,50 +107,50 @@
 <script>
 	export default {
 		data() {
-				return {
-					configg:{},
-					tokenstatus:'',
-					userinfo:{},
-					userid:'',
-					background:'linear-gradient(179deg, #E77232 0%, #EEB051 100%)',
-					stylecolor:'#ffffff',
-					show:false,
-					tixianprice:''
-				}
-			},
+			return {
+				configg: {},
+				tokenstatus: '',
+				userinfo: {},
+				userid: '',
+				background: 'linear-gradient(179deg, #E77232 0%, #EEB051 100%)',
+				stylecolor: '#ffffff',
+				show: false,
+				tixianprice: ''
+			}
+		},
 		onLoad(e) {
 			this.shareconfig()
-			
+
 			this.tokenexpir()
 			// #ifdef H5
 			this.userinfoget()
 			// #endif
 			this.userid = e.userid
 			this.cookiee()
-			
+
 		},
 		onShow() {
 			this.cookiee()
-			uni.$on('tokenstatus',(data)=>{
+			uni.$on('tokenstatus', (data) => {
 				this.tokenstatus = data
 				this.userinfoget()
-				})
+			})
 		},
-		onUnload() {  
-			uni.$off('tokenstatus');  
-			
+		onUnload() {
+			uni.$off('tokenstatus');
+
 		},
 		onShareAppMessage(res) {
-		    return {
-				  title: this.configg.title,
-				  path: this.configg.path + this.userinfo.userinfo.id,
-				  bgImgUrl:this.configg.bgImgUrl_image,
-				  content:this.configg.content,
-				  desc:this.configg.ddesc
-		    }
-		  },
+		 return {
+				title: this.configg.title,
+				path: this.configg.path + this.userinfo.userinfo.id,
+				bgImgUrl: this.configg.bgImgUrl_image,
+				content: this.configg.content,
+				desc: this.configg.ddesc
+			}
+		},
 		methods: {
-			yaoqinghaoyou(){
+			yaoqinghaoyou() {
 				let opt = {
 					url: '/user/invcount',
 				}
@@ -139,145 +158,145 @@
 					// console.log(res)
 				})
 			},
-			jianglijiludingyue(){
+			jianglijiludingyue() {
 				let opt = {
 					url: '/index/dingyue?biaoshi=reward'
 				}
 				this.$request(opt).then(res => {
 					var dingyueid = res.data
-				my.requestSubscribeMessage({
-					//权益领取提醒
-					entityIds: dingyueid,
-					complete: (res) => {
-						this.jianglijilu()
-					}
-				});
+					my.requestSubscribeMessage({
+						//权益领取提醒
+						entityIds: dingyueid,
+						complete: (res) => {
+							this.jianglijilu()
+						}
+					});
 				})
-				
+
 			},
-			yaoqingjiludingyue(){
+			yaoqingjiludingyue() {
 				let opt = {
 					url: '/index/dingyue?biaoshi=rewardji'
 				}
 				this.$request(opt).then(res => {
 					var dingyueid = res.data
-				my.requestSubscribeMessage({
-					//好友完成租机通知
-					entityIds: dingyueid,
-					complete: (res) => {
-						this.yaoqingjilu()
-					}
-				});
+					my.requestSubscribeMessage({
+						//好友完成租机通知
+						entityIds: dingyueid,
+						complete: (res) => {
+							this.yaoqingjilu()
+						}
+					});
 				})
 			},
-			tixianchu(){
+			tixianchu() {
 				this.show = true
 			},
-			Confirm(){
-				if(this.tixianprice == ''){
+			Confirm() {
+				if (this.tixianprice == '') {
 					uni.showToast({
-						icon:'none',
-						title:'请输入提现金额~'
+						icon: 'none',
+						title: '请输入提现金额~'
 					})
-				}else if(this.tixianprice > this.userinfo.userinfo.money){
+				} else if (this.tixianprice > this.userinfo.userinfo.money) {
 					uni.showToast({
-						icon:'none',
-						title:'提现金额超出~'
+						icon: 'none',
+						title: '提现金额超出~'
 					})
-				}else if(this.tixianprice <= 0){
+				} else if (this.tixianprice <= 0) {
 					uni.showToast({
-						icon:'none',
-						title:'提现金额不合法~'
+						icon: 'none',
+						title: '提现金额不合法~'
 					})
-				}else{
+				} else {
 					let opt = {
 						url: '/user/invitationwithdrawal',
 						data: {
-							price:this.tixianprice,
+							price: this.tixianprice,
 						}
 					}
 					this.$request(opt).then(res => {
 						// 打印调用成功回调
 						uni.showToast({
-							icon:'none',
-							title:res.msg
+							icon: 'none',
+							title: res.msg
 						})
 						this.show = false
 						this.userinfoget()
 					})
 				}
 			},
-			close(){
+			close() {
 				this.show = false
 			},
 			decryptPhoneNumber(res) {
-			 
-			  my.getPhoneNumber({
-			    success: (res) => {
-				  var duixiang = JSON.parse(res.response)
-				  let opt = {
-				  	url: "/index/mobile?mobile="+encodeURIComponent(duixiang.response),
-				  }
-				  this.$request(opt).then(res => {
-					  if(res.code == '1'){
+
+				my.getPhoneNumber({
+					success: (res) => {
+						var duixiang = JSON.parse(res.response)
+						let opt = {
+							url: "/index/mobile?mobile=" + encodeURIComponent(duixiang.response),
+						}
+						this.$request(opt).then(res => {
+							if (res.code == '1') {
 						  this.show = true
-					  }else{
-						  this.$refs.uToast.show({
+							} else {
+								this.$refs.uToast.show({
+									message: '授权失败',
+									type: 'error'
+								})
+							}
+
+						})
+					},
+					fail: (res) => {
+						this.tijiaorenzheng = false
+						this.$refs.uToast.show({
 							message: '授权失败',
 							type: 'error'
-						  })
-					  }
-					
-				  })
-				},
-			    fail: (res) => {
-					this.tijiaorenzheng = false
-					  this.$refs.uToast.show({
-						message: '授权失败',
-						type: 'error'
-					  })
-			    },
-			  });
+						})
+					},
+				});
 			},
-			qingdenglu(){
+			qingdenglu() {
 				uni.showToast({
-					icon:'none',
-					title:'请先登录'
+					icon: 'none',
+					title: '请先登录'
 				})
 			},
-			jianglijilu(){
+			jianglijilu() {
 				//奖励纪录
-				if(this.tokenstatus ==''){
+				if (this.tokenstatus == '') {
 					uni.showToast({
-						icon:'none',
-						title:'请先登录'
+						icon: 'none',
+						title: '请先登录'
 					})
-				}else{
+				} else {
 					uni.navigateTo({
-						url:'./reward'
+						url: './reward'
 					})
 				}
 			},
-			yaoqingjilu(){
+			yaoqingjilu() {
 				//邀请记录
-				if(this.tokenstatus ==''){
+				if (this.tokenstatus == '') {
 					uni.showToast({
-						icon:'none',
-						title:'请先登录'
+						icon: 'none',
+						title: '请先登录'
 					})
-				}else{
+				} else {
 					uni.navigateTo({
-						url:'./record'
+						url: './record'
 					})
 				}
 			},
-			huodongguize(){
+			huodongguize() {
 				uni.navigateTo({
-					url:'./details?id='+this.configg.id
+					url: './details?id=' + this.configg.id
 				})
 			},
-			cookiee(){
-				if(this.userid){
+			cookiee() {
+				if (this.userid) {
 					uni.setStorage({
 						key: 'yaouserid',
 						data: this.userid,
@@ -285,23 +304,23 @@
 					let opt = {
 						url: '/index/yaoqing',
 						data: {
-							yaouserid:this.userid,
+							yaouserid: this.userid,
 						}
-						
+
 					}
 					this.$request(opt).then(res => {
 						// 打印调用成功回调
-						
+
 					})
-				}else{
-					
+				} else {
+
 					uni.setStorage({
 						key: 'yaouserid',
 						data: '0',
 					});
 				}
 			},
-			shareconfig(){
+			shareconfig() {
 				let opt = {
 					url: '/index/invitation'
 				}
@@ -312,20 +331,20 @@
 					})
 				})
 			},
-			userinfoget(){
-				
+			userinfoget() {
+
 				let opt = {
 					url: '/user/userinfo',
 				}
 				this.$request(opt).then(res => {
 					this.userinfo = res.data
-					
+
 				})
 			},
 			// 检测token是否过期
-			tokenexpir(){
+			tokenexpir() {
 				this.tokenstatus = uni.getStorageSync('token')
-				if(this.tokenstatus != ''){
+				if (this.tokenstatus != '') {
 					let opt = {
 						url: '/index/tokenexpirtime',
 						data: {
@@ -333,27 +352,28 @@
 						}
 					}
 					this.$request(opt).then(res => {
-						if(res.data == '0'){
+						if (res.data == '0') {
 							uni.removeStorageSync('token');
 							this.tokenstatus = ''
-						}else{
+						} else {
 							this.userinfoget()
 						}
 					})
 				}
 
 			},
-			
-			
+
+
 		}
 	}
 </script>
 
 <style>
-	.inpuuu{
+	.inpuuu {
 		text-align: center;
 	}
-	.widthdrow{
+
+	.widthdrow {
 		border-radius: 20px;
 		padding: 5px;
 		display: flex;
@@ -365,7 +385,8 @@
 		font-size: 14px;
 		margin-bottom: 10px;
 	}
-	.widthdrowtext{
+
+	.widthdrowtext {
 		font-size: 12px;
 		display: flex;
 		flex-direction: row;
@@ -375,23 +396,27 @@
 		padding: 10px;
 		border-radius: 0 0 20px 20px;
 	}
-	.fourthree{
+
+	.fourthree {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		padding: 15px;
 	}
-	.da{
+
+	.da {
 		background: #ffffffcf;
 		margin: 10px;
 		border-radius: 10px;
 	}
-	.four{
+
+	.four {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
 		justify-content: space-around;
 	}
+
 	.buy-ok {
 		width: 626rpx;
 		height: 80rpx;
@@ -401,17 +426,20 @@
 		color: #fff;
 		margin-top: 27rpx;
 	}
-	.tixiantext{
+
+	.tixiantext {
 		/* background: linear-gradient(179deg, #e76b2f 0%, #f0c65c 100%); */
 		padding: 2px 15px;
 		border-radius: 0 10px;
 	}
-	.yaoqingtishi{
+
+	.yaoqingtishi {
 		background-color: #f0f8ff40;
 		padding-bottom: 10px;
 		border-radius: 10px;
 	}
-	.huodonganniu{
+
+	.huodonganniu {
 		position: absolute;
 		z-index: 9;
 		margin-top: 5%;
@@ -422,16 +450,18 @@
 		width: 100%;
 		align-items: flex-end;
 	}
-	.huodongbu{
+
+	.huodongbu {
 		margin-bottom: 15px;
 		overflow: hidden;
 		color: #fff;
 		border-radius: 10px 0 0 10px;
 		padding: 3px 10px;
 		font-size: 12px;
-/* 		box-shadow: 1px 2px 0px 0px #fdf8e5; */
+		/* 		box-shadow: 1px 2px 0px 0px #fdf8e5; */
 	}
-	.tititle{
+
+	.tititle {
 		padding: 13px 5px 7px;
 		text-align: center;
 		display: flex;
@@ -440,58 +470,59 @@
 		align-items: center;
 		font-size: 16px;
 	}
+
 	.form-box {
 		/* height: 842rpx; */
 		padding: 15rpx 12rpx 24rpx;
 	}
-		.title {
-			color: #14a3e4;
-			padding: 36rpx 0;
-			font-size: 36rpx;
-			text-align: center;
-		}
-	
-		.form {
-			background-color: #fff;
-			padding: 34rpx 34rpx 0 34rpx;
-			border-radius: 12rpx;
-	}
-			.input-btn {
-				height: 76rpx;
-				line-height: 76rpx;
-				font-size: 32rpx;
-				border-radius: 10rpx;
-				text-align: center;
-				margin-top: 40rpx;
-				background: linear-gradient(179deg, rgb(231, 114, 50) 0%, rgb(238, 176, 81) 100%);
-				color: #fff;
-			}
-	
-			.form-li {
-				display: flex;
-				align-items: center;
-				justify-content: flex-start;
-				border: 1px solid #d1d1d1;
-				width: 100%;
-				height: 35px;
-				border-radius: 5px;
-				margin-bottom: 15px;
-				flex-wrap: nowrap;
-				flex-direction: row;
-				align-content: center;
-				/* padding-left: 12px; */
-			}
-	
-			.li-label {
-				width: 170rpx;
-				padding-left: 18rpx;
-				font-size: 32rpx;
-				color: #14a3e4;
-			}
-	
-			.li-input {
-				width: 100%;
-			}
-	
 
+	.title {
+		color: #14a3e4;
+		padding: 36rpx 0;
+		font-size: 36rpx;
+		text-align: center;
+	}
+
+	.form {
+		background-color: #fff;
+		padding: 34rpx 34rpx 0 34rpx;
+		border-radius: 12rpx;
+	}
+
+	.input-btn {
+		height: 76rpx;
+		line-height: 76rpx;
+		font-size: 32rpx;
+		border-radius: 10rpx;
+		text-align: center;
+		margin-top: 40rpx;
+		background: linear-gradient(179deg, rgb(231, 114, 50) 0%, rgb(238, 176, 81) 100%);
+		color: #fff;
+	}
+
+	.form-li {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		border: 1px solid #d1d1d1;
+		width: 100%;
+		height: 35px;
+		border-radius: 5px;
+		margin-bottom: 15px;
+		flex-wrap: nowrap;
+		flex-direction: row;
+		align-content: center;
+		/* padding-left: 12px; */
+	}
+
+	.li-label {
+		width: 170rpx;
+		padding-left: 18rpx;
+		font-size: 32rpx;
+		color: #14a3e4;
+	}
+
+	.li-input {
+		width: 100%;
+	}
 </style>

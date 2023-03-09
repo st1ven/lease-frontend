@@ -1,21 +1,21 @@
 <template>
 	<view class="problem-page">
 		<view class="problem-form">
-			
+
 			<u-textarea height="370rpx" border="none" v-model="textareaVal" :maxlength="300" :count="true"
-				placeholder="您可以输入问题或建议，我们收到后会及时跟进 "></u-textarea>
+				placeholder="您可以输入问题或建议，我们收到后会及时跟进"></u-textarea>
 
 			<view class="upload-box">
 				<view class="upload-icon" v-if="fileList.length" v-for="(item,index) in fileList" :key="index">
 					<image :src="item" style="width: 117rpx; height: 117rpx;"></image>
 					<view class="icon-del">
-						<u-icon name="close-circle" color="#999" size="32rpx" @click="deletePic(index)"></u-icon>
+						<u-icon name="close-circle" color="#FF5B56" size="32rpx" @click="deletePic(index)"></u-icon>
 					</view>
 				</view>
 
 				<view class="upload-icon" v-if="fileList.length<9">
 					<view class="icon-box">
-						<u-icon name="plus" color="#999" size="70rpx" :bold="false" top="6rpx" left="12rpx"
+						<u-icon name="plus" color="#9FA3B0" size="60rpx" :bold="false" top="2rpx" left="10rpx"
 							@click="uploadClick">
 						</u-icon>
 					</view>
@@ -33,7 +33,7 @@
 	</view>
 </template>
 
-<script> 
+<script>
 	export default {
 		data() {
 			return {
@@ -93,23 +93,23 @@
 				this.fileList.splice(index, 1)
 			},
 
-			uploadClick() { 
+			uploadClick() {
 				let ctx = this.ctx
 				let that = this
 				my.chooseImage({
 					/** 调取相册*/
 					sourceType: ['camera', 'album'],
 					count: 1,
-					success: (res1) => { 
-						let apFilePaths = res1.apFilePaths 
-						for(let i=0; i< apFilePaths.length; i++) {  
-							  that.getImgInfo(  apFilePaths[i],i )
-						} 
+					success: (res1) => {
+						let apFilePaths = res1.apFilePaths
+						for (let i = 0; i < apFilePaths.length; i++) {
+							that.getImgInfo(apFilePaths[i], i)
+						}
 					},
 					fail: (e) => {
 						console.log(e)
-						let msg = e.error == 11?e.errorMessage||'取消上传':'上传失败'
-						 
+						let msg = e.error == 11 ? e.errorMessage || '取消上传' : '上传失败'
+
 						that.$refs.uToast.show({
 							message: msg,
 							type: 'error'
@@ -117,16 +117,16 @@
 					}
 				})
 			},
-			getImgInfo(imagePath,i ) {
+			getImgInfo(imagePath, i) {
 				let _this = this
-				 my.getImageInfo({
+				my.getImageInfo({
 					src: imagePath,
 					success: async (res) => {
 						let imgWidth = res.width / 2.5;
 						let imgHeight = res.height / 2.5;
 						let canvas = my.createCanvasContext("canvas");
 						canvas.drawImage(imagePath, 0, 0, imgWidth, imgHeight); // 1. 绘制图片至canvas
-						console.log(i,imagePath)
+						console.log(i, imagePath)
 						// 绘制完成后执行回调
 						canvas.draw(false, async () => {
 							let base64 = await canvas.toDataURL({
@@ -134,7 +134,7 @@
 								height: imgHeight,
 								quality: 1,
 							});
-							console.log(imagePath,'64---', base64)
+							console.log(imagePath, '64---', base64)
 							// base64 = base64.replace("data:image/png;base64,", "");
 							await this.imageHttp(base64);
 						});
@@ -156,7 +156,7 @@
 					// base64ToPath(res.data).then(path => { 
 					this.fileList.push(res.data)
 					// })
-				}).catch(res => { 
+				}).catch(res => {
 					this.$refs.uToast.show({
 						message: res.msg || '上传失败',
 						type: 'error'
@@ -172,7 +172,7 @@
 
 <style lang="scss" scoped>
 	.problem-page {
-		background-color: #F0f0f0;
+		background-color: #F6F6FB;
 		padding: 24rpx;
 		height: 100vh;
 
@@ -195,7 +195,7 @@
 			// margin-left: 44rpx;
 			margin-bottom: 37rpx;
 			background-color: #fff;
-			border: 1rpx solid #999999;
+			border: 1rpx solid #E2E5EA;
 			border-radius: 8rpx;
 		}
 
@@ -214,7 +214,7 @@
 		.upload-icon {
 			width: 117rpx;
 			height: 117rpx;
-			border: 1rpx solid #999999;
+			border: 1rpx solid #E2E5EA;
 			border-radius: 8rpx;
 			margin-left: 44rpx;
 			position: relative;
@@ -225,15 +225,13 @@
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%, -50%);
-
-
 			}
 		}
 
 		.problem-btn {
 			width: 80%;
 			height: 81rpx;
-			background: linear-gradient(2deg, #92D3FF 0%, #14a3e4 100%);
+			background: #ffaa00;
 			border-radius: 14rpx;
 			line-height: 81rpx;
 			margin: 81rpx auto;

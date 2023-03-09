@@ -5,42 +5,38 @@
 			<view class="collection-li" v-for="(item,index) in list" :key="index" @click="liClick(item)">
 				<view class="li-checkbox">
 					<u-checkbox-group :v-model="item" @change="checkboxChange(item,index)">
-						<u-checkbox shape="circle" :checked="item.disabled"></u-checkbox>
+						<u-checkbox activeColor="#ffaa00" shape="circle" :checked="item.disabled"></u-checkbox>
 					</u-checkbox-group>
 				</view>
 				<view class="li-img">
 					<u-image :showLoading="true" :src="item.Goodsdata.image" width="130rpx" height="130rpx"></u-image>
 				</view>
 				<view class="head-box">
-					<view class="li-msg u-line-2">{{item.id}} ----- {{item.Goodsdata.title}}</view>
-					<view class="li-price"> ¥ {{item.Goodsdata.price}}</view>
+					<view class="li-msg u-line-2">{{item.Goodsdata.title}}</view>
+					<view class="li-price">¥{{item.Goodsdata.price}}元/起</view>
 				</view>
-	
 			</view>
-
 		</view>
 		<view class="collection-no" v-else>
-			<u-icon name="warning" color="#ccc" size="45rpx" labelColor="#ccc" labelSize="30rpx" label="暂时没有收藏哦">
+			<u-icon name="warning" color="#9FA3B0" size="45rpx" labelColor="#9FA3B0" labelSize="30rpx" label="暂时没有收藏哦">
 			</u-icon>
 		</view>
-
-
-		<view class="collection-bottom"  v-if="list.length">
+		<view class="collection-bottom" v-if="list.length">
 			<view class="bottom-l box">
 				<view class="checkbox">
 					<u-checkbox-group @change="allChange(list)">
-						<u-checkbox shape="circle" label="全选" :checked="allCheckFlag"></u-checkbox>
+						<u-checkbox activeColor="#ffaa00" shape="circle" label="全选" :checked="allCheckFlag"></u-checkbox>
 					</u-checkbox-group>
 				</view>
 			</view>
-			<view class="bottom-r box" >
+			<view class="bottom-r box">
 				<view class="delAll" @click="delFunc(list,1)">
 					删除
 				</view>
 			</view>
 		</view>
 		<u-toast ref="uToast"></u-toast>
-		<u-modal :show="modal_show" title="确实删除收藏吗" @confirm="confirm_Modal(item)" :closeOnClickOverlay="true"
+		<u-modal :show="modal_show" title="确认删除收藏吗" @confirm="confirm_Modal(item)" :closeOnClickOverlay="true"
 			@close="modal_show=false" @cancel="modal_show=false" :showCancelButton="true">
 			<view style="text-align: center;" slot="content">
 				{{content}}
@@ -59,7 +55,7 @@
 				allCheckFlag: false,
 				targetArr: [],
 				modal_show: false,
-				content: '确定取消收藏吗'
+				content: '确认取消收藏吗'
 			}
 		},
 		onShow() {
@@ -158,7 +154,7 @@
 
 <style lang="scss" scoped>
 	.collection-page {
-		background-color: #f0f0f0;
+		background-color: #F6F6FB;
 		min-height: 100vh;
 
 		.collection-no {
@@ -209,7 +205,7 @@
 					}
 
 					.li-price {
-						color: #E60000;
+						color: #FF5B56;
 						padding-top: 10rpx;
 					}
 				}
@@ -235,7 +231,7 @@
 				}
 
 				.delAll {
-					background-color: #92D3FF;
+					background-color: #FF5B56;
 					border-radius: 20rpx;
 					color: #fff;
 					width: 260rpx;

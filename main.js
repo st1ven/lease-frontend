@@ -2,9 +2,9 @@ import Vue from 'vue'
 import App from './App'
 
 my.onPageNotFound(res => {
-  my.switchTab({
-    url: '/pages/index/index'
-  });
+	my.switchTab({
+		url: '/pages/index/index'
+	});
 });
 
 // vuex
@@ -14,11 +14,14 @@ import store from './store'
 import uView from '@/uni_modules/uview-ui'
 
 import mixin from './common/mixin'
-import {$request,unique,$UploadFile} from 'common/request.js'
+import {
+	$request,
+	unique,
+	$UploadFile
+} from 'common/request.js'
 
 
 Vue.prototype.$store = store
-// Vue.prototype.$https = "https://mebilelease.com" //默认环境
 Vue.prototype.$request = $request
 Vue.prototype.$unique = unique
 Vue.prototype.$UploadFile = $UploadFile

@@ -4,7 +4,7 @@
 			<text class="title">{{ title }}</text>
 			<view class="flex align-center ml-auto" v-if="moreTitle" @click="$emit('click')">
 				<text class="more">{{ moreTitle }}</text>
-				<u-icon color="#666666" size="10" name="arrow-right" />
+				<u-icon color="#61687C" size="10" name="arrow-right" />
 			</view>
 		</view>
 		<view class="content">
@@ -37,7 +37,7 @@
 	.iz-card {
 		background: #FFFFFF;
 		border-radius: 14rpx;
-		margin: 0 40rpx 20rpx 40rpx;
+		margin: 0 12px 20rpx 12px;
 		padding: 20rpx 30rpx 0 30rpx;
 
 		.top {
@@ -46,12 +46,12 @@
 			margin-bottom: 30rpx;
 
 			.title {
-				color: #1F1F1F;
+				color: #171B25;
 				font-size: 28rpx;
 			}
 			
 			.more {
-				color: #333333;
+				color: #61687C;
 				font-size: 20rpx;
 				font-weight: 400;
 			}

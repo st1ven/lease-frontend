@@ -43,7 +43,7 @@
 		text {
 			font-size: 24rpx;
 			font-weight: 400;
-			color: #666666;
+			color: #61687C;
 		}
 	}
 </style>

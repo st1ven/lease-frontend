@@ -5,7 +5,10 @@
 			<u-image :showLoading="true" :src="idcardto" width="100%" height="470rpx"></u-image>
 		</view>
 		<view class="title">
-			实名认证(如暂无照片，可先传任意照片，审核通过后补传即可)
+			实名认证
+		</view>
+		<view class="sub-title">
+			如暂无照片，可先传任意照片，审核通过后补传即可
 		</view>
 		<!-- 人像面 -->
 		<view class="idCard-positive idCard-content" @click="uploadClick(1)">
@@ -219,13 +222,16 @@
 		}
 
 		.title {
-			font-weight: 400;
-			color: #4CA8FE;
-			// font-size: 34rpx;
-			font-size: 20rpx;
-			padding: 28rpx 0;
-			// height: 68rpx;
-			// line-height: 68rpx;
+			color: #414960;
+			padding: 36rpx 0 16rpx 0;
+			font-size: 36rpx;
+			text-align: center;
+		}
+
+		.sub-title {
+			color: #61687C;
+			padding-bottom: 36rpx;
+			font-size: 24rpx;
 			text-align: center;
 		}
 
@@ -236,7 +242,7 @@
 
 			.idCard-txt {
 				font-size: 30rpx;
-				color: #83B5FF;
+				color: #ffaa00;
 				position: absolute;
 				left: 50%;
 				bottom: 60rpx;
@@ -245,16 +251,14 @@
 		}
 
 		.btn {
-			margin: 40rpx 80rpx 0;
+			width: 80%;
+			height: 81rpx;
+			background: #ffaa00;
+			border-radius: 14rpx;
+			line-height: 81rpx;
+			margin: 81rpx auto;
+			color: #fff;
 			text-align: center;
-			height: 96rpx;
-			line-height: 96rpx;
-			background: linear-gradient(105deg, #55BAFE, #3072FF);
-			box-shadow: 0px 18rpx 24rpx 0px rgba(63, 143, 255, 0.23);
-			border-radius: 48rpx;
-			font-size: 34rpx;
-			font-weight: 400;
-			color: #FFFFFF;
 		}
 	}
 </style>

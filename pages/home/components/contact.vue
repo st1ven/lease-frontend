@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<u-popup mode="center" :round="24" closeable :show="contactStatus" :safeAreaInsetBottom="false"
+		<u-popup mode="center" :round="10" closeable :show="contactStatus" :safeAreaInsetBottom="false"
 			@close="setStatus(false)">
 			<view class="contact-item">
 				<u-icon size="28" name="phone-fill" />
@@ -102,16 +102,16 @@
 			flex-direction: column;
 
 			.title {
-				color: #333333;
+				color: #61687C;
 				font-size: 24rpx;
 				font-weight: 400;
 			}
 
 			.number {
-				color: #333333;
+				color: #414960;
 				font-size: 40rpx;
 				font-weight: 800;
-				margin-top: 15rpx;
+				margin-top: 6rpx;
 			}
 		}
 	}
@@ -120,6 +120,6 @@
 		width: 86%;
 		height: 1px;
 		margin: 0 7%;
-		background: #E5E5E5;
+		background: #F1F2F5;
 	}
 </style>

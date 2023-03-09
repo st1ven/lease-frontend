@@ -3,7 +3,8 @@
 	<view class="product-Page">
 
 		<view class="searchBox" v-if="sortFlag==0">
-			<u-search placeholder="请输入商品名称" actionText="搜索" :clearabled="true" v-model="searchVal" @custom="listHttp">
+			<u-search placeholder="请输入商品名称" actionText="搜索" :clearabled="true" v-model="searchVal" @custom="listHttp"
+				animation>
 			</u-search>
 		</view>
 		<view class="screening-box" v-if="sortFlag==0">
@@ -55,9 +56,9 @@
 		name: 'product-list',
 		data() {
 			return {
-				jiage:'价格区间',
-				xinjiu:'成新度',
-				xiaoliang:'销量',
+				jiage: '价格区间',
+				xinjiu: '成新度',
+				xiaoliang: '销量',
 				loadingType: '下拉刷新',
 				arrowObj: {
 					priceArr: [{
@@ -74,21 +75,21 @@
 						type: 1
 					}],
 					classArr: [
-					// 	{
-					// 	name: '综合',
-					// 	txt: "null",
-					// 	type: 2
-					// }, 
-					{
-						name: '准新',
-						txt: "new",
-						type: 2
-					}
-					// , {
-					// 	name: '二手',
-					// 	txt: "second",
-					// 	type: 2
-					// },
+						// 	{
+						// 	name: '综合',
+						// 	txt: "null",
+						// 	type: 2
+						// }, 
+						{
+							name: '准新',
+							txt: "new",
+							type: 2
+						}
+						// , {
+						// 	name: '二手',
+						// 	txt: "second",
+						// 	type: 2
+						// },
 					],
 					salesArr: [{
 						name: '综合',
@@ -195,7 +196,7 @@
 					}
 				}
 				if (this.sortFlag == 1) {
-			
+
 					opt = {
 						url: '/goods/list',
 						data: {
@@ -211,7 +212,7 @@
 						url: '/goods/hot',
 					}
 				}
-				
+
 				if (this.sortFlag == 2) {
 					opt = {
 						url: '/goods/coupons',
@@ -256,12 +257,25 @@
 <style lang="scss">
 	.product-Page {
 		height: 100vh;
-		background-color: #f0f0f0;
+		background-color: #f6f6fb;
 		position: relative;
 
 		.searchBox {
 			background-color: #fff;
 			padding: 20rpx;
+		}
+
+		/deep/ .u-search__content {
+			border-radius: 10rpx !important;
+			background: #F1F2F5 !important;
+		}
+
+		/deep/ .u-search__content__input {
+			background-color: #F1F2F5 !important;
+		}
+
+		/deep/ .u-search__action {
+			color: #414960 !important;
 		}
 
 		.product-list-tip {
@@ -272,7 +286,7 @@
 		}
 
 		.screening-box {
-			color: #333333;
+			color: #61687C;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -301,18 +315,19 @@
 					transform: translate(20%, 0rpx);
 					width: 90%;
 					background-color: #fff;
-					box-shadow: -2rpx -2rpx -2rpx -2rpx #F0f0f0;
+					filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.1));
 					border-radius: 12rpx;
 					padding: 12rpx 8rpx;
 					z-index: 9999;
 
-					 .arrow-li {
-						height: 55rpx;
-						line-height: 55rpx;
+					.arrow-li {
+						height: 64rpx;
+						line-height: 64rpx;
 						display: block;
 						font-size: 26rpx;
 						padding-left: 8rpx;
-						border-bottom: 1rpx solid #ecedef;
+						border-radius: 6rpx;
+						// border-bottom: 1rpx solid #ecedef;
 					}
 
 					.arrow-li:last-child {
@@ -320,7 +335,7 @@
 					}
 
 					.arrow-li.on {
-						background-color: #f0f0f0;
+						background-color: #F1F2F5;
 					}
 
 				}

@@ -42,18 +42,17 @@
 
 <style lang="scss" scoped>
 	.agreement-page {
-		background-color: #F0f0f0;
-		padding: 24rpx;
+		padding: 12px;
 		height: 100vh;
 
 		.agreement-cont {
-			width: 90%;
+			width: calc(100% - 24px);
 			min-height: 95vh;
 			margin: 0 auto;
 			background-color: #fff;
-			padding: 35rpx 20rpx;
+			padding: 12px;
 			overflow-x: scroll;
-			border-radius: 14rpx;
+			border-radius: 10px;
 		}
 
 	}

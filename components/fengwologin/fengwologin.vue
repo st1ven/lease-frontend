@@ -1,7 +1,7 @@
 <template>
 	<view>
-			
-		<button class="buy-ok" open-type="getAuthorize" scope="userInfo" @getAuthorize="onGetAuthorize" @error="onAuthError" :style="{background: stylee,color:stylecolor}">
+		<button class="buy-ok" open-type="getAuthorize" scope="userInfo" @getAuthorize="onGetAuthorize"
+			@error="onAuthError" :style="{background: stylee,color:stylecolor}">
 			{{titlee}}
 		</button>
 	</view>
@@ -9,24 +9,24 @@
 
 <script>
 	export default {
-		name:"fengwologin",
+		name: "fengwologin",
 		props: {
-			titlee:'',
-			stylee: {  
-                type: String,  
-                default: '' 
-            } ,
-			stylecolor:{
+			titlee: '',
+			stylee: {
 				type: String,
-				default: '' 
+				default: ''
+			},
+			stylecolor: {
+				type: String,
+				default: ''
 			}
 		},
 		data() {
 			return {
-				
+
 			};
 		},
-		methods:{
+		methods: {
 			//授权登录
 			onGetAuthorize() {
 				let _this = this
@@ -79,8 +79,8 @@
 					uni.setStorageSync('token', res.data.token);
 					uni.setStorageSync('avatar', this.avatar || '');
 					uni.setStorageSync('nickName', this.nickName || '');
-					uni.$emit("tokenstatus",res.data.token)
-					
+					uni.$emit("tokenstatus", res.data.token)
+
 					this.loginFlag = 1
 					setTimeout(() => {
 						uni.hideLoading()

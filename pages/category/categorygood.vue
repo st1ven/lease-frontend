@@ -3,11 +3,9 @@
 		<!-- 自定义导航 分类-->
 		<view class="fixed-box">
 			<u-scroll-list :indicator="false" style="background-color: #fff;">
-				<view class="uscroll" v-for="(item, index) in tarlist" :key="index" style=""
-					@click="fenleibig(item.id,index)">
-					<image :src="item.image" mode="heightFix" style="height: 120rpx;padding: 0px 5px;"></image>
-					<text v-if="activetext == index"
-						style="font-size: 12px;font-weight:bold;color: #FFAA00;">{{item.name}}</text>
+				<view class="uscroll" v-for="(item, index) in tarlist" :key="index" @click="fenleibig(item.id,index)">
+					<image :src="item.image" mode="widthFix" style="width: 80rpx; margin: 0px 8px;" ></image>
+					<text v-if="activetext == index" style="font-size: 12px;font-weight:bold;color: #FFAA00;">{{item.name}}</text>
 					<text v-else style="font-size: 12px; color: #61687C;">{{item.name}}</text>
 				</view>
 			</u-scroll-list>
@@ -21,29 +19,28 @@
 				</view>
 			</scroll-view>
 			<!-- 内容 -->
-			<view class="content">
+			<view class="content" >
+				<view v-if="loading" style="padding: 10px 0;">
+					<u-loading-icon color="#ffaa00" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+				</view>
 				<view v-for="(item,inx) in targetList" :key="inx" class="cate-item" @click="more(item)">
 					<view class="contentview">
 						<view class="imageleft" style="width: 30%;text-align: center;">
-							<u-image mode="widthFix" width="60px" :src="item.image">
-							</u-image>
+							<u-image mode="widthFix" width="60px" :src="item.image"></u-image>
 						</view>
 						<view class="wenzxi" style="width: 70%;">
 							<text class="u-line-2 ft-24 my-10" style="text-align: left;">{{item.title}}</text>
-							<view style="display: flex;">
-								<text v-if="item.activity == 'hot'"
-									style="font-size: 12px;font-weight: 800;width:40%;color: #fff;background-color: #ff5500;border-radius: 8px 0;">热租</text>
-								<text v-if="item.activity == 'new'"
-									style="font-size: 12px;font-weight: 800;width:40%;color: #fff;background-color:#ff00ea;border-radius: 8px 0;">爆款</text>
-								<text v-if="item.activity != 'new' && item.activity != 'hot'"
-									style="font-size: 12px;font-weight: 800;width:40%;color: #fff;background-color:#ffaa00;border-radius: 8px 0;">推荐</text>
-								<text
-									style="font-size: 14px;font-weight: 800;color: red;text-align: right;">{{item.day_price}}/日</text>
+							<view class="goods-tags">
+								<view class="goods-tag tag-orange" v-if="item.activity == 'hot'">推荐</view>
+								<view class="goods-tag tag-purple" v-if="item.activity == 'day'">新品</view>
+								<view class="goods-tag tag-red" v-if="item.activity == 'new'">爆款</view>
+								<view class="goods-tag">顺丰包邮</view>
 							</view>
+							<text style="font-size: 14px;font-weight: 800;color: #FF5B56;">￥{{item.day_price}}/天</text>
 						</view>
 					</view>
 				</view>
-
+				
 			</view>
 		</view>
 	</view>
@@ -53,54 +50,57 @@
 	export default {
 		data() {
 			return {
+				loading: true,
 				activeIndex: 0,
 				sidebarList: [],
 				targetList: [],
 				allList: [],
-				tarlist: [],
-				heightele: 0,
-				goodlist: [],
-				fenleiid: 0,
-				fenleinewid: 0,
-				activetext: 0
+				tarlist:[],
+				heightele:0,
+				goodlist:[],
+				fenleiid:0,
+				fenleinewid:0,
+				activetext:0
 			};
 		},
 		created() {
-
+			
 			this.fenlei()
 		},
 		methods: {
-			fenleibig(item, index) {
+			fenleibig(item,index){
 				this.activetext = index || 0
 				let opt = {
 					url: "/category/fenleismart",
-					data: {
-						pid: item
+					data:{
+						pid:item
 					}
 				}
 				let _this = this
 				this.$request(opt).then(res => {
 					this.sidebarList = res.data
-					this.genleigood(this.sidebarList[0].id)
+					this.genleigood(this.sidebarList[0].id) 
 				})
 			},
-			genleigood(id, index) {
+			genleigood(id,index){
+				this.loading = true
 				this.activeIndex = index || 0
 
 				this.fenleinewid = id
 				let opt = {
 					url: "/category/fenleigood",
-					data: {
-						pid: id
+					data:{
+						pid:id
 					}
 				}
 				let _this = this
 				this.$request(opt).then(res => {
+					this.loading = false
 					this.targetList = res.data
 					this.goodlist = res.data
 				})
 			},
-			fenlei() {
+			fenlei(){
 				let opt = {
 					url: "/category/fenleibig",
 				}
@@ -109,19 +109,19 @@
 					// 打印调用成功回调
 					console.log(res)
 					this.tarlist = res.data
-					this.fenleibig(this.tarlist[0].id, 0)
+					this.fenleibig(this.tarlist[0].id,0)
 				})
 			},
 			sidebarClick(i) {
 				this.activeIndex = i
-				this.targetList = this.allList[i].children ? this.allList[i].children : []
+				this.targetList =this.allList[i].children? this.allList[i].children : []
 			},
 			more(obj) {
 				uni.navigateTo({
 					url: "../goods-detail/goods-detail?id=" + obj.id
 				})
 			},
-			search() {
+			search(){
 				uni.navigateTo({
 					url: "../search/search"
 				})
@@ -152,21 +152,19 @@
 </script>
 
 <style lang="scss" scoped>
-	.uscroll {
+	.uscroll{
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		padding: 2px 5px 0 8px;
 	}
-
-	.contentview {
+	.contentview{
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
 		align-items: stretch;
 		width: 100%;
 	}
-
 	.fixed-box {
 		position: fixed;
 		left: 0;
@@ -178,7 +176,6 @@
 		padding-bottom: 0rpx;
 		box-shadow: 0px 1rpx 0px 0px rgba(68, 67, 67, 0.13);
 		background-color: #fff;
-
 		.search-box {
 			width: 400rpx;
 			display: flex;
@@ -199,7 +196,7 @@
 
 	.content-box {
 		position: relative;
-		top: 192rpx;
+		top: 155rpx;
 		left: 0;
 		right: 0;
 		bottom: 0;
@@ -223,22 +220,6 @@
 			background-color: #FFFFFF;
 		}
 
-		.activetext {
-			color: #414960;
-			font-size: 20rpx;
-			font-weight: bold;
-			position: relative;
-			background-color: #FFFFFF;
-		}
-
-		.activetext:after {
-			color: #ff557f;
-			font-size: 20rpx;
-			font-weight: bold;
-			position: relative;
-			background-color: #55ff7f;
-		}
-
 		.active:after {
 			content: '';
 			display: block;
@@ -257,6 +238,41 @@
 			position: fixed;
 		}
 
+		.goods-tags {
+			display: flex;
+			gap: 8rpx;
+			margin: 15rpx 0;
+		}
+
+		.goods-tag {
+			color: #4D79FF;
+			font-size: 18rpx;
+			font-weight: 400;
+			width: max-content;
+			border-radius: 8rpx;
+			padding: 5rpx 10rpx;
+			border: .5px solid #4D79FF;
+			background: rgba(77, 121, 255, 0.1);
+		}
+
+		.tag-red {
+			color: #FF5B56;
+			border: .5px solid #FF5B56;
+			background: rgba(255, 91, 86, 0.1);
+		}
+
+		.tag-orange {
+			color: #FFAA00;
+			border: .5px solid #FFAA00;
+			background: rgba(255, 170, 0, 0.1);
+		}
+
+		.tag-purple {
+			color: #7856FF;
+			border: .5px solid #7856FF;
+			background: rgba(120, 86, 255, 0.1);
+		}
+
 		.content {
 			position: absolute;
 			top: 0px;
@@ -267,26 +283,25 @@
 			background: #ffffff;
 			background-size: contain;
 			background-attachment: fixed;
-			background-repeat: no-repeat;
-			// border-radius: 7px 7px 0 0;
-			border-radius: 0 7px;
+			background-repeat:no-repeat;
 			display: flex;
 			flex-wrap: nowrap;
 			align-content: flex-start;
 			flex-direction: column;
 			align-items: center;
+			min-height: 100vh;
 
 			.cate-item {
 				// width: 32%;
 				width: 100%;
-				border-bottom: 1px solid #f1f1f1;
+				border-bottom: 1px solid #FAFAFB;
 				// height: 140rpx;
 				// margin-bottom: 20rpx;
 				padding: 20rpx 0;
 				display: flex;
 				align-items: center;
 				flex-direction: column;
-
+					
 				.image-box {
 					height: 123rpx;
 					// width: 90rpx;
@@ -297,7 +312,7 @@
 				text {
 					// width: 80%;
 					width: 100%;
-					color: #1F1F1F;
+					color: #414960;
 					font-weight: 400;
 					font-size: 22rpx;
 					text-align: center;

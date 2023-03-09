@@ -16,7 +16,7 @@
 			</view>
 			<view class="goods-tags" v-if="credit==true">
 				<view class="goods-tag tag-red">{{conditionMap[item.condition]}}</view>
-				<view class="goods-tag">{{activityMap[item.activity]}}</view>
+				<view class="goods-tag">{{item.activity == '' ? '精品推荐' : activityMap[item.activity]}}</view>
 				<view class="goods-tag" v-if="credit==true">信用免押</view>
 			</view>
 			<view class="goods-price">
@@ -96,7 +96,7 @@
 	}
 
 	.iz-goods-item {
-		margin: 15rpx 0;
+		margin: 16rpx 0;
 		border-radius: 14rpx;
 		background-color: #FFFFFF;
 
@@ -111,11 +111,11 @@
 		.goods-title {
 			font-size: 24rpx;
 			color: #414960;
-			margin: 15rpx;
+			margin: 16rpx;
 		}
 
 		.goods-price {
-			margin: 0 15rpx 15rpx 15rpx;
+			margin: 0 16rpx 16rpx 16rpx;
 		}
 
 		.goods-info {
@@ -128,7 +128,7 @@
 		.goods-tags {
 			display: flex;
 			gap: 8rpx;
-			margin: 15rpx;
+			margin: 16rpx;
 		}
 
 		.goods-tag {
@@ -137,7 +137,7 @@
 			font-weight: 400;
 			width: max-content;
 			border-radius: 8rpx;
-			padding: 5rpx 10rpx;
+			padding: 4rpx 10rpx;
 			border: .5px solid #4D79FF;
 			background: rgba(77, 121, 255, 0.1);
 		}
