@@ -3,22 +3,22 @@
 		<view class="buy-head">
 			<view class="buy-img">
 				<slot name="img">
-					<u-image :showLoading="true" :src='goods_data.image' width="189rpx" height="189rpx">
-					</u-image>
+					<u-image :showLoading="true" :src='goods_data.image' width="189rpx" height="189rpx"></u-image>
 				</slot>
 			</view>
 			<view class="buy-info">
-				<view class="buy-name">{{goods_data.title}}</view>
+				<!-- <view class="buy-name">{{goods_data.title}}</view> -->
 				<view class="buy-price">
 					¥ <text class="price-num">{{goods_data.day_price}}</text>
 					<!-- - ¥<text class="price-num">24.21</text>--> /天
 				</view>
+				<view class="inventory-num">库存 {{totalNum}}</view>
 				<view class="bug-msg">
 					<text>{{selected_text || ''}}</text>
 				</view>
 			</view>
 		</view>
-		
+
 		<!-- <view class="weidu" v-if="goods_data.each_price"> -->
 		<view class="weidu">
 			<view class="weidufen">
@@ -31,52 +31,53 @@
 				<text class="weidutexttwo">总租金</text>
 			</view>
 			<view class="weidufen">
-				<text class="weidutextone">￥{{goods_data.buyout_price  || '--'}}</text>
+				<text class="weidutextone">￥{{goods_data.buyout_price || '--'}}</text>
 				<text class="weidutexttwo">买断价</text>
 			</view>
 		</view>
 		<view class="buy-cont">
 			<view class="">
-				<view class="" v-for="(item,index) in list">
+				<view style="display: flex; padding-bottom: 40rpx; align-items: center;" v-for="(item,index) in list">
 					<text class="title">{{item.name}}</text>
 					<view class="tig-btn-box" v-if="item.name != '套餐'">
-						
 						<view v-if="item.name != '套餐'" v-for="(lists,inx) in item.children" :key="inx"
 							@click="tigBtn({targetArr:lists,pInx:index,cInx:inx,type:1})"
-							:class="lists.isOn==true?'on':''"   class="tig-btn">
+							:class="lists.isOn==true?'on':''" class="tig-btn">
 							{{lists.name}}
 						</view>
 					</view>
-					<view class="tig-btn-box" style="display: flex;flex-direction: column;" v-if="item.name == '套餐'">
-						<view v-if="item.name == '套餐'"  class="tig-bin-two"  v-for="(lists,inx) in item.children" :key="inx" >
-							<view  @click="tigBtn({targetArr:lists,pInx:index,cInx:inx,type:1})"
-							:class="lists.isOn==true?'on':''" class="tig-btn" style="margin-bottom: 0rem;">
-							{{lists.name}}
+					<view class="tig-btn-box" style="gap: 40rpx;" v-if="item.name == '套餐'">
+						<view v-if="item.name == '套餐'" class="tig-bin-two" v-for="(lists,inx) in item.children"
+							:key="inx">
+							<view @click="tigBtn({targetArr:lists,pInx:index,cInx:inx,type:1})"
+								:class="lists.isOn==true?'on':''" class="tig-btn" style="margin-bottom: 0rem;">
+								{{lists.name}}
 							</view>
-							<image v-if="lists.name == '租完买断/归还/续期' || lists.name == '租完买断'" @click="zuwan(2,{targetArr:lists,pInx:index,cInx:inx,type:1})" src="../../static/image/why-l.png" mode="widthFix" style="width: 18px;"></image>
-							<image v-if="lists.name == '租满即送(可随时买断)' || lists.name == '租完即送'" @click="zuwan(1,{targetArr:lists,pInx:index,cInx:inx,type:1})" src="../../static/image/why-l.png" mode="widthFix" style="width: 18px;"></image>
+							<image v-if="lists.name == '租完买断/归还/续期' || lists.name == '租完买断'"
+								@click="zuwan(2,{targetArr:lists,pInx:index,cInx:inx,type:1})"
+								src="../../static/image/why-l.png" mode="widthFix" style="width: 18px;"></image>
+							<image v-if="lists.name == '租满即送(可随时买断)' || lists.name == '租完即送'"
+								@click="zuwan(1,{targetArr:lists,pInx:index,cInx:inx,type:1})"
+								src="../../static/image/why-l.png" mode="widthFix" style="width: 18px;"></image>
 						</view>
 					</view>
 				</view>
-
-				<view class="buy-num-box" v-if="totalNum !=0">
+				<!-- 				<view class="buy-num-box" v-if="totalNum !=0">
 					<text class="title">租赁数量</text>
-					<text class="inventory-num">库存{{totalNum}}</text>
 					<view class="num-box" name="minus">
 						<view class="box-tag" @click="boxTag(1)">
 							<u-icon name="minus" color="#9FA3B0" size="20rpx"></u-icon>
 						</view>
-						<view class="box-tag">{{inventoryNum}}</u-icon>
-						</view>
+						<view class="box-tag">{{inventoryNum}}</view>
 						<view class="box-tag" @click="boxTag(0)">
 							<u-icon name="plus" color="#9FA3B0" size="20rpx"></u-icon>
 						</view>
 					</view>
-				</view>
+				</view> -->
 				<!-- 支付宝保障服务 -->
-				<view class="broken_screen" v-if="guard_data.id">
+				<view style="display: flex; align-items: center; margin-bottom: 56rpx;" v-if="guard_data.id">
 					<text class="title">保障服务</text>
-					<text class="broken_msg">碎屏无需赔偿，加购更安心</text>
+					<!-- <text class="broken_msg">碎屏无需赔偿，加购更安心</text> -->
 					<!-- <view class="broken_info">
 						<u-icon name="zhifubao-circle-fill" color="#ffaa00" size="20" label="支付宝碎屏宝" labelSize="24rpx">
 						</u-icon>
@@ -89,26 +90,27 @@
 					</view>
 				</view>
 			</view>
-			<u-popup :show="returnstatus" @close="close" :round="10" mode="bottom"   :closeable='true' customStyle="min-height:350;background: #fff;">
+			<u-popup :show="returnstatus" @close="close" :round="10" mode="bottom" :closeable='true'
+				customStyle="min-height:350;background: #fff;">
 				<iz-buy-return :goodsku="goodskuid" :goodid="good_id"></iz-buy-return>
 			</u-popup>
-			<u-popup :show="maiduanstatus" @close="close" :round="10" mode="bottom"   :closeable='true' customStyle="min-height:350;background: #fff;">
+			<u-popup :show="maiduanstatus" @close="close" :round="10" mode="bottom" :closeable='true'
+				customStyle="min-height:350;background: #fff;">
 				<iz-buy-buyout :goodsku="goodskuid" :goodid="good_id"></iz-buy-buyout>
 			</u-popup>
 			<view class="" v-if="tijiaorenzheng">
-				<u-loading-icon  color="#ffaa00" text="正在提交请稍后..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+				<u-loading-icon color="#ffaa00" text="正在提交请稍后..." size="16" :vertical="true" textSize="14">
+				</u-loading-icon>
 			</view>
-				<view class="buy-ok"  v-if="totalNum !=0 && tokenstatus !=''">
-				
-				<button type="default"  open-type="getPhoneNumber" @getphonenumber="decryptPhoneNumber" style="border: 0;background: #0000;
+			<view class="buy-ok" v-if="totalNum !=0 && tokenstatus !=''">
+				<button type="default" open-type="getPhoneNumber" @getphonenumber="decryptPhoneNumber" style="line-height: 80rpx;border: 0;background: #0000;
     color: #fff;">确定</button>
 			</view>
-			
-			<button class="buy-ok" open-type="getAuthorize" 
-							scope="userInfo" @getAuthorize="onGetAuthorize" @error="onAuthError" v-if="tokenstatus ==''">
-										授权登录
+			<button class="buy-ok" style="border: 0;line-height: 80rpx;" open-type="getAuthorize" scope="userInfo" @getAuthorize="onGetAuthorize" @error="onAuthError"
+				v-if="tokenstatus ==''">
+				授权登录
 			</button>
-			<view class="buy-ok" @click="baoqian"  v-if="totalNum == 0">
+			<view class="buy-ok" @click="baoqian" v-if="totalNum == 0">
 				确定
 			</view>
 		</view>
@@ -125,7 +127,7 @@
 			type: 0
 		},
 		data() {
-			
+
 			return {
 				canIUseAuthButton: my.canIUse('button.open-type.getAuthorize'),
 				inventoryNum: 1, //库存
@@ -133,18 +135,18 @@
 				selected_text: '', //选择规则
 				good_id: this.goodsId,
 				goods_data: {},
-				day_price:"",
+				day_price: "",
 				list: [],
 				ids: [],
 				orderId: '',
 				guard_data: {}, //保障方案
-				guard_id: '' ,//保障方案ID
-				token:'',
-				tokenstatus:'',
-				tijiaorenzheng:false,
-				maiduanstatus:false,
-				returnstatus:false,
-				goodskuid:''
+				guard_id: '', //保障方案ID
+				token: '',
+				tokenstatus: '',
+				tijiaorenzheng: false,
+				maiduanstatus: false,
+				returnstatus: false,
+				goodskuid: ''
 			}
 		},
 		watch: {
@@ -158,50 +160,50 @@
 		},
 		methods: {
 
-			close(){
+			close() {
 				this.maiduanstatus = false
 				this.returnstatus = false
 			},
-			zuwan(e,obj){
+			zuwan(e, obj) {
 				this.tigBtn(obj)
-				if(e  == 1){
+				if (e == 1) {
 					this.returnstatus = true
-				}else if(e  == 2){
+				} else if (e == 2) {
 					this.maiduanstatus = true
 				}
 			},
 			decryptPhoneNumber(res) {
-			 this.tijiaorenzheng = true
-			  my.getPhoneNumber({ 
-			    success: (res) => {
-				  var duixiang = JSON.parse(res.response)
-				  let opt = {
-				  	url: "/index/mobile?mobile="+encodeURIComponent(duixiang.response),
-				  }
-				  this.$request(opt).then(res => {
-					  if(res.code == '1'){
-						  this.buyOk()
-						  this.tijiaorenzheng = false
-					  }else{
-						  this.tijiaorenzheng = false
-						  this.$refs.uToast.show({
+				this.tijiaorenzheng = true
+				my.getPhoneNumber({
+					success: (res) => {
+						var duixiang = JSON.parse(res.response)
+						let opt = {
+							url: "/index/mobile?mobile=" + encodeURIComponent(duixiang.response),
+						}
+						this.$request(opt).then(res => {
+							if (res.code == '1') {
+								this.buyOk()
+								this.tijiaorenzheng = false
+							} else {
+								this.tijiaorenzheng = false
+								this.$refs.uToast.show({
+									message: '授权失败',
+									type: 'error'
+								})
+							}
+
+						})
+					},
+					fail: (res) => {
+						this.tijiaorenzheng = false
+						this.$refs.uToast.show({
 							message: '授权失败',
 							type: 'error'
-						  })
-					  }
-					
-				  })
-				},
-			    fail: (res) => {
-					this.tijiaorenzheng = false
-					  this.$refs.uToast.show({
-						message: '授权失败',
-						type: 'error'
-					  })
-			    },
-			  });
+						})
+					},
+				});
 			},
-			baoqian(){
+			baoqian() {
 				this.$refs.uToast.show({
 					message: '该规格暂无库存哦~',
 					type: 'error'
@@ -280,7 +282,7 @@
 					this.goods_data.buyout_price = res.data.goods_data.buyout_price
 				})
 			},
-			
+
 			//授权登录
 			onGetAuthorize() {
 				let _this = this
@@ -339,7 +341,7 @@
 					// this.nickName = uni.getStorageSync('nickName')
 					this.tokenstatus = res.data.token
 					// uni.$emit('tokenstatus',this.token)
-					
+
 					this.loginFlag = 1
 					setTimeout(() => {
 						uni.hideLoading()
@@ -351,8 +353,8 @@
 					}, 100)
 				})
 			},
-			
-			
+
+
 			buyOk() {
 
 				if (this.inventoryNum && (this.ids.length == this.list.length)) {
@@ -396,20 +398,20 @@
 							// rule[i].children[j].isOn = false
 							//只把属性长度为1的选中第一个选项
 							// if(rule[i].children.length =='1' && j == '0'){
-							if(j == '0'){
+							if (j == '0') {
 								rule[i].children[j].isOn = true
 								//只把属性长度为1的选中第一个选项
 								// this.ids.push(rule[i].children[j].id)
 								// this.ruleFunc(this.ids)	
 								/*属性为1的选项结束并需要注意吧下面的this.ruleFunc(this.ids)注释和this.ids.push(rule[i].children[0].id)注释掉*/
 								this.ids.push(rule[i].children[0].id)
-							}else{
+							} else {
 								rule[i].children[j].isOn = false
 							}
 						}
 					}
 
-					this.ruleFunc(this.ids)	
+					this.ruleFunc(this.ids)
 					this.list = rule
 					this.goods_data = res.data.goods_data
 					this.selected_text = res.data.selected_text
@@ -425,31 +427,36 @@
 </script>
 
 <style lang="scss" scoped>
-	.weidu{
+	.weidu {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
-		border-bottom: 1px solid #E5E5E5;
-		height: 70rpx;
+		border-bottom: 1px solid #FAFAFB;
+		padding: 24rpx 0;
 	}
-	.weidufen{
+
+	.weidufen {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
-	.weidutextone{
+
+	.weidutextone {
 		color: #FF5B56;
 		font-size: 12px;
 		font-weight: bold;
 	}
-	.weidutexttwo{
+
+	.weidutexttwo {
 		font-size: 12px;
 		font-weight: bold;
 		color: #545454;
 	}
+
 	.iz-buy-popup {
 		background-color: #fff;
-		padding: 65rpx 50rpx 0;
+		padding: 65rpx 12px 0;
+		border-radius: 20rpx 20rpx 0 0;
 
 		.buy-head {
 			// height: 233rpx;
@@ -484,21 +491,29 @@
 
 		}
 
+		.inventory-num {
+			font-size: 20rpx;
+			padding: 12rpx 0;
+			color: #9FA3B0;
+		}
+
 		.buy-cont {
 			max-height: 850rpx;
 			min-height: 400rpx;
 			overflow-y: scroll;
 			color: #171B25;
-			padding: 10rpx 0rpx 20rpx;
+			padding: 24rpx 0rpx 20rpx;
 
 			.title {
 				font-size: 24rpx;
 				font-weight: bold;
-				margin-bottom: 16rpx;
+				margin-right: 32rpx;
+				min-width: 50rpx;
+				// margin-bottom: 16rpx;
 			}
 
 			.buy-ok {
-				width: 626rpx;
+				width: 100%;
 				height: 80rpx;
 				background: #ffaa00;
 				border-radius: 20rpx;
@@ -511,13 +526,6 @@
 			.buy-num-box {
 				display: flex;
 				// margin-top: 50rpx;
-
-				.inventory-num {
-					margin-left: 27rpx;
-					font-size: 20rpx;
-					color: #9FA3B0;
-					vertical-align: middle;
-				}
 
 				.num-box {
 					width: 228rpx;
@@ -559,15 +567,17 @@
 
 			.tig-btn-box {
 				display: flex;
-				padding: 10rpx 0 0 0rpx;
+				// padding: 10rpx 0 0 0rpx;
 				flex-wrap: wrap;
+				gap: 20rpx 0;
 
 				.tig-btn {
-					padding: 8rpx 10rpx;
+					padding: 10rpx 16rpx;
+					border: 1px solid #F1F2F5;
 					border-radius: 10rpx;
 					font-size: 26rpx;
 					margin-right: 20rpx;
-					margin-bottom: 21rpx;
+					// margin-bottom: 21rpx;
 					background-color: #F1F2F5;
 				}
 
@@ -579,10 +589,11 @@
 			}
 		}
 	}
-	.tig-bin-two{
+
+	.tig-bin-two {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		margin-bottom: 0.21rem;
+		// margin-bottom: 0.21rem;
 	}
 </style>

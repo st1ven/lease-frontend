@@ -1,8 +1,7 @@
 <template>
 	<view>
 		<view class="swiper-box">
-			<u-swiper indicator previousMargin="30" nextMargin="30" circular :autoplay="false" radius="5" @click="bann"
-				:list="bannerList" />
+			<u-swiper indicator :autoplay="true" radius="10" @click="bann" :list="bannerList" />
 		</view>
 		<view class="zhuanqu" v-for="(item,i) in secondList" :key="i" v-if="item.list[0]"
 			:style="{backgroundImage:'url('+imageurl+')'}">
@@ -10,7 +9,7 @@
 				<text class="title">{{item.name}}</text>
 				<view class="flex align-center ml-auto" @click="JumpDetail(item.id)">
 					<text class="more">查看更多</text>
-					<u-icon color="#fff" size="14" name="arrow-right-double" />
+					<u-icon color="#FFF" size="14" name="arrow-right-double" />
 				</view>
 			</view>
 			<view class="flex flexxx">
@@ -124,7 +123,7 @@
 
 <style lang="scss" scoped>
 	.swiper-box {
-		padding: 30rpx;
+		padding: 30rpx 12px;
 		background-color: #F6F6FB;
 	}
 

@@ -7,22 +7,20 @@
 					height="130rpx"></u-image>
 			</view>
 			<view class="head-box">
-				<view class="head-box1"> 快递公司：{{courier.express_name || ""}} </view>
-				<view class="head-box2"> 快递单号： {{courier.express_no ||""}} <text class="copy" @click="copy">复制</text>
+				<view class="head-box1">快递公司：{{courier.express_name || ""}} </view>
+				<view class="head-box2">快递单号：{{courier.express_no ||""}} <text class="copy" @click="copy">复制</text>
 				</view>
 			</view>
 		</view>
 		<view class="logistics-box">
 			<u-steps current="0" direction="column" activeColor="#ffaa00" inactiveColor="#9FA3B0" :dot="true">
 				<view class="" v-for="(item,index) in stepList" :key="index">
-					<u-steps-item :title="item.status +'--'+ item.time" :desc="item.context" v-if="index==0">
+					<u-steps-item :title="item.time" :desc="item.context" v-if="index==0">
 						<text class="slot-icon" slot="icon">
 							<u-icon name="checkmark-circle-fill" color="#ffaa00" size="30rpx"></u-icon>
 						</text>
 					</u-steps-item>
-					<u-steps-item :title="item.status+'--' + item.time" :desc="item.context" v-else>
-					</u-steps-item>
-
+					<u-steps-item :title="item.time" :desc="item.context" v-else></u-steps-item>
 				</view>
 			</u-steps>
 		</view>
@@ -42,9 +40,9 @@
 					image: "" //快递logo
 				},
 				stepList: [{
-					name: "仓库打包中。。。",
+					name: "仓库打包中...",
 					time: "",
-					context: "已下单 "
+					context: "已下单"
 				}]
 			}
 		},
@@ -153,7 +151,11 @@
 		}
 
 		/deep/ .u-text__value--content {
-			color: #9FA3B0
+			color: #9FA3B0;
+		}
+		
+		/deep/ .u-text__value--tips {
+			color: #61687c;
 		}
 
 		/deep/ .u-steps-item__wrapper__dot {

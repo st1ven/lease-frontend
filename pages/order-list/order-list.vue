@@ -56,7 +56,7 @@
 				<view class="bottom-box">
 					<view class="price-box">
 						<text class="ft-24 main-color">总租金</text>
-						<text class="ft-32 ft-bold mx-20">¥ {{item.goods_amount}}</text>
+						<text class="ft-32 ft-bold mx-20" style="color: #171b25;">¥{{item.goods_amount}}</text>
 						<text class="ft-24 main-color">共{{item.stage}}期</text>
 					</view>
 					<!-- 待付款 -->
@@ -898,7 +898,7 @@
 			.li {
 				padding: 10rpx 0;
 				width: 80%;
-				color: #9FA3B0;
+				color: #999;
 				border-bottom: #f7efef solid 1rpx;
 				margin: 0 auto;
 				text-align: center;

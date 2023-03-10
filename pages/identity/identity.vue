@@ -2,22 +2,22 @@
 	<view class="identity-page">
 		<view class="head">
 			<view class="head-img-box">
-				<u-icon name="account-fill" color="#2BA1F1" size="164rpx" top="16rpx" left="-6rpx"></u-icon>
+				<u-icon name="account-fill" color="#fff" size="160rpx" top="16rpx"></u-icon>
 			</view>
 			<view class="head-title ft-36">
 				实名认证
 			</view>
 			<view class="head-msg">
-				根据实名制下单要求，使用信用免押服务前你需要通 过实名认证，并授权如下信息
+				根据实名制下单要求，使用信用免押服务前你需要通过实名认证，并授权如下信息
 			</view>
 		</view>
 		<view class="content">
 			<view class="idCard-box">
 				<view class="card-head">
-					<u-icon name="error-circle" color="#31A4F1" size="28rpx"></u-icon> 姓名与支付宝实名认证信息相关联且不可更改
+					<u-icon name="error-circle" color="#007FFF" size="28rpx"></u-icon>姓名与支付宝实名认证信息相关联且不可更改
 				</view>
 				<view class="card-head" style="line-height: 30rpx;padding: 6px 16px;">
-					<u-icon name="error-circle" color="#31A4F1" size="28rpx"></u-icon> 提交即同意e签宝采集人脸照片并提供给杭州玖恋网络科技有限公司用于实名认证
+					<u-icon name="error-circle" color="#007FFF" size="28rpx"></u-icon>提交即同意e签宝采集人脸照片并提供给杭州玖恋网络科技有限公司用于实名认证
 				</view>
 				<view class="card-content">
 					<view class="card-li">
@@ -258,7 +258,7 @@
 							icon: 'success',
 							type: 'success',
 							complete(){
-								uni.navigateTo({
+								uni.redirectTo({
 									url: '../order-list/order-list?inx=1&certification_status=1'
 								})
 							}
@@ -347,7 +347,7 @@
 
 <style lang="scss" scoped>
 	.identity-page {
-		background-color: #F6F6FB;
+		background-color: #c;
 		height: 100vh;
 
 		.head {
@@ -360,8 +360,9 @@
 			.head-img-box {
 				height: 151rpx;
 				width: 151rpx;
-				background-color: #F6F6FB;
 				margin: 0 auto 40rpx;
+				border-radius: 14rpx;
+				background-color: rgba($color: #fff, $alpha: 0.3);
 			}
 
 			.head-msg {
@@ -386,7 +387,7 @@
 					line-height: 54rpx;
 					padding-left: 33rpx;
 					font-size: 22rpx;
-					color: #31A4F1;
+					color: #007FFF;
 					display: flex;
 					border-bottom: 1rpx solid #f0f0f0;
 				}
@@ -404,11 +405,12 @@
 							width: 30%;
 							text-align: right;
 							padding-right: 15rpx;
+							color: #414960;
 						}
 
 						.li-input {
 							height: 54rpx;
-							border-bottom: 1rpx solid #f0f0f0;
+							border-bottom: 1rpx solid #FAFAFB;
 							margin: 0 40rpx 0 10rpx;
 							width: 70%;
 

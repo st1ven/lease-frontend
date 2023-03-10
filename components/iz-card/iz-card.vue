@@ -55,10 +55,6 @@
 				font-size: 20rpx;
 				font-weight: 400;
 			}
-			
-			/deep/ .u-icon {
-				margin-bottom: 5rpx;
-			}
 		}
 		
 		.content {

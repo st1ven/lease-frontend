@@ -2,19 +2,19 @@
 	<view class="identity-page">
 		<view class="head">
 			<view class="head-img-box">
-				<u-icon name="account-fill" color="#2BA1F1" size="164rpx" top="16rpx" left="-6rpx"></u-icon>
+				<u-icon name="account-fill" color="#fff" size="160rpx" top="16rpx"></u-icon>
 			</view>
 			<view class="head-title ft-36">
 				人脸实名认证
 			</view>
 			<view class="head-msg">
-				根据实名制下单要求，使用信用免押服务前你需要通 过实名认证，并授权如下信息
+				根据实名制下单要求，使用信用免押服务前你需要通过实名认证，并授权如下信息
 			</view>
 		</view>
 		<view class="content">
 			<view class="idCard-box">
 				<view class="card-head">
-					<u-icon name="error-circle" color="#31A4F1" size="28rpx"></u-icon> 姓名与支付宝实名认证信息相关联且不可更改
+					<u-icon name="error-circle" color="#007FFF" size="28rpx"></u-icon>姓名与支付宝实名认证信息相关联且不可更改
 				</view>
 				<view class="card-content">
 					<view class="card-li">
@@ -42,7 +42,7 @@
 				进入人脸认证
 			</view>
 			<view class="" v-if="renzheng" style="padding-top: 20px;">
-				<u-loading-icon  color="#ffaa00" text="正在同步实名认证结果" size="16" :vertical="true" textSize="14"></u-loading-icon>
+				<u-loading-icon color="#ffaa00" text="正在同步实名认证结果" size="16" :vertical="true" textSize="14"></u-loading-icon>
 			</view>
 			
 		</view>
@@ -225,7 +225,8 @@
 			.head-img-box {
 				height: 151rpx;
 				width: 151rpx;
-				background-color: #F6F6FB;
+				border-radius: 14rpx;
+				background-color: rgba($color: #fff, $alpha: 0.3);
 				margin: 0 auto 40rpx;
 			}
 
@@ -251,7 +252,7 @@
 					line-height: 54rpx;
 					padding-left: 33rpx;
 					font-size: 22rpx;
-					color: #31A4F1;
+					color: #007FFF;
 					display: flex;
 					border-bottom: 1rpx solid #f0f0f0;
 				}

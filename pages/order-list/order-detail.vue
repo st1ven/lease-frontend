@@ -1,14 +1,14 @@
 <template>
 	<!-- 订单详情 -->
 	<view class="order-detail">
-		
+
 		<!-- 通知 -->
 		<view class="notice-box" v-if="params.path =='goods-detail'">
 			<u-notice-bar :text="notice"></u-notice-bar>
 		</view>
 		<!-- 在线客服 -->
 		<!-- #ifdef MP-ALIPAY -->
-		
+
 		<!-- #endif -->
 		<view class="detail-box">
 			<!-- 地址栏 -->
@@ -32,10 +32,10 @@
 					<u-icon name="arrow-right" color="#9FA3B0" size="28rpx"></u-icon>
 				</text>
 			</view>
-			<!-- <view class="idCard-box">
+			<!-- 			<view class="idCard-box">
 				<u-input placeholder="请输入您的邮箱" border="bottom" clearable v-model="email" :value="email"></u-input>
-			</view> -->
-			<!-- <view class="idCard-box">
+			</view>
+			<view class="idCard-box">
 				<u-input placeholder="请输入紧急联系人" border="bottom" clearable v-model="jinjiname" :value="jinjiname"></u-input>
 			</view>
 			<view class="idCard-box">
@@ -54,48 +54,20 @@
 						<view class="info-package">数量：{{params.num}}</view>
 					</view>
 				</view>
-				<view class="order-date">
-					<view class="date-start date-box">
-						<!-- <view class="date-icon">
-
-							<text class="icon-box">
-								<u-icon name="calendar-fill" color="#fff" size="32"></u-icon>
-							</text>
-							<text class="icon-txt">始 </text>
-
-						</view> -->
-						<view class="data-img">
-							<u-image src="/static/image/start.png" width="62rpx" height="62rpx"></u-image>
-						</view>
-						<view class="start-box">
-							<view class="start-txt">
-								预计起租日
-							</view>
-							<text class="time"> {{leasetime.startleasetime}} </text>
-						</view>
+				<view class="zujinkuang" style="margin: 24rpx;">
+					<view class="rent-li">
+						<text>预计起租日</text>
+						<text class="li-r">{{leasetime.startleasetime}}</text>
 					</view>
-					<view class="date-start date-box">
-						<view class="date-icon">
-							<u-image src="/static/image/end.png" width="62rpx" height="62rpx"></u-image>
-							<!-- <text class="icon-box">
-								<u-icon name="calendar-fill" color="#fff" size="32"></u-icon>
-							</text>
-							<text class="icon-txt">还 </text> -->
-
-						</view>
-						<view class="start-box">
-							<view class="start-txt">
-								到期日
-							</view>
-							<text class="time"> {{leasetime.endleasetime}}</text>
-						</view>
+					<view class="rent-li">
+						<text>到期日</text>
+						<text class="li-r">{{leasetime.endleasetime}}</text>
 					</view>
 				</view>
 				<view class="order-tag-box">
-					<u-alert :title="'提示：一般货物会在24小时内发出，如有特殊情况，客服会主动联系告知；快递运输期间不算租期，实际起租日为订单日后推3天'" type="warning" fontSize="22rpx"></u-alert>
+					<u-alert :title="'提示：一般货物会在24小时内发出，如有特殊情况，客服会主动联系告知；快递运输期间不算租期，实际起租日为订单日后推3天'" type="warning"
+						fontSize="22rpx"></u-alert>
 				</view>
-
-
 			</view>
 			<!-- 租金明细 -->
 			<view class="rent-detail">
@@ -104,52 +76,55 @@
 					<text class="title-r">￥{{sku_data.day_price==null?0:sku_data.day_price}} </text>
 				</view>
 				<view class="zujinkuang">
-				<view class="rent-li">
-					<text>首期租金 </text> 
-					<!-- <text v-if="rentinfo.youhui == '1' && rentinfo.discount_price != 0 " style="color: #FF5B56;" class="li-r">￥{{rentinfo.bottom_rent}} - {{rentinfo.discount_price}}(券) = {{(rentinfo.bottom_rent - rentinfo.discount_price).toFixed(2)}}</text> -->
-					
-					<text v-if="youhuiprice != ''" style="color: #FF5B56;" class="li-r">￥{{rentinfo.top_rent}} - {{youhuiprice}}(券) = {{(rentinfo.top_rent - youhuiprice).toFixed(2)}}</text>
-					<text v-else class="li-r">￥{{rentinfo.top_rent==null?0:rentinfo.top_rent}} </text>
-				</view>
+					<view class="rent-li">
+						<text>首期租金 </text>
+						<!-- <text v-if="rentinfo.youhui == '1' && rentinfo.discount_price != 0 " style="color: #FF5B56;" class="li-r">￥{{rentinfo.bottom_rent}} - {{rentinfo.discount_price}}(券) = {{(rentinfo.bottom_rent - rentinfo.discount_price).toFixed(2)}}</text> -->
 
-				<view class="rent-li">
-					<text>剩余租金 </text> <text class="li-r"> {{ rentinfo.surplus_rend==null?0:rentinfo.surplus_rend}}
-					</text>
-				</view>
-				<view class="rent-li">
-					<text>总租金 </text> <text class="li-r">￥{{ rentinfo.total_rent ==null?0:rentinfo.total_rent}} </text>
-				</view>
-				
-				<view class="rent-li">
-					<text>配送方式 </text> <text class="li-r"> 寄出包邮/顺丰包邮 </text>
-				</view>
-				<view class="rent-li" v-if="guard_data.id">
-					<text>{{guard_data.guard_title}} </text> <text
-						class="li-r u-line-1">{{ guard_data.guard_desc}}￥{{guard_data.defaultamount || 0}}</text>
-				</view>
-				<!-- <view class="rent-li">
+						<text v-if="youhuiprice != ''" style="color: #FF5B56;" class="li-r">￥{{rentinfo.top_rent}} -
+							{{youhuiprice}}(券) = {{(rentinfo.top_rent - youhuiprice).toFixed(2)}}</text>
+						<text v-else class="li-r">￥{{rentinfo.top_rent==null?0:rentinfo.top_rent}} </text>
+					</view>
+
+					<view class="rent-li">
+						<text>剩余租金 </text> <text class="li-r"> {{ rentinfo.surplus_rend==null?0:rentinfo.surplus_rend}}
+						</text>
+					</view>
+					<view class="rent-li">
+						<text>总租金 </text> <text class="li-r">￥{{ rentinfo.total_rent ==null?0:rentinfo.total_rent}}
+						</text>
+					</view>
+
+					<view class="rent-li">
+						<text>配送方式 </text> <text class="li-r"> 寄出包邮/顺丰包邮 </text>
+					</view>
+					<view class="rent-li" v-if="guard_data.id">
+						<text>{{guard_data.guard_title}} </text> <text
+							class="li-r u-line-1">{{ guard_data.guard_desc}}￥{{guard_data.defaultamount || 0}}</text>
+					</view>
+					<!-- <view class="rent-li">
 					<text>买断尾款 </text> <text
 						class="li-r">￥{{ rentinfo.buyout_bottom_price ==null?0:rentinfo.buyout_bottom_price}} </text>
 				</view> -->
-				</view>	
+				</view>
 				<view class="renya" v-if="(mianyastatus=='yes')">
-					<text>总押金 </text> <text class="liya">芝麻信用·有机会免押</text> 
+					<text>总押金 </text> <text class="liya">芝麻信用·有机会免押</text>
 				</view>
 			</view>
 			<!-- 芝麻信用 -->
 			<view class="sesame" v-if="(mianyastatus=='no')">
 				<!-- <text class="title-l">凭芝麻信用最高可减免押金 </text> -->
-				<text class="title-l"> 押金<text class="shenhe">(审核不通过原路退还)</text> </text>
+				<text class="title-l">押金 <text class="shenhe">(审核不通过原路退还)</text> </text>
 				<text class="title-r">￥ {{sku_data.deposit}} </text>
 			</view>
 			<!-- 优惠金额 -->
-			
+
 			<!-- <view class="rent-li" @click="youhuiquankeyong">
 				<text>优惠券 </text> <text class="li-r"> 请选择优惠券 </text>
 			</view> -->
 			<view class="sesame" @click="youhuiquanopen">
 				<text class="title-l">优惠券</text>
-				<text class="title-r" style="color: #FF5B56;font-size: 12px;" v-if="youhuiprice == '' || youhuiprice == '0'">{{youhuiquan.length || 0}}张可用></text>
+				<text class="title-r" style="color: #FF5B56;font-size: 12px;"
+					v-if="youhuiprice == '' || youhuiprice == '0'">{{youhuiquan.length || 0}}张可用></text>
 				<text class="title-r" v-else>￥ {{youhuiprice || 0.00}} </text>
 			</view>
 			<!-- <view class="idCard-box">
@@ -192,27 +167,27 @@
 			<!-- <view class="rent-li">
 				<text> </text> <text class="li-r"> ￥0.00 </text>
 			</view> -->
-			<!-- 备注 --> 
+			<!-- 备注 -->
 			<view class="idCard-box">
 				<u-cell-group :border="false">
-					<u-cell title="到期完结" :value="sku_data.buyout_price" ></u-cell>
+					<u-cell :border="false" title="到期完结" :value="sku_data.buyout_price"></u-cell>
 				</u-cell-group>
 			</view>
 			<view class="idCard-box">
 				<u-cell-group :border="false">
-					<u-cell title="租赁计划" isLink @click="opendingyue()" ></u-cell>
+					<u-cell :border="false" title="租赁计划" isLink @click="opendingyue()"></u-cell>
 				</u-cell-group>
 			</view>
 			<view class="note">
-				<text>备注</text>
+				<text style="color: #414960;">备注</text>
 				<view class="note-input">
 					<u-input placeholder="请在这留下您的备注" v-model="remark" border="none" />
 				</view>
 			</view>
 		</view>
-		
-		
-		
+
+
+
 		<!-- 协议与总金额 -->
 		<view class="conclusion">
 			<view class="agreement-box">
@@ -222,35 +197,32 @@
 							v-model="agreementFlag"></u-checkbox>
 					</u-checkbox-group>
 				</text>
-				<view class="">
-					
-				
-				我已阅读并同意"
-				<text class="color-txt" @click="tiaozhuanxieyi()">租赁服务及相关协议</text>"
+				<view class="">我已阅读并同意“<text class="color-txt" @click="tiaozhuanxieyi()">租赁服务及相关协议</text>”
 				</view>
 			</view>
 			<!-- <view class="shiming" @click="amountBtn"> -->
-			<view class="shiming" @click="dingyue">	
-				<text class="amount-btn" >提交订单</text>
+			<view class="shiming" @click="dingyue">
+				<text class="amount-btn">提交订单</text>
 			</view>
 		</view>
 		<u-modal :show="agreementObj.agreementShow" :closeOnClickOverlay="true" :title="agreementObj.title"
 			@confirm="agreementObj.agreementShow=false" @close="agreementObj.agreementShow=false">
 			<view class="slot-content" style="height:750rpx;" scroll-y="true">
-				<scroll-view :scroll-into-view="toView" scroll-y="true" style="height: 800rpx;" scroll-with-animation="true">
-				<u-parse  :content="agreementObj.text"></u-parse>
+				<scroll-view :scroll-into-view="toView" scroll-y="true" style="height: 800rpx;"
+					scroll-with-animation="true">
+					<u-parse :content="agreementObj.text"></u-parse>
 				</scroll-view>
 			</view>
 		</u-modal>
-		<u-toast ref="uToast"></u-toast> 
+		<u-toast ref="uToast"></u-toast>
 		<Contact ref="contact" />
 		<u-popup :show="show" :round="10" mode="bottom" :closeable="true" round="10" @close="close" @open="open">
-				<view style="padding: 50px 30px;" class="baokuang">
+			<view style="padding: 50px 30px;" class="baokuang">
 				<view class="" v-for="(item,index) in rentt" :key="index">
 					<view class="wenzi">
 						<text>第{{index+1}}期
 							<text style="margin-left: 10px;">
-							{{item.qishu}}
+								{{item.qishu}}
 							</text>
 						</text>
 						<!-- <view v-if="rentinfo.youhui == '1' && index+1 == '1' && rentinfo.discount_price != 0 ">
@@ -258,64 +230,66 @@
 						</view> -->
 						<view>
 							<!-- <text v-if="rentinfo.youhui == '1' && index+1 == '1' && rentinfo.discount_price != 0 " style="color: #FF5B56;">-￥{{(item.rent - rentinfo.discount_price).toFixed(2)}}(券)</text> -->
-							<text v-if="youhuiprice != '' && index+1 == '1'" style="color: #FF5B56;">-￥{{(item.rent - youhuiprice).toFixed(2)}}(券)</text>
+							<text v-if="youhuiprice != '' && index+1 == '1'"
+								style="color: #FF5B56;">-￥{{(item.rent - youhuiprice).toFixed(2)}}(券)</text>
 							<text v-else>-￥{{item.rent}}</text>
 						</view>
-						
+
 					</view>
 				</view>
-				
+
 				<view class="wenzi" v-if="sku_data.buyout_price != 0.00">
 					<text style="color: #3c9cff;">到期完结/租完买断</text>
 					<text style="color: #3c9cff;">-￥{{sku_data.buyout_price}}</text>
-				</view> 
 				</view>
-				
-			</u-popup>
-			<u-popup :show="youhuiquanstatus" :round="10" mode="bottom"  @close="youhuiquanclose" @open="youhuiquanopen" :closeable='true' :zIndex="99999" customStyle="max-height:500px;min-height:350;background: #f0f0f0;">
-			        <view class="youhuiquantop" style="padding: 15px;text-align: center;background: #fff;border-radius: 10px 10px 0pt 0pt;">
-			            <text>优惠券</text>
-			        </view>
-					<view class="" v-if="youhuiquan.length == '0'">
-						<u-empty
-						        mode="coupon"
-								text="非常抱歉! 暂时没有可用的优惠券哦~"
-								textSize="12"
-						>
-						</u-empty>
-					</view>
-					<view style="padding:10px 10px 50px;background: #f0f0f0;" >
-						<view class="" @click="ceshi(item)" v-for="(item, index) in youhuiquan" :key="index">
-							
-						
-						<view v-if="yixuan == item.id" style="position: absolute;background: #FF5B56;border-radius: 10px 0 50px;padding: 5px;">
-							<u-icon name="checkbox-mark" color="#fff" size="20"></u-icon>
-						</view>
-						<view class="" style="background: #fff; padding: 15px 20px;border-radius: 10px;margin-bottom: 10px;">
-							
-							<view class="youhuiquantext">
-								<text style="font-size: 15px;font-weight: 800;">{{item.activity_name}}</text>
-								<text style="font-size: 20px;font-weight: 800;color: #FF5B56;">￥{{item.amount}}</text>
-							</view>
-							<view class="youhuiquantext">
-								<text style="font-size: 10px;color: #a5a5a5;">有效期至{{item.valid_end_time}}</text>
-								<text style="font-size: 10px;color: #FF5B56;">满{{item.floor_amount}}可用</text>
-							</view>
-							<u-divider :textSize='10' lineColor='#ffbebe' text="使用说明"></u-divider>
-			
-							<view class="" style="padding-top: 6px;">
-								<u-text  :text="item.voucher_description" :size="10"  color="#a5a5a5"></u-text>
-			
-							</view>
-						</view>
-						</view>
-					</view>
-				</u-popup>
-			<!-- #ifdef MP-ALIPAY -->
-			<view class="" style="position: fixed;right: 20px;z-index: 99999;bottom: 25%;">
-				<contact-button tnt-inst-id="x8o_S4gv" size="32" scene="SCE01231099" icon="https://oss.jiulove.cn/uploads/20220628/05bdd6d39638781a4b48ab75fe6389b5.png"/>
 			</view>
-			<!-- #endif -->
+
+		</u-popup>
+		<u-popup :show="youhuiquanstatus" :round="10" mode="bottom" @close="youhuiquanclose" @open="youhuiquanopen"
+			:closeable='true' :zIndex="99999" customStyle="max-height:500px;min-height:350;background: #f0f0f0;">
+			<view class="youhuiquantop"
+				style="padding: 15px;text-align: center;background: #fff;border-radius: 10px 10px 0pt 0pt;">
+				<text>优惠券</text>
+			</view>
+			<view class="" v-if="youhuiquan.length == '0'">
+				<u-empty mode="coupon" text="非常抱歉! 暂时没有可用的优惠券哦~" textSize="12">
+				</u-empty>
+			</view>
+			<view style="padding:10px 10px 50px;background: #f0f0f0;">
+				<view class="" @click="ceshi(item)" v-for="(item, index) in youhuiquan" :key="index">
+
+
+					<view v-if="yixuan == item.id"
+						style="position: absolute;background: #FF5B56;border-radius: 10px 0 50px;padding: 5px;">
+						<u-icon name="checkbox-mark" color="#fff" size="20"></u-icon>
+					</view>
+					<view class=""
+						style="background: #fff; padding: 15px 20px;border-radius: 10px;margin-bottom: 10px;">
+
+						<view class="youhuiquantext">
+							<text style="font-size: 15px;font-weight: 800;">{{item.activity_name}}</text>
+							<text style="font-size: 20px;font-weight: 800;color: #FF5B56;">￥{{item.amount}}</text>
+						</view>
+						<view class="youhuiquantext">
+							<text style="font-size: 10px;color: #a5a5a5;">有效期至{{item.valid_end_time}}</text>
+							<text style="font-size: 10px;color: #FF5B56;">满{{item.floor_amount}}可用</text>
+						</view>
+						<u-divider :textSize='10' lineColor='#ffbebe' text="使用说明"></u-divider>
+
+						<view class="" style="padding-top: 6px;">
+							<u-text :text="item.voucher_description" :size="10" color="#a5a5a5"></u-text>
+
+						</view>
+					</view>
+				</view>
+			</view>
+		</u-popup>
+		<!-- #ifdef MP-ALIPAY -->
+		<view class="" style="position: fixed;right: 20px;z-index: 99999;bottom: 25%;">
+			<contact-button tnt-inst-id="x8o_S4gv" size="32" scene="SCE01231099"
+				icon="https://oss.jiulove.cn/uploads/20220628/05bdd6d39638781a4b48ab75fe6389b5.png" />
+		</view>
+		<!-- #endif -->
 	</view>
 </template>
 
@@ -327,10 +301,11 @@
 		},
 		data() {
 			return {
-				email:"",
-				mianyastatus:'',
-				jinjiname:"",
-				jinjimobile:"",
+				location: {},
+				email: "",
+				mianyastatus: '',
+				jinjiname: "",
+				jinjimobile: "",
 				detailStatu: 1,
 				address_id: 0,
 				time: {},
@@ -342,22 +317,22 @@
 				},
 				agreementFlag: false,
 				agreement: '',
-				qishu:'',
+				qishu: '',
 				addressArr: {},
 				goods_data: {},
 				leasetime: {},
 				order_key: '',
 				rentinfo: {},
-				rentt:{},
+				rentt: {},
 				sku_data: {},
 				actual: Number,
 				notice: '',
 				remark: "", //备注
 				certification_status: 0, //认证状态
 				guard_data: {}, //保障方案
-				idCardUrl:"",
-				idcardstatus:"",
-				chuanzhi:{},
+				idCardUrl: "",
+				idcardstatus: "",
+				chuanzhi: {},
 				show: false,
 				formObj: {
 					"id": 0, //地址id
@@ -371,12 +346,11 @@
 					"urgent_mobile": "", //紧急手机号
 					"email": "", //邮箱
 					relationship: '关系',
-					
 				},
-				youhuiquanstatus:false,
-				yixuan:1,
-				youhuiquan:{},
-				youhuiprice:''
+				youhuiquanstatus: false,
+				yixuan: 1,
+				youhuiquan: {},
+				youhuiprice: ''
 			};
 		},
 		onLoad(obj) {
@@ -385,12 +359,14 @@
 			this.getidcadr()
 		},
 		onShow() {
+			// this.getLocation()
 			this.getidcadrd()
 			if (this.params.path == 'goods-detail') { //订单状态为待付款
 				this.confirmOrder()
 			}
 			this.idCardUrl = "/pages/idcard/idcard?type=detail&num=" + this.params.num + "&goods_sku_id=" + this.params
-						.goods_sku_id + "&address_id=" + this.address_id
+				.goods_sku_id + "&address_id=" + this.address_id
+			console.log('onshow', this.gps_location);
 		},
 
 		watch: {
@@ -402,37 +378,39 @@
 			// },
 		},
 		methods: {
-			opendingyue(){
+			opendingyue() {
 				my.requestSubscribeMessage({
 					//优惠券到期提醒，优惠券领取提醒
-					entityIds: ['97706ed29d1b4635aaddeb429723044e','3013feeb83f340f4a3cdf8209bbb27ef','f1a4883fe2db417c8b881b241ee953c7'],
+					entityIds: ['97706ed29d1b4635aaddeb429723044e', '3013feeb83f340f4a3cdf8209bbb27ef',
+						'f1a4883fe2db417c8b881b241ee953c7'
+					],
 					complete: (res) => {
 						this.open()
 					}
 				});
 			},
-			ceshi(e){
-				if(this.yixuan == e.id){
+			ceshi(e) {
+				if (this.yixuan == e.id) {
 					this.yixuan = ''
 					this.youhuiprice = ''
-				}else{
+				} else {
 					this.yixuan = e.id
 					this.youhuiprice = e.amount
-					this.youhuiquanstatus=false
+					this.youhuiquanstatus = false
 				}
 			},
-			youhuiquanclose(){
-					this.youhuiquanstatus = false
+			youhuiquanclose() {
+				this.youhuiquanstatus = false
 			},
-			youhuiquanopen(){
+			youhuiquanopen() {
 				this.youhuiquanstatus = true
 			},
-			youhuiquanke(){
+			youhuiquanke() {
 				let opt = {
 					url: '/youhuiquan',
-					data:{
-						price:this.rentinfo.bottom_rent,
-						goodid:this.goods_data.goods_id
+					data: {
+						price: this.rentinfo.bottom_rent,
+						goodid: this.goods_data.goods_id
 					}
 				}
 				this.$request(opt).then(res => {
@@ -440,12 +418,12 @@
 					this.youhuiquan = res.data
 				})
 			},
-			tiaozhuanxieyi(){
+			tiaozhuanxieyi() {
 				uni.navigateTo({
-					url:'../order-list/xieyilist'
+					url: '../order-list/xieyilist'
 				})
 			},
-			mianya(){
+			mianya() {
 				let opt = {
 					url: '/order/mianya',
 					method: "POST",
@@ -476,25 +454,70 @@
 					// 		_this.amountYa(order)
 					// 	}
 					// })
-				})  
+				})
 			},
-			amountYa(order){
+			amountYa(order) {
 				let _this = this
 				my.tradePay({
-					orderStr:order,
+					orderStr: order,
 					success: (res) => {
 						console.log(res);
 						my.alert({
-						  content: JSON.stringify(res),
+							content: JSON.stringify(res),
 						});
-					  },
-					  fail: (res) => {
+					},
+					fail: (res) => {
 						console.log(res);
 						my.alert({
-						  content: JSON.stringify(res),
+							content: JSON.stringify(res),
 						});
-					  }
+					}
 				});
+			},
+			getLocation() {
+				let _this = this;
+				// #ifdef MP-ALIPAY
+				my.getLocation({
+					type: 1,
+					success: function(res) {
+						this.location = res;
+					},
+					fail: function(res) {
+						if (res.message == '用户不允许授权') {
+							uni.showModal({
+								title: '温馨提示',
+								content: '请允许获取位置信息，以便我们分配就近仓库尽快发货',
+								success: function(res) {
+									if (res.confirm) {
+										_this.getLocation()
+									}
+								}
+							});
+						}
+					}
+				});
+				// #endif
+				// #ifndef MP-ALIPAY
+				uni.getLocation({
+					type: 'wgs84',
+					success: function(res) {
+						this.location = res;
+					},
+					fail: function(res) {
+						if (res.message == '用户不允许授权') {
+							uni.showModal({
+								title: '温馨提示',
+								content: '请允许获取位置信息，以便我们分配就近仓库尽快发货',
+								success: function(res) {
+									if (res.confirm) {
+										_this.getLocation()
+									}
+								}
+							});
+						}
+					}
+				});
+				// #endif
 			},
 			open() {
 				this.show = true
@@ -524,12 +547,12 @@
 				if (type == 4) {
 					this.agreementObj.title = "租赁委托担保合同"
 					this.agreementHttp('/weituodanbao')
-				
+
 				}
 				if (type == 5) {
 					this.agreementObj.title = "个人征信授权书"
 					this.agreementHttp('/zhengxinshouquan')
-				
+
 				}
 				this.agreementObj.agreementShow = true
 			},
@@ -541,17 +564,17 @@
 					this.agreementObj.text = res.data;
 				})
 			},
-			dingyue(){
+			dingyue() {
 				let _this = this
 				my.getAuthCode({
-				  scopes: ['order_service'],
-				  success: (res) => {
-					  _this.amountBtn()
-				    // 订单服务授权成功
-				  },
-				  fail: (res) => {
-					  _this.amountBtn()
-				  },
+					scopes: ['order_service'],
+					success: (res) => {
+						_this.amountBtn()
+						// 订单服务授权成功
+					},
+					fail: (res) => {
+						_this.amountBtn()
+					},
 				});
 			},
 			amountBtn() {
@@ -605,9 +628,9 @@
 					// 		type: 'error'
 					// 	})
 					// }else 
-					if(this.addressArr.id || this.params.address_id) {
+					if (this.addressArr.id || this.params.address_id) {
 						this.subOrder() //提交订单
-					}else {
+					} else {
 						this.$refs.uToast.show({
 							message: '请选择地址',
 							icon: 'error',
@@ -627,7 +650,7 @@
 					url: '/order/getcard',
 					method: "GET",
 				}
-				
+
 				this.$request(opt).then(res => {
 					this.idcardstatus = res.msg
 					// this.email = res.data.email
@@ -641,12 +664,12 @@
 					url: '/order/getcard',
 					method: "GET",
 				}
-				
+
 				this.$request(opt).then(res => {
 					this.idcardstatus = res.msg
 				})
 			},
-			
+
 			// subOrder() {
 			// 	let opt = {
 			// 		url: '/order/submit',
@@ -692,10 +715,10 @@
 						guard_id: this.params.guard_id || '',
 						address_id: this.address_id || this.params.address_id || "",
 						// email:this.email,
-						jinjiname:this.jinjiname,
-						jinjimobile:this.jinjimobile,
-						youhuiquanid:this.yixuan,
-						youhuiprice:this.youhuiprice,
+						// jinjiname: this.jinjiname,
+						// jinjimobile: this.jinjimobile,
+						youhuiquanid: this.yixuan,
+						youhuiprice: this.youhuiprice,
 					}
 				}
 				this.$request(opt).then(res => {
@@ -711,60 +734,60 @@
 						complete() {
 							//去身份认证
 							// if(_this.mianyastatus == "yes"){
-								// _this.tradeYa(order_nn,order_sn,trade_no)
-								_this.shimingrenzheng(order_sn)
+							// _this.tradeYa(order_nn,order_sn,trade_no)
+							_this.shimingrenzheng(order_sn)
 							// }else if(_this.mianyastatus == "no"){
-								 // _this.tradePay(trade_no, order_sn)
+							// _this.tradePay(trade_no, order_sn)
 							// }
 						}
 					})
 				})
 			},
-			shimingrenzheng(order_sn){
+			shimingrenzheng(order_sn) {
 				uni.navigateTo({
 					url: "../identity/identity?order_sn=" + order_sn
 				})
-			},   
-			tradeYa(order_nn,order_sn,trade_no){
+			},
+			tradeYa(order_nn, order_sn, trade_no) {
 				let _this = this
 				my.tradePay({
-					orderStr:order_nn,
+					orderStr: order_nn,
 					success: (res) => {
 						// console.log(res);
-						if(res.resultCode == 9000){
+						if (res.resultCode == 9000) {
 							uni.navigateTo({
 								url: "../identity/identity?order_sn=" + order_sn
 							})
-						}else{
+						} else {
 							// _this.tradePay(trade_no, order_sn)
 							uni.showToast({
 								title: res.memo,
 								duration: 2000,
-								icon:'none'
+								icon: 'none'
 							});
 							uni.navigateTo({
 								url: '../eve/introduce',
 							});
 						}
-					    // my.alert({
-					    //   content: JSON.stringify(res),
-					    // });
-						
-					  },
-					  fail: (res) => {
+						// my.alert({
+						//   content: JSON.stringify(res),
+						// });
+
+					},
+					fail: (res) => {
 						console.log(res);
-							uni.showToast({
-								title: res.memo,
-								duration: 2000,
-								icon:'none'
-							});
-					    // my.alert({
-					    //   content: JSON.stringify(res),
-					    // });
-						 // _this.tradePay(trade_no, order_sn)
-					  }
+						uni.showToast({
+							title: res.memo,
+							duration: 2000,
+							icon: 'none'
+						});
+						// my.alert({
+						//   content: JSON.stringify(res),
+						// });
+						// _this.tradePay(trade_no, order_sn)
+					}
 				});
-			}, 
+			},
 			//支付押金
 			tradePay(trade_no, order_sn) {
 				let _this = this
@@ -791,55 +814,55 @@
 					},
 				});
 			},
-			
-			address(){
-			    my.getAddress({
-			      success: (res) => {
-					  // console.log(JSON.stringify(res))
-					  // return;
-					  // this.result = res.result.address
-					  this.formObj.name = res.result.fullname
-					  this.formObj.mobile = res.result.mobilePhone
-					  this.formObj.city = res.result.city
-					  this.formObj.province = res.result.prov
-					  this.formObj.area = res.result.area
-					  this.addressTxt = this.prev + '-' + this.city + '-' + this.area
-					  this.formObj.address = res.result.street + res.result.address
-					  // console.log(JSON.stringify(res))
-					  // let city = res.result.city
-					  // let prev = res.result.prev
-					  // let area = res.result.area
-					  // this.addSava(city,prev,area);
-					  console.log(this.formObj)
-					  let opt = {
-					  	url: '/address/addceshi',
-					  	method: "POST",
-					  	header: "application/x-www-form-urlencoded;charset=utf-8",
-					  	data: this.formObj
-					  }
-					  			 
-					  this.$request(opt).then(res => {
-					  	console.log(res)
-						this.address_id = res.msg
-					  	// this.$refs.uToast.show({
-					  	// 	message: res.msg || '成功',
-					  	// 	icon: 'success',
-					  	// 	type: 'success'
-					  	// })
-					  	this.editShow = false
-						this.confirmOrder()
-					  	// this.addressInit()
-					  })
-			        },
-			        fail: (res) => {
+
+			address() {
+				my.getAddress({
+					success: (res) => {
+						// console.log(JSON.stringify(res))
+						// return;
+						// this.result = res.result.address
+						this.formObj.name = res.result.fullname
+						this.formObj.mobile = res.result.mobilePhone
+						this.formObj.city = res.result.city
+						this.formObj.province = res.result.prov
+						this.formObj.area = res.result.area
+						this.addressTxt = this.prev + '-' + this.city + '-' + this.area
+						this.formObj.address = res.result.street + res.result.address
+						// console.log(JSON.stringify(res))
+						// let city = res.result.city
+						// let prev = res.result.prev
+						// let area = res.result.area
+						// this.addSava(city,prev,area);
+						console.log(this.formObj)
+						let opt = {
+							url: '/address/addceshi',
+							method: "POST",
+							header: "application/x-www-form-urlencoded;charset=utf-8",
+							data: this.formObj
+						}
+
+						this.$request(opt).then(res => {
+							console.log(res)
+							this.address_id = res.msg
+							// this.$refs.uToast.show({
+							// 	message: res.msg || '成功',
+							// 	icon: 'success',
+							// 	type: 'success'
+							// })
+							this.editShow = false
+							this.confirmOrder()
+							// this.addressInit()
+						})
+					},
+					fail: (res) => {
 						// this.uToastFunc('收货地址获取失败')
 						// return true
 						uni.navigateTo({
-							url:'/pages/order-list/address'
+							url: '/pages/order-list/address'
 						})
-			      }
-			    });
-			  },
+					}
+				});
+			},
 			addresss() {
 				uni.navigateTo({
 					url: "../order-list/address?num=" + this.params.num + "&goods_sku_id=" + this.params
@@ -875,7 +898,7 @@
 					this.chuanzhi = res.data
 					let defaultamount = res.data.guard_data ? res.data.guard_data.defaultamount : 0
 					// this.actual = (Number(this.sku_data.deposit) + Number(this.rentinfo.top_rent) + Number(
-						// defaultamount)).toFixed(2)
+					// defaultamount)).toFixed(2)
 					this.actual = (Number(this.sku_data.deposit) + Number(
 						defaultamount)).toFixed(2)
 					this.notice = res.data.notice
@@ -897,17 +920,19 @@
 </script>
 
 <style lang="scss" scoped>
-	.shenhe{
+	.shenhe {
 		color: #f9ae3d;
 	}
-	.youhuiquantext{
+
+	.youhuiquantext {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 		padding-bottom: 6px;
 	}
-	.wenzi{
+
+	.wenzi {
 		font-size: 26rpx;
 		line-height: 70rpx;
 		display: flex;
@@ -915,25 +940,28 @@
 		align-items: center;
 		border-bottom: 1px solid #eeeeee;
 		background-color: #fff;
-		color: #757575;
+		color: #61687C;
 	}
-	.baokuang{
+
+	.baokuang {
 		// background-color: #F6F6FB;
 		// border-radius: 10rpx;
 	}
-	.shiming{
-		    padding: 16px 16px;
-		    background: #ffaa00;
-		    color: #fff;
-		    text-align: center;
-		    font-size: 16px;
-		    margin-left: auto;
-		    border-radius: 10px;
-		    display: flex;
-		    align-content: center;
-		    justify-content: center;
-		    align-items: flex-end;
+
+	.shiming {
+		padding: 16px 16px;
+		background: #ffaa00;
+		color: #fff;
+		text-align: center;
+		font-size: 16px;
+		margin-left: auto;
+		border-radius: 10px;
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		align-items: flex-end;
 	}
+
 	.order-detail {
 		background-color: #F6F6FB;
 		width: 100%;
@@ -1000,6 +1028,7 @@
 			width: 92%;
 			margin: 0 auto;
 			box-sizing: border-box;
+			margin-bottom: 300rpx;
 		}
 
 		.address_bar {
@@ -1007,7 +1036,7 @@
 			border-radius: 14rpx;
 			padding: 33rpx 38rpx;
 			position: relative;
-			margin: 18rpx 0 18rpx; 
+			margin: 18rpx 0 18rpx;
 
 			.address {
 				font-size: 24rpx;
@@ -1016,7 +1045,7 @@
 
 			.address_arrow {
 				position: absolute;
-				top: 50rpx;
+				top: 40rpx;
 				right: 40rpx;
 			}
 
@@ -1030,8 +1059,11 @@
 				}
 			}
 		}
-		.renya{
-			font-size: 14px;margin-top: 10px;display: flex;
+
+		.renya {
+			font-size: 14px;
+			margin-top: 10px;
+			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
 			width: 94%;
@@ -1039,11 +1071,13 @@
 			color: #9FA3B0;
 			align-items: center;
 		}
+
 		.idCard-box {
 			background-color: #fff;
 			border-radius: 14rpx;
 			margin-bottom: 18rpx;
 		}
+
 		.order {
 			background-color: #fff;
 			padding: 30rpx 0 0 0;
@@ -1075,8 +1109,8 @@
 			.order-date {
 				width: 90%;
 				height: 88rpx;
-				background-color: #c4e6fd;
-				border-radius: 44rpx;
+				background: #FAFAFB;
+				border-radius: 6px;
 				margin: 28rpx auto;
 				display: flex;
 				flex: 1;
@@ -1110,6 +1144,7 @@
 
 					.start-txt {
 						font-size: 24rpx;
+						color: #414960;
 					}
 
 					.time {
@@ -1119,6 +1154,24 @@
 				}
 			}
 		}
+
+		.zujinkuang {
+			background: #FAFAFB;
+			padding: 1px 12px;
+			border-radius: 6px;
+
+			.rent-li {
+				font-size: 24rpx;
+				color: #9FA3B0;
+				line-height: 50rpx;
+
+				.li-r {
+					float: right;
+					color: #61687C;
+				}
+			}
+		}
+
 
 		.rent-detail {
 			background-color: #fff;
@@ -1134,6 +1187,7 @@
 
 				.li-r {
 					float: right;
+					color: #61687C;
 				}
 			}
 
@@ -1142,6 +1196,7 @@
 				line-height: 80rpx;
 				font-weight: bold;
 				font-size: 30rpx;
+				color: #414960;
 				// border-bottom: #E5E5E5 1rpx solid;
 
 				.title-r {
@@ -1149,18 +1204,17 @@
 				}
 			}
 		}
-		.zujinkuang{
-			background: #f0f0f0;
-			padding: 1px 12px;
-			border-radius: 6px;
-		}
-		.liya{
-			color: #66c2f5;
-			border: 1px solid;
+
+		.liya {
+			color: #007FFF;
+			border: 1px solid #007FFF;
+			border-radius: 10rpx;
 			padding: 1px 6px;
 			float: right;
 		}
+
 		.sesame {
+			color: #414960;
 			height: 90rpx;
 			line-height: 90rpx;
 			font-weight: bold;
@@ -1246,6 +1300,10 @@
 			// height: 215rpx;
 			padding: 23rpx 30rpx 50rpx 30rpx;
 			box-sizing: border-box;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			border-top: 1px solid #FAFAFB;
 
 			.agreement-box {
 				color: #414960;

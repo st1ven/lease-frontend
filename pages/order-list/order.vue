@@ -75,7 +75,7 @@
 
 				<view class="countdown">剩余 <text>
 						<view class="time">
-						
+
 							{{time}}
 						</view>
 					</text> 自动取消 </view>
@@ -94,7 +94,7 @@
 				</view>
 
 			</view>
-		
+
 
 			<!-- 订单信息 -->
 			<view class="order">
@@ -109,36 +109,20 @@
 						<view class="info-package">数量：{{initList.item.goods_num}}</view>
 					</view>
 				</view>
-				<view class="order-date">
-					<view class="date-start date-box">
-
-						<view class="data-img">
-							<u-image src="/static/image/start.png" width="62rpx" height="62rpx"></u-image>
-						</view>
-						<view class="start-box">
-							<view class="start-txt">
-								预计起租日
-							</view>
-							<text class="time"> {{initList.startleasetime || ''}} </text>
-						</view>
+				<view class="zujinkuang" style="margin: 24rpx;">
+					<view class="rent-li">
+						<text>预计起租日</text>
+						<text class="li-r">{{initList.startleasetime || ''}}</text>
 					</view>
-					<view class="date-start date-box">
-						<view class="date-icon">
-							<u-image src="/static/image/end.png" width="62rpx" height="62rpx"></u-image>
-						</view>
-						<view class="start-box">
-							<view class="start-txt">
-								归还日
-							</view>
-							<text class="time"> {{initList.endleasetime || ''}}</text>
-						</view>
+					<view class="rent-li">
+						<text>到期日</text>
+						<text class="li-r">{{initList.endleasetime || ''}}</text>
 					</view>
 				</view>
 				<view class="order-tag-box">
-					<u-alert :title="'提示：一般货物会在24小时内发出，如有特殊情况，客服会主动联系告知；快递运输期间不算租期，实际起租日为订单日后推3天 '" type="warning" fontSize="22rpx"></u-alert>
+					<u-alert :title="'提示：一般货物会在24小时内发出，如有特殊情况，客服会主动联系告知；快递运输期间不算租期，实际起租日为订单日后推3天 '" type="warning"
+						fontSize="22rpx"></u-alert>
 				</view>
-
-
 			</view>
 			<!-- 租金明细 -->
 			<view class="rent-detail">
@@ -154,19 +138,23 @@
 					<text>剩余租金 </text> <text class="li-r">￥{{ rentinfo.bottom_rent || 0}} </text>
 				</view> -->
 				<view class="rent-li">
-					<text>首期租金 </text> <text class="li-r">￥{{(initList.goods_amount/12).toFixed(2)==null?0:(initList.goods_amount/12).toFixed(2)}} </text>
+					<text>首期租金 </text> <text
+						class="li-r">￥{{(initList.goods_amount/12).toFixed(2)==null?0:(initList.goods_amount/12).toFixed(2)}}
+					</text>
 				</view>
 				<!-- <view class="rent-li">
 					<text>剩余租金 </text> <text class="li-r">￥{{rentinfo.total_rent-rentinfo.top_rent}} </text>
 				</view> -->
 				<view class="rent-li">
-					<text>剩余租金 </text> <text class="li-r"> {{(initList.goods_amount/12*11).toFixed(2)==null?0:(initList.goods_amount/12*11).toFixed(2)}}
+					<text>剩余租金 </text> <text class="li-r">
+						{{(initList.goods_amount/12*11).toFixed(2)==null?0:(initList.goods_amount/12*11).toFixed(2)}}
 					</text>
 				</view>
 				<view class="rent-li">
-					<text>总租金 </text> <text class="li-r">￥{{initList.goods_amount ==null?0:initList.goods_amount}} </text>
+					<text>总租金 </text> <text class="li-r">￥{{initList.goods_amount ==null?0:initList.goods_amount}}
+					</text>
 				</view>
-				
+
 				<view class="rent-li">
 					<text>配送方式 </text> <text class="li-r"> 寄出包邮/顺丰包邮 </text>
 				</view>
@@ -178,7 +166,7 @@
 					<text>买断尾款 </text> <text
 						class="li-r">￥{{ rentinfo.buyout_bottom_price ==null?0:rentinfo.buyout_bottom_price}} </text>
 				</view> -->
-				
+
 			</view>
 			<!-- <view class="rent-detail">
 				<view class="rent-title">
@@ -274,7 +262,7 @@
 				<!-- <view class="rent-li">
 					<text>租赁协议</text> <text class="li-r">查看协议 </text>
 				</view> -->
-				<view class="rent-li" style="padding-top: 0.2rem;">
+				<view class="rent-li">
 					<text>订单编号 </text>
 					<view class="li-r">{{ initList.order_sn}} <text class="copy" @click="copy">复制</text> </view>
 				</view>
@@ -394,7 +382,7 @@
 					let order_nn = res.url
 					let _this = this
 					_this.payType = 'go'
-					_this.tradeYa(order_nn,order_sn,trade_no)
+					_this.tradeYa(order_nn, order_sn, trade_no)
 					//原直接支付通道
 					// let trade_no = res.data.alipay_trade_create_response.trade_no
 					// let order_sn = this.initList.order_sn
@@ -404,46 +392,46 @@
 				})
 			},
 			//免押支付
-			tradeYa(order_nn,order_sn,trade_no){
+			tradeYa(order_nn, order_sn, trade_no) {
 				let _this = this
 				my.tradePay({
-					orderStr:order_nn,
+					orderStr: order_nn,
 					success: (res) => {
 						console.log(res);
-						if(res.resultCode == 9000){
+						if (res.resultCode == 9000) {
 							uni.navigateTo({
 								url: "../identity/identity?order_sn=" + order_sn
 							})
-						}else{
+						} else {
 							uni.showToast({
 								title: res.memo,
 								duration: 2000,
-								icon:'none'
+								icon: 'none'
 							});
 							uni.navigateTo({
 								url: '../eve/introduce',
 							});
 							// _this.tradePay(trade_no, order_sn)
 						}
-					    // my.alert({
-					    //   content: JSON.stringify(res),
-					    // });
-						
-					  },
-					  fail: (res) => {
+						// my.alert({
+						//   content: JSON.stringify(res),
+						// });
+
+					},
+					fail: (res) => {
 						console.log(res);
 						uni.showToast({
 							title: res.memo,
 							duration: 2000,
-							icon:'none'
+							icon: 'none'
 						});
-					    // my.alert({
-					    //   content: JSON.stringify(res),
-					    // });
-						 // _this.tradePay(trade_no, order_sn)
-					  }
+						// my.alert({
+						//   content: JSON.stringify(res),
+						// });
+						// _this.tradePay(trade_no, order_sn)
+					}
 				});
-			}, 
+			},
 			//支付押金
 			tradePay(trade_no, order_sn) {
 				let _this = this
@@ -603,6 +591,23 @@
 </script>
 
 <style lang="scss" scoped>
+	.zujinkuang {
+		background: #FAFAFB;
+		padding: 1px 12px;
+		border-radius: 6px;
+
+		.rent-li {
+			font-size: 24rpx;
+			color: #9FA3B0;
+			line-height: 50rpx;
+
+			.li-r {
+				float: right;
+				color: #61687C;
+			}
+		}
+	}
+
 	.order-detail {
 		background-color: #F6F6FB;
 		width: 100%;
@@ -786,7 +791,7 @@
 		.rent-detail {
 			background-color: #fff;
 			// height: 370rpx;
-			padding: 0rpx 24rpx 20rpx 29rpx;
+			padding: 20rpx 24rpx 20rpx 29rpx;
 			margin-bottom: 18rpx;
 			border-radius: 14rpx;
 
@@ -797,6 +802,7 @@
 
 				.li-r {
 					float: right;
+					color: #61687c;
 				}
 
 				.copy {
@@ -810,7 +816,8 @@
 				line-height: 90rpx;
 				font-weight: bold;
 				font-size: 30rpx;
-				border-bottom: #E5E5E5 1rpx solid;
+				color: #414960;
+				border-bottom: 1rpx solid #F1F2F5;
 
 				.title-r {
 					float: right;
@@ -827,6 +834,7 @@
 			padding: 0 26rpx 0 30rpx;
 			margin-bottom: 18rpx;
 			border-radius: 14rpx;
+			color: #414960;
 
 			.title-r {
 				float: right;
@@ -881,7 +889,7 @@
 				}
 			}
 		}
- 
+
 		.note {
 			height: 90rpx;
 			line-height: 90rpx;
@@ -891,6 +899,7 @@
 			background-color: #fff;
 			margin: 18rpx 0;
 			border-radius: 14rpx;
+			color: #414960;
 
 			.note-input {
 				position: absolute;

@@ -1,33 +1,55 @@
 <template>
 	<view class="page goods-detail-page" :style="buyStatus ?'overflow:hidden':'overflow:scroll' ">
 		<!-- 轮播大图  商品详情 -->
-		<u-swiper :list="goods_data.images" :autoplay="false" height="750rpx" />
+		<u-swiper :list="goods_data.images" :autoplay="false" radius="0" height="750rpx" />
 		<!-- 简介 -->
-		<view class="desc-box">
-			<view class="salesclass">
-				<view class="" >
-					<text class="price-company">¥</text>
-					<text class="price-number">{{goods_data.day_price}}</text>
-					<text class="price-company">元/天起</text>
-				</view>
-				<text style="font-size: 12px;color: #9FA3B0;">
-					销量：{{goods_data.sales}}
+		<view class="price-box salesclass">
+			<view>
+				<text class="price-company">¥</text>
+				<text class="price-number">{{goods_data.day_price}}</text>
+				<text class="price-company">元/天起</text>
+			</view>
+			<view>
+				<text style="width: 100%; font-size: 12px; text-align: right; color: #FFF;">
+					{{goods_data.sales}}人已租
 				</text>
+			</view>
+		</view>
+		<view class="desc-box">
+			<view class="goods-tags">
+				<view class="goods-tag tag-red">全新</view>
+				<view class="goods-tag">{{goods_data.mer_text}}</view>
+				<view class="goods-tag">顺丰包邮</view>
 			</view>
 			<view class="title">
 				{{goods_data.title}}
 			</view>
-			<text class="ft-24" style="color: #414960;">国行现货 下单速发</text>
-			<view class="price-msg">
-				<view class="goods-tag">信用免押</view>
-				<text class="price-tag">官方质保省心 | 租后服务无忧 </text>
+			<view class="bannerbottom">
+				<image v-for="(item,index) in banner_bottom" :key="index" :src="item" mode="widthFix"></image>
+			</view>
+		</view>
+		<view class="select-box" @click="buyBtn">
+			<view class="salesclass">
+				<view class="select-row" style="padding: 0 0 24rpx 0;">
+					<view class="select-title">选择</view>
+					<view class="select-desc">请选择：规格；颜色；租期；套餐；保障服务；</view>
+				</view>
+				<view class="select-row" style="padding: 0 0 24rpx 0;">
+					<u-icon name="arrow-right" color="#61687C" size="26rpx"></u-icon>
+				</view>
+			</view>
+			<view class="select-row" style="padding: 24rpx 0 0 0;">
+				<view class="select-title">发货</view>
+				<view class="select-desc">顺丰快递 | 寄出包邮</view>
 			</view>
 		</view>
 		<!-- 优惠券 -->
-		<iz-cell v-if="couponsopen.couponsopen == '1'" title="优惠券" bold icon="arrow-right" classN="mx-30" @click="cellModal()" :goodId="goods_data.id" />
-		<view class="kuang" style="padding: 0 12px;"  v-if="couponsopen.mercouponsopen == '1'">
+		<iz-cell v-if="couponsopen.couponsopen == '1'" title="优惠券" bold icon="arrow-right" classN="mx-30"
+			@click="cellModal()" :goodId="goods_data.id" />
+		<view class="kuang" style="padding: 0 12px;" v-if="couponsopen.mercouponsopen == '1'">
 			<get-coupon :params="zfbparams" :zIndex="9">
-				<u-image @click="huodongding" :lazy-load="true" width="100%" :src="image" radius="8px" mode="widthFix"></u-image>
+				<u-image @click="huodongding" :lazy-load="true" width="100%" :src="image" radius="8px" mode="widthFix">
+				</u-image>
 			</get-coupon>
 
 		</view>
@@ -40,7 +62,7 @@
 					}"></u-tabs>
 		</view>
 
-		<view class="detail-cont"> 
+		<view class="detail-cont">
 			<u-parse :content="detailtarget.content" :previewImg="false"></u-parse>
 		</view>
 		<!-- 门店信息 -->
@@ -48,13 +70,12 @@
 			<view class="buy-name">{{Mer_data.mer_type}}</view>
 			<view class="">
 				<view class="store-name">
-					<u-icon name="coupon" :label="Mer_data.mer_name" labelSize="30rpx" size="38rpx" color="#000"
-						labelColor="#000">
+					<u-icon name="coupon" :label="Mer_data.mer_name" labelSize="30rpx" size="38rpx" color="#171B25"
+						labelColor="#171B25">
 					</u-icon>
-					
 				</view>
 				<view class="store-arrow">
-					<u-icon name="arrow-right" labelSize="20rpx" labelColor="#000"></u-icon>
+					<u-icon name="arrow-right" labelSize="20rpx" labelColor="#171B25"></u-icon>
 				</view>
 				<view class="store">
 					<text>{{Mer_data.mer_name}}</text>
@@ -67,7 +88,6 @@
 		</view>
 		<!-- 购买信息 -->
 		<view class="buy-box">
-		
 			<view class="buy-li">
 				<u-icon name="home" labelSize="22rpx" labelColor="#61687C" label="首页" color="#61687C" labelPos="bottom"
 					@click="goIndex()" size="42rpx">
@@ -89,13 +109,13 @@
 			<view class="coupons-box">
 				<view class="coupons-title">领取优惠券</view>
 				<view class="" style="min-height: 400rpx;">
-					<iz-coupons-item type="1" :goodsId="goods_data.id|| ''" :tokenstatus="tokenstatus"/>
+					<iz-coupons-item type="1" :goodsId="goods_data.id|| ''" :tokenstatus="tokenstatus" />
 				</view>
 				<u-safe-bottom />
 			</view>
 		</u-popup>
 		<u-popup :show="buyStatus" :round="20" mode="bottom" @close="BuyClose" @open="BuyOpen" :closeable="true">
-			<iz-buy-popup :goodsId="goodsId"/>
+			<iz-buy-popup :goodsId="goodsId" />
 		</u-popup>
 
 		<u-toast ref="uToast"></u-toast>
@@ -114,6 +134,7 @@
 					inx: 0,
 					content: ""
 				},
+				banner_bottom: [],
 				goodsId: "0",
 				tabList: [{
 						name: "商品详情",
@@ -124,7 +145,7 @@
 						type: "1"
 					},
 					{
-						name: "常用说明",
+						name: "常见问题",
 						type: "2"
 					},
 				],
@@ -134,12 +155,12 @@
 				Mer_data: {},
 				goods_data: {},
 				pageFlag: false,
-				paramsid:{},
-				tokenstatus:'',
+				paramsid: {},
+				tokenstatus: '',
 				zfbparams: [],
-				image:'',
-				couponsopen:{},
-				
+				image: '',
+				couponsopen: {},
+
 			};
 		},
 
@@ -150,39 +171,36 @@
 			this.paramsid = options.query
 			this.tokenexpir()
 		},
-		watch: {
-		},
+		watch: {},
 		onShow() {
-			
 			uni.setStorageSync('path', 'goods');
 			this.init(this.params.id || this.paramsid.id)
-			
 			this.lingquan()
 			this.imagee()
-			
+			this.bottomImage()
 		},
 		methods: {
-			huodongding(){
+			huodongding() {
 				let opt = {
 					url: '/index/dingyue?biaoshi=goodsid'
 				}
 				this.$request(opt).then(res => {
 					var dingyueid = res.data
-				my.requestSubscribeMessage({
-					//优惠券到期提醒，优惠券领取提醒
-					entityIds: dingyueid,
-					fail: (res) => {
-						uni.showToast({
-							title: res.errorMessage || '订阅成功',
-							duration: 3000,//单位毫秒
-							icon:'none'
-						});
-					}
-				});
+					my.requestSubscribeMessage({
+						//优惠券到期提醒，优惠券领取提醒
+						entityIds: dingyueid,
+						fail: (res) => {
+							uni.showToast({
+								title: res.errorMessage || '订阅成功',
+								duration: 3000, //单位毫秒
+								icon: 'none'
+							});
+						}
+					});
 				})
 			},
-			
-			imagee(){
+
+			imagee() {
 				let opt = {
 					url: '/userlingquanimage'
 				}
@@ -191,8 +209,8 @@
 					this.couponsopen = res.url
 				})
 			},
-			lingquan(){
-		
+			lingquan() {
+
 				let opt = {
 					url: '/userlingquan'
 				}
@@ -201,9 +219,9 @@
 				})
 			},
 			// 检测token是否过期
-			tokenexpir(){
+			tokenexpir() {
 				this.tokenstatus = uni.getStorageSync('token')
-				if(this.tokenstatus != ''){
+				if (this.tokenstatus != '') {
 					let opt = {
 						url: '/index/tokenexpirtime',
 						data: {
@@ -211,13 +229,13 @@
 						}
 					}
 					this.$request(opt).then(res => {
-						if(res.data == '0'){
+						if (res.data == '0') {
 							uni.removeStorageSync('token');
 						}
 					})
 				}
 			},
-			goIndex() { 
+			goIndex() {
 				uni.switchTab({
 					url: '/pages/index/index'
 				})
@@ -248,21 +266,21 @@
 				}
 			},
 			buyBtn() {
-				
+
 				let opt = {
 					url: '/index/dingyue?biaoshi=freebutton'
 				}
 				this.$request(opt).then(res => {
 					var dingyueid = res.data
-				my.requestSubscribeMessage({
-					//好友完成租机通知
-					entityIds: dingyueid,
-					complete: (res) => {
-						this.goodsId = this.goods_data.id
-						this.buyStatus = true
-					}
-				});
-				
+					my.requestSubscribeMessage({
+						//好友完成租机通知
+						entityIds: dingyueid,
+						complete: (res) => {
+							this.goodsId = this.goods_data.id
+							this.buyStatus = true
+						}
+					});
+
 				})
 			},
 			BuyClose() {
@@ -270,6 +288,15 @@
 			},
 			BuyOpen() {
 
+			},
+			bottomImage() {
+				let opt = {
+					url: '/index/image'
+				}
+				this.$request(opt).then(res => {
+					// 打印调用成功回调
+					this.banner_bottom = res.data.bannerbottom
+				})
 			},
 			init(id) {
 				let opt = {
@@ -331,68 +358,100 @@
 </script>
 
 <style lang="scss" scoped>
-	.salesclass{
+	.salesclass {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 	}
+
+	.bannerbottom {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-around;
+	}
+
+	.goods-tags {
+		display: flex;
+		gap: 10rpx;
+	}
+
+	.goods-tag {
+		color: #4D79FF;
+		font-size: 18rpx;
+		font-weight: 400;
+		width: max-content;
+		border-radius: 8rpx;
+		padding: 4rpx 10rpx;
+		border: .5px solid #4D79FF;
+		background: rgba(77, 121, 255, 0.1);
+	}
+
+	.tag-red {
+		color: #FF5B56;
+		border: .5px solid #FF5B56;
+		background: rgba(255, 91, 86, 0.1);
+	}
+
 	.page {
 		height: 100vh;
 		background-color: #F6F6FB;
 	}
 
 	.goods-detail-page {
-
-		.desc-box {
-			padding: 30rpx;
-			margin: 15rpx 30rpx;
+		.select-box {
+			margin: 12px;
+			padding: 32rpx 30rpx;
 			border-radius: 14rpx;
-			background-color: #FFFFFF;
+			font-size: 24rpx;
+			background: #fff;
+
+			.select-row {
+				display: flex;
+				padding: 24rpx 0;
+				align-items: center;
+
+				.select-title {
+					color: #61687C;
+					margin-right: 30rpx;
+				}
+
+				.select-desc {
+					color: #171B25;
+				}
+			}
+		}
+
+		.price-box {
+			padding: 12rpx 30rpx 24rpx 30rpx;
+			margin: 12px 12px 0 12px;
+			border-radius: 14rpx 14rpx 0 0;
+			background: linear-gradient(270deg, #FFAA00 0%, #FF612F 100%);
 
 			.price-company {
 				font-size: 24rpx;
+				color: #fff;
 			}
 
 			.price-number {
 				font-size: 48rpx;
+				color: #fff;
 			}
+		}
+
+		.desc-box {
+			padding: 24rpx 30rpx 16rpx 30rpx;
+			background-color: #FFFFFF;
+			margin: -12rpx 12px 0 12px;
+			border-radius: 14rpx;
 
 			.title {
-				color: #414960;
+				color: #171B25;
 				margin: 15rpx 0;
-				font-size: 28rpx;
-				letter-spacing: 2rpx;
+				font-size: 30rpx;
+				font-weight: bold;
 			}
-
-			.price-msg {
-				margin-top: 18rpx;
-				display: flex;
-				flex-wrap: nowrap;
-				justify-content: start;
-				align-items: center;
-
-				.goods-tag {
-					color: #2aabe9;
-					font-size: 18rpx;
-					font-weight: 400;
-					width: 75rpx;
-					border-radius: 8rpx;
-					padding: 5rpx 10rpx;
-					border: 1rpx solid #2aabe9;
-				}
-
-				.price-tag {
-					font-size: 20rpx;
-					color: #9FA3B0;
-					margin-left: 13rpx;
-				}
-
-				.price-tag:last-child {
-					margin-left: auto;
-				}
-			}
-
 		}
 
 		.detail-box {
@@ -482,29 +541,32 @@
 			left: 0;
 			height: 120rpx;
 			line-height: 120rpx;
-			padding: 0rpx 0 22rpx 0;
+			padding: 0rpx 12px 22rpx 0;
 			background-color: #fff;
 			width: 100%;
 			align-items: center;
 			border-top: 1px solid #f0f0f0;
 
 			.buy-li {
-				width: 206rpx;
+				width: 120rpx;
 			}
 
 			.buy-li:first-child {
-				border-right: 1px solid #9FA3B0;
+				border-right: 1px solid #F1F2F5;
+			}
+
+			.buy-li:last-child {
+				width: calc(100% - 240rpx - 12px);
 			}
 
 			.buy-btn {
-				width: 285rpx;
 				height: 81rpx;
 				background: #ffaa00;
 				border-radius: 20rpx;
 				line-height: 81rpx;
 				text-align: center;
 				color: #fff;
-				font-size: 30 rpx;
+				font-size: 30rpx;
 			}
 		}
 	}

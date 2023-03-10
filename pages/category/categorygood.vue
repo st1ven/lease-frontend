@@ -29,7 +29,7 @@
 							<u-image mode="widthFix" width="60px" :src="item.image"></u-image>
 						</view>
 						<view class="wenzxi" style="width: 70%;">
-							<text class="u-line-2 ft-24 my-10" style="text-align: left;">{{item.title}}</text>
+							<text class="u-line-2 ft-26 my-10" style="text-align: left;">{{item.title}}</text>
 							<view class="goods-tags">
 								<view class="goods-tag tag-orange" v-if="item.activity == 'hot'">推荐</view>
 								<view class="goods-tag tag-purple" v-if="item.activity == 'day'">新品</view>
@@ -314,7 +314,7 @@
 					width: 100%;
 					color: #414960;
 					font-weight: 400;
-					font-size: 22rpx;
+					// font-size: 22rpx;
 					text-align: center;
 				}
 			}
