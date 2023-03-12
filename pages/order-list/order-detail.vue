@@ -304,8 +304,6 @@
 				location: {},
 				email: "",
 				mianyastatus: '',
-				jinjiname: "",
-				jinjimobile: "",
 				detailStatu: 1,
 				address_id: 0,
 				time: {},
@@ -342,10 +340,7 @@
 					province: '',
 					city: '',
 					area: '',
-					"urgent_name": "", //紧急联系人
-					"urgent_mobile": "", //紧急手机号
 					"email": "", //邮箱
-					relationship: '关系',
 				},
 				youhuiquanstatus: false,
 				yixuan: 1,
@@ -359,14 +354,13 @@
 			this.getidcadr()
 		},
 		onShow() {
-			// this.getLocation()
+			this.getLocation()
 			this.getidcadrd()
 			if (this.params.path == 'goods-detail') { //订单状态为待付款
 				this.confirmOrder()
 			}
 			this.idCardUrl = "/pages/idcard/idcard?type=detail&num=" + this.params.num + "&goods_sku_id=" + this.params
 				.goods_sku_id + "&address_id=" + this.address_id
-			console.log('onshow', this.gps_location);
 		},
 
 		watch: {
@@ -480,7 +474,7 @@
 				my.getLocation({
 					type: 1,
 					success: function(res) {
-						this.location = res;
+						_this.location = res;
 					},
 					fail: function(res) {
 						if (res.message == '用户不允许授权') {
@@ -501,7 +495,7 @@
 				uni.getLocation({
 					type: 'wgs84',
 					success: function(res) {
-						this.location = res;
+						_this.location = res;
 					},
 					fail: function(res) {
 						if (res.message == '用户不允许授权') {
@@ -669,39 +663,6 @@
 					this.idcardstatus = res.msg
 				})
 			},
-
-			// subOrder() {
-			// 	let opt = {
-			// 		url: '/order/submit',
-			// 		method: "POST",
-			// 		header: "application/x-www-form-urlencoded;charset=utf-8",
-			// 		data: {
-			// 			goods_sku_id: this.params.goods_sku_id,
-			// 			num: this.params.num, //库存
-			// 			order_key: this.order_key,
-			// 			remark: this.remark,
-			// 			guard_id: this.params.guard_id || '',
-			// 			address_id: this.address_id || this.params.address_id || "",
-			// 			email:this.email,
-			// 			jinjiname:this.jinjiname,
-			// 			jinjimobile:this.jinjimobile
-			// 		}
-			// 	}
-			// 	this.$request(opt).then(res => {
-			// 		let trade_no = res.data.parameter.alipay_trade_create_response.trade_no
-			// 		let order_sn = res.data.order_sn
-			// 		let _this = this
-			// 		this.$refs.uToast.show({
-			// 			message: res.msg,
-			// 			icon: 'success',
-			// 			type: 'success',
-			// 			complete() {
-			// 				//去身份认证
-			// 				_this.tradePay(trade_no, order_sn)
-			// 			}
-			// 		})
-			// 	})
-			// },
 			subOrder() {
 				let opt = {
 					url: '/order/submit',
@@ -715,8 +676,7 @@
 						guard_id: this.params.guard_id || '',
 						address_id: this.address_id || this.params.address_id || "",
 						// email:this.email,
-						// jinjiname: this.jinjiname,
-						// jinjimobile: this.jinjimobile,
+						location: JSON.stringify(this.location),
 						youhuiquanid: this.yixuan,
 						youhuiprice: this.youhuiprice,
 					}
