@@ -1,7 +1,7 @@
 <template>
 	<view class="contact-box">
 		<view class="notice-box">
-			<u-notice-bar text="请填写真实姓名，填写直系亲属会大幅提高审核通过率"></u-notice-bar>
+			<u-notice-bar text="填写直系亲属会大幅提高审核通过率，请填写真实姓名，我们一般不可能会联系您的紧急联系人"></u-notice-bar>
 		</view>
 		<view class="contact-item" v-if="loading">
 			<u-skeleton :loading="loading" rows="3"></u-skeleton>
