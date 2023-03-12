@@ -109,7 +109,7 @@
 				color: #fff;
 				font-size: 24rpx;
 				font-weight: bold;
-				background-color: #F6F6FB;
+				background-color: #ffaa00;
 			}
 			.hot-txt {
 				width: 90%;

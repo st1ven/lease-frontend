@@ -193,11 +193,11 @@
 			<view class="agreement-box">
 				<text class="agreement-radio">
 					<u-checkbox-group>
-						<u-checkbox @change="radioChange" activeColor="#ffaa00" :name="agreementFlag" shape="circle"
+						<u-checkbox label="我已阅读并同意" size="22" @change="radioChange" activeColor="#ffaa00" :name="agreementFlag" shape="circle"
 							v-model="agreementFlag"></u-checkbox>
 					</u-checkbox-group>
 				</text>
-				<view class="">我已阅读并同意“<text class="color-txt" @click="tiaozhuanxieyi()">租赁服务及相关协议</text>”
+				<view class=""><text class="color-txt" @click="tiaozhuanxieyi()">“租赁服务及相关协议”</text>
 				</view>
 			</view>
 			<!-- <view class="shiming" @click="amountBtn"> -->
@@ -1298,7 +1298,7 @@
 		.conclusion {
 			background-color: #fff;
 			// height: 215rpx;
-			padding: 23rpx 30rpx 50rpx 30rpx;
+			padding: 8rpx 30rpx 50rpx 30rpx;
 			box-sizing: border-box;
 			position: fixed;
 			bottom: 0;
@@ -1309,6 +1309,7 @@
 				color: #414960;
 				font-size: 28rpx;
 				line-height: 80rpx;
+				margin-bottom: 8rpx;
 				display: flex;
 				align-items: center;
 				// margin-bottom: 45rpx;
