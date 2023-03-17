@@ -41,8 +41,9 @@
 				@click="agreement({title:'关于我们',_url:'about'})" />
 			<iz-card-item width="25%" text="联系我们" :src="image.lianxiwomen" @click="$refs.contact.setStatus(true)" />
 			<iz-card-item width="25%" text="订单续租" :src="image.dingdanxuzu" @click="JumpOrder({inx:4})" />
-			<iz-card-item width="25%" text="身份认证" :src="image.shenfenrenzheng" @click="idcardd()" />
-			<iz-card-item width="25%" text="紧急联系人" :src="image.jinjlianxiren" @click="contactdd()" />
+			<iz-card-item width="25%" text="认证中心" :src="image.renzhengzhongxin" @click="jumpAuth()" />
+<!-- 			<iz-card-item width="25%" text="身份认证" :src="image.shenfenrenzheng" @click="idcardd()" />
+			<iz-card-item width="25%" text="紧急联系人" :src="image.jinjlianxiren" @click="contactdd()" /> -->
 			<iz-card-item width="25%" v-if="tuiguangnum != 1 && token!=''" text="推广数据" :src="image.tuiguangshuju"
 				@click="tuiguangurl()" />
 		</iz-card>
@@ -311,16 +312,11 @@
 					})
 				}
 			},
-			idcardd() {
-				uni.navigateTo({
-					url: "../idcard/idcard?type=detail"
-				})
-			},
-			contactdd() {
+			jumpAuth() {
 				this.token = uni.getStorageSync('token')
 				if (this.token) {
 					uni.navigateTo({
-						url: "../contact/contact"
+						url: "../home/authentication"
 					})
 				} else {
 					this.$refs.uToast.show({
@@ -330,6 +326,25 @@
 					})
 				}
 			},
+			// idcardd() {
+			// 	uni.navigateTo({
+			// 		url: "../idcard/idcard?type=detail"
+			// 	})
+			// },
+			// contactdd() {
+			// 	this.token = uni.getStorageSync('token')
+			// 	if (this.token) {
+			// 		uni.navigateTo({
+			// 			url: "../contact/contact"
+			// 		})
+			// 	} else {
+			// 		this.$refs.uToast.show({
+			// 			message: "请先登录",
+			// 			icon: 'error',
+			// 			type: 'error'
+			// 		})
+			// 	}
+			// },
 			agreement(obj) {
 				uni.navigateTo({
 					url: "../home/agreement?title=" + obj.title + "&_url=" + obj._url

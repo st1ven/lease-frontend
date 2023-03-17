@@ -8,7 +8,7 @@
 			实名认证
 		</view>
 		<view class="sub-title">
-			如暂无照片，可先传任意照片，审核通过后补传即可
+			若暂无照片，可先传任意照片，审核通过后补传即可
 		</view>
 		<!-- 人像面 -->
 		<view class="idCard-positive idCard-content" @click="uploadClick(1)">

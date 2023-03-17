@@ -37,7 +37,7 @@
 			</view>
 		</view>
 		<view class="help-time">
-			服务时间：周一至周五 9:30-18:30
+			服务时间：上午 9:30 至 下午 6:30
 		</view>
 	</view>
 </template>

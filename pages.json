@@ -81,6 +81,20 @@
 			}
 		},
 		{
+			"path": "pages/home/authentication",
+			"style": {
+				"navigationBarTitleText": "认证中心",
+				"backgroundColor": "#f6f6fb"
+			}
+		},
+		{
+			"path": "pages/home/profile",
+			"style": {
+				"navigationBarTitleText": "个人基本信息",
+				"backgroundColor": "#f6f6fb"
+			}
+		},
+		{
 			"path": "pages/assembly/redexpand",
 			"style": {
 				"navigationBarTitleText": "膨胀红包"

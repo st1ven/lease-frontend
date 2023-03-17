@@ -71,7 +71,11 @@
 						<view class="btn ml-20" @click="contact(item)">联系商家</view>
 					</view>
 					<!-- 待审核 -->
+					<view class="order-tag-box" style="margin-top: 10rpx;" v-if="tabList[activeIndex].inx=='1'">
+						<u-alert :description="'补充信息可加速审核，大幅提高审核通过率'" type="warning" fontSize="22rpx"></u-alert>
+					</view>
 					<view class="order-btn" v-if="tabList[activeIndex].inx=='1'">
+						<view class="btn ml-20" style="background: #ffaa00; color: #fff; border: 1px solid #ffaa00;" @click="jumpAuth()">补充信息</view>
 						<view class="btn ml-20" v-if="item.is_authentication==0" @click="getIDNumber(item)">去认证</view>
 						<view class="btn ml-20" @click="opencancelorder(item)">取消订单</view>
 						<view class="btn ml-20" v-if="item.hetong" @click="hetong(item)">签署合同</view>
@@ -528,6 +532,11 @@
 					// 打印调用成功回调
 					this.listInit()
 				})
+			},
+			jumpAuth() {
+				uni.navigateTo({
+					url: "../home/authentication",
+				});
 			},
 			shop(item) {
 				uni.navigateTo({

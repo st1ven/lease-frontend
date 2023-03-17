@@ -22,8 +22,12 @@
 				</view>
 				<view class="form" v-else>
 					<view class="form-li">
+						<text>真实姓名</text>
+						<u-input placeholder="请输入姓名" v-model="item.realname" border="none"></u-input>
+					</view>
+					<view class="form-li">
 						<text>姓名</text>
-						<u-input placeholder="请输入姓名" v-model="item.name" border="none"></u-input>
+						<u-input readonly placeholder="请输入姓名" v-model="item.name" border="none"></u-input>
 					</view>
 					<view class="form-li" @click="add(index)">
 						<text>电话</text>
@@ -87,6 +91,7 @@
 					success: (res) => {
 						this.$set(this.list, item, {
 							...res,
+							realname: res.name,
 							relationship: '父母'
 						});
 					},
@@ -127,7 +132,12 @@
 					uni.showToast({
 						icon: 'success',
 						title: res.msg,
-						duration: 3000
+						duration: 3000,
+						complete() {
+							uni.navigateBack({
+								delta: 1
+							});
+						}
 					});
 				})
 			}
