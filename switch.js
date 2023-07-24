@@ -5,7 +5,7 @@ const path = require('path');
 function replaceStringInFile(filePath, searchString, replaceString) {
     const fileExt = path.extname(filePath).toLowerCase();
 
-    if (fileExt === '.js' || fileExt === '.json' || fileExt === '.css' || fileExt === '.scss' || fileExt === '.vue') {
+    if (fileExt === '.js' || fileExt === '.json' || fileExt === '.css' || fileExt === '.scss' || fileExt === '.vue' || fileExt === '.html') {
         const fileContent = fs.readFileSync(filePath, 'utf8');
         const newContent = fileContent.replace(new RegExp(config[searchString].AppId, 'gi'), config[replaceString].AppId)
 					.replace(new RegExp(config[searchString].Name, 'gi'), config[replaceString].Name)
