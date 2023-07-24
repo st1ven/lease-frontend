@@ -2,47 +2,45 @@ const config = require('./common/config');
 const fs = require('fs');
 const path = require('path');
 
-function replaceTextInFiles(directory, searchValue, replaceValue) {
-	const files = fs.readdirSync(directory);
+function replaceStringInFile(filePath, searchString, replaceString) {
+    const fileExt = path.extname(filePath).toLowerCase();
 
-	files.forEach((file) => {
-			const filePath = path.join(directory, file);
-			const stats = fs.statSync(filePath);
-
-			if (stats.isDirectory()) {
-				// 排除 /uni_modules 目录
-				if (file === 'uni_modules') {
-					return;
-				}
-
-				replaceTextInFiles(filePath, searchValue, replaceValue); // 递归处理子目录
-			} else {
-				// 排除 /common/config.js 文件
-				if (file === 'config.js' && directory.endsWith('/common')) {
-					return;
-				}
-
-				// 读取文件内容
-				let content = fs.readFileSync(filePath, '8');
-
-				// 替换文本
-				content = content.replace(new RegExp(config[searchValue].AppId, 'gi'), config[replaceValue].AppId)
-								 .replace(new RegExp(config[searchValue].Name, 'gi'), config[replaceValue].Name)
-								 .replace(new RegExp(config[searchValue].Color, 'gi'), config[replaceValue].Color)
-								 .replace(new RegExp(searchValue, 'gi'), replaceValue);
-
-				// 写入替后的内容
-				fs.writeFileSync(filePath, content, 'utf8');
-		}
-	});
+    if (fileExt === '.js' || fileExt === '.css' || fileExt === '.scss' || fileExt === '.vue') {
+        const fileContent = fs.readFileSync(filePath, 'utf8');
+        const newContent = fileContent.replace(new RegExp(config[searchString].AppId, 'gi'), config[replaceString].AppId)
+					.replace(new RegExp(config[searchString].Name, 'gi'), config[replaceString].Name)
+					.replace(new RegExp(config[searchString].Color, 'gi'), config[replaceString].Color)
+					.replace(new RegExp(searchString, 'gi'), replaceString);
+        fs.writeFileSync(filePath, newContent);
+        console.log(`替换文件：${filePath}`);
+    }
 }
 
-// 获取命令行参数
-const searchValue = process.argv[2];
-const replaceValue = process.argv[3];
-if (searchValue == undefined || replaceValue == undefined) {
+function traverseDirectory(dirPath, searchString, replaceString) {
+    const files = fs.readdirSync(dirPath);
+
+    files.forEach(file => {
+        const filePath = path.join(dirPath, file);
+        const stats = fs.statSync(filePath);
+        
+        if (stats.isDirectory() && (file !== 'uni_modules' || file !== '.git')) {
+            traverseDirectory(filePath, searchString, replaceString);
+        } else if (stats.isFile() 
+            && !(file === 'config.js' && dirPath.includes('/common'))) {
+            replaceStringInFile(filePath, searchString, replaceString);
+        }
+    });
+}
+
+function replaceInDirectory(dirPath, searchString, replaceString) {
+    traverseDirectory(dirPath, searchString, replaceString);
+    console.log('替换完成');
+}
+
+const searchString = process.argv[2];
+const replaceString = process.argv[3];
+if (searchString == undefined || replaceString == undefined) {
   console.error('请输入参数，示例：node switch.js fengwo jzz');
   process.exit(1);
 }
-// 执行替换操作
-// replaceTextInFiles(__dirname, searchValue, replaceValue);
+replaceInDirectory(__dirname, searchString, replaceString);
