@@ -35,7 +35,7 @@
 		if(this.activityId !=null && query.activityId !=null){
 			uni.setStorageSync('activityId', this.activityId);
 		}
-		my.loadPlugin({
+		uni.loadPlugin({
 		  plugin: '2021003125612168@*',
 		  success: () => {
 			this.isReady= true

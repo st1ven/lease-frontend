@@ -4,7 +4,7 @@ const color = {
     primary: '#007FFF',
     info: '#9FA3B0',
     default: '#9FA3B0',
-    warning: '#FFAA00',
+    warning: '#FF9A00',
     error: '#FF5B56',
     success: '#00BA7C',
     mainColor: '#414960',

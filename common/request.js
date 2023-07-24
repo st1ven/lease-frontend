@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.jiulove.cn"; //域名抽取
+const BASE_URL = "https://jzz.jiulove.cn"; //域名抽取
 const HEADER = {
 	'content-type': 'multipart/form-data'
 }; //头部
@@ -39,24 +39,16 @@ export const $request = (options, get_token) => {
 					})
 					return
 				} else {
-					return uni.showToast({
-						title: res.data.msg || '查询失败',
-						duration: 3000,
-						success() {
-							// uni.navigateBack({ //返回上一页
-							// 	success: () => {
-							// 		let page = getCurrentPages()
-							// 			.pop(); //跳转页面成功之后
-							// 		if (!page) {
-							// 			return;
-							// 		} else {
-							// 			page.onLoad(page
-							// 				.options); // page自带options对象.
-							// 		}
-							// 	}
-							// })
-						}
-					})
+					let msg = res.data.msg || "获取数据失败";
+					if (!options.noError) {
+						uni.showToast({
+							title: res.data.msg || '查询失败',
+							duration: 3000,
+							icon: 'none',
+						})
+					}
+					reject();
+					return
 				}
 
 			},

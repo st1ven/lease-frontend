@@ -2,7 +2,7 @@
 	<view class="iz-coupons-box ">
 		<view class="" v-if="initList.length != false">
 			<view class="max" v-if="type==1">
-				<view class="iz-coupons-item " v-for=" (item,i) in initList">
+				<view class="iz-coupons-item " v-for=" (item,i) in initList" :key="i">
 					<view class="price-box">
 						<view>
 							<text class="price-company">¥</text>
@@ -26,7 +26,7 @@
 			</view>
 
 			<view class="maxs" v-if="type==0">
-				<view class="iz-coupons-item" v-for=" (item,i) in initList">
+				<view class="iz-coupons-item" v-for=" (item,i) in initList" :key="i">
 					<view class="price-box">
 						<view>
 							<text class="price-company">¥</text>
@@ -106,7 +106,7 @@
 				uni.showLoading({
 					title: "登录中..."
 				})
-				my.getOpenUserInfo({
+				uni.getOpenUserInfo({
 					fail: res => {
 						// console.log(res);
 					},
@@ -123,7 +123,7 @@
 						loginObj.userid = uni.getStorageSync('yaouserid')
 						this.avatar = userInfo.avatar
 						this.nickName = userInfo.nickName
-						my.getAuthCode({
+						uni.getAuthCode({
 							scopes: 'auth_base',
 							// scopes: ['auth_base','order_service'],
 							success: (authData) => {
@@ -305,7 +305,7 @@
 		}
 
 		.btn-no {
-			background-color: #ffaa00;
+			background-color: #FF6633;
 		}
 
 		.iz-coupons-item {

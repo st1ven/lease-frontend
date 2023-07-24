@@ -1,7 +1,7 @@
 <template>
-	<view class="contact-box">
+	<view class="contact-box" style="background-color: #f6f6fb;">
 		<view class="notice-box">
-			<u-notice-bar text="填写直系亲属会大幅提高审核通过率，请填写真实姓名，我们一般不可能会联系您的紧急联系人"></u-notice-bar>
+			<u-notice-bar text="填写直系亲属会大幅提高审核通过率，请务必填写真实姓名，切勿包含错别字，我们一般不可能会联系您的紧急联系人"></u-notice-bar>
 		</view>
 		<view class="contact-item" v-if="loading">
 			<u-skeleton :loading="loading" rows="3"></u-skeleton>
@@ -11,13 +11,35 @@
 				<view class="title">
 					紧急联系人{{index+1}}
 				</view>
+				<!-- #ifdef H5 -->
+				<view class="form">
+					<view class="form-li">
+						<text>真实姓名</text>
+						<u-input placeholder="请输入姓名" v-model="item.realname" border="none"></u-input>
+					</view>
+					<view class="form-li">
+						<text>电话</text>
+						<u-input placeholder="请输入电话" v-model="item.mobile" border="none"></u-input>
+					</view>
+					<view class="form-li">
+						<text>关系</text>
+						<u-radio-group activeColor="#FF6633" v-model="item.relationship" placement="row">
+							<u-radio :customStyle="{marginRight: '48rpx'}" labelSize="28rpx"
+								v-for="(item1, index1) in relationship_map" :key="index1" :label="item1.name"
+								:name="item1.name" @change="(e) => radioChange(e, index)">
+							</u-radio>
+						</u-radio-group>
+					</view>
+				</view>
+				<!-- #endif -->
+				<!-- #ifndef H5 -->
 				<view class="" v-if="item.mobile == undefined || item.mobile == ''">
 					<view class="desc">
 						非紧急情况下，我们不会打扰，请您放心
 					</view>
 					<view class="button" @click="add(index)">
-						<u-icon name="plus" size="12" color="#ffaa00" label="立即添加" labelPos="right" labelSize="14"
-							labelColor="#ffaa00"></u-icon>
+						<u-icon name="plus" size="12" color="#FF6633" label="立即添加" labelPos="right" labelSize="14"
+							labelColor="#FF6633"></u-icon>
 					</view>
 				</view>
 				<view class="form" v-else>
@@ -27,16 +49,16 @@
 					</view>
 					<view class="form-li">
 						<text>姓名</text>
-						<u-input readonly placeholder="请输入姓名" v-model="item.name" border="none"></u-input>
+						<u-input class="form-disabled" readonly :placeholder="item.name" border="none"></u-input>
 					</view>
-					<view class="form-li" @click="add(index)">
+					<view class="form-li form-disabled" @click="add(index)">
 						<text>电话</text>
-						<u-input :readonly="item.mobile !== ''" placeholder="请输入电话" v-model="item.mobile" border="none"
+						<u-input :readonly="item.mobile !== ''" :placeholder="item.mobile" border="none"
 							suffixIcon="arrow-right" suffixIconStyle="color: #9FA3B0; font-size: 24rpx;"></u-input>
 					</view>
 					<view class="form-li">
 						<text>关系</text>
-						<u-radio-group activeColor="#ffaa00" v-model="item.relationship" placement="row">
+						<u-radio-group activeColor="#FF6633" v-model="item.relationship" placement="row">
 							<u-radio :customStyle="{marginRight: '48rpx'}" labelSize="28rpx"
 								v-for="(item1, index1) in relationship_map" :key="index1" :label="item1.name"
 								:name="item1.name" @change="(e) => radioChange(e, index)">
@@ -44,6 +66,7 @@
 						</u-radio-group>
 					</view>
 				</view>
+				<!-- #endif -->
 			</view>
 		</view>
 		<view class="input-btn" @click="saveContact()">保存联系人</view>
@@ -71,10 +94,16 @@
 				list: []
 			}
 		},
-		onLoad() {
-			this.init()
+		onLoad(query) {
+			console.log(query, 'query');
+			if (query && query.list) {
+				this.loading = false;
+				console.log(query.list, 'query.list');
+				this.list = JSON.parse(query.list);
+			} else {
+				this.init();
+			}
 		},
-		onShow() {},
 		methods: {
 			init() {
 				let opt = {
@@ -85,22 +114,44 @@
 					this.list = res.data || [{}, {}, {}];
 				})
 			},
+			setArr(list, item, res) {
+				this.$set(list, item, {
+					...res,
+					realname: res.name,
+					relationship: '父母'
+				});
+				console.log(this.list, 'this.list');
+			},
 			add(item) {
 				// #ifdef MP-ALIPAY
-				my.choosePhoneContact({
+				uni.choosePhoneContact({
 					success: (res) => {
-						this.$set(this.list, item, {
-							...res,
-							realname: res.name,
-							relationship: '父母'
-						});
+						console.log(res, 'choosePhoneContact');
+						this.setArr(this.list, item, res);
 					},
 					fail: (res) => {
 						uni.showToast({
-							title: res.errorMessage,
+							title: '请授权您的联系人权限,方便我们快速为您添加联系人',
 							duration: 3000
 						});
 					}
+				});
+				// #endif
+				// #ifdef APP-PLUS
+				plus.contacts.getAddressBook(plus.contacts.ADDRESSBOOK_PHONE, (addressbook) => {
+					console.log(addressbook, 'addressbook');
+					// 跳转到通讯录的选择联系人界面
+					uni.redirectTo({
+						url: '../addressbook/addressbook?item=' + item + '&list=' + JSON.stringify(this
+							.list),
+					});
+				}, (e) => {
+					console.log(e, 'e');
+					uni.showToast({
+						title: '获取通讯录失败,请授权',
+						duration: 3000,
+						icon: 'none'
+					});
 				});
 				// #endif
 			},
@@ -154,10 +205,14 @@
 			line-height: 80rpx;
 			border-radius: 20rpx;
 			color: #fff;
-			background: #ffaa00;
+			background: #FF6633;
 		}
 
 		.form {
+			.form-disabled {
+				color: #e30d0d;
+			}
+
 			.form-li {
 				display: flex;
 				align-items: center;
@@ -206,7 +261,7 @@
 				top: 52rpx;
 				right: 30rpx;
 				border-radius: 50rpx;
-				border: 1px solid #ffaa00;
+				border: 1px solid #FF6633;
 				padding: 8rpx 16rpx;
 			}
 		}

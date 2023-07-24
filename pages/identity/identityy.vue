@@ -1,5 +1,5 @@
 <template>
-	<view class="identity-page">
+	<view class="identity-page" style="background-color: #f6f6fb;">
 		<view class="head">
 			<view class="head-img-box">
 				<u-icon name="account-fill" color="#fff" size="160rpx" top="16rpx"></u-icon>
@@ -42,7 +42,7 @@
 				进入人脸认证
 			</view>
 			<view class="" v-if="renzheng" style="padding-top: 20px;">
-				<u-loading-icon color="#ffaa00" text="正在同步实名认证结果" size="16" :vertical="true" textSize="14"></u-loading-icon>
+				<u-loading-icon color="#FF6633" text="正在同步实名认证结果" size="16" :vertical="true" textSize="14"></u-loading-icon>
 			</view>
 			
 		</view>
@@ -100,7 +100,7 @@
 			},
 			dingyue(certifyId){
 				let _this = this
-				my.getAuthCode({
+				uni.getAuthCode({
 				  scopes: ['order_service'],
 				  success: (res) => {
 					  _this.query(certifyId)
@@ -112,7 +112,7 @@
 				  },
 				});
 			
-				// my.requestSubscribeMessage({
+				// uni.requestSubscribeMessage({
 				// 	  entityIds: ['2b42dc4e5f9d467da1a6ce9da367b06e'],
 				// 	  success: (res) => {
 				// 	    // res.behavior == 'subscribe'
@@ -131,7 +131,7 @@
 			},
 			startAPVerify() {
 				let _this = this 
-				my.startAPVerify({
+				uni.startAPVerify({
 					url: this.startAPVerify_url,
 					certifyId: this.certifyId,
 					success: function(res) {
@@ -217,7 +217,7 @@
 
 		.head {
 			height: 382rpx;
-			background: #ffaa00;
+			background: #FF6633;
 			color: #fff;
 			text-align: center;
 			padding-top: 60rpx;
@@ -291,7 +291,7 @@
 			.btn {
 				height: 88rpx;
 				line-height: 88rpx;
-				background-color: #ffaa00;
+				background-color: #FF6633;
 				color: #fff;
 				font-size: 30rpx;
 				text-align: center;

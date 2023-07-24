@@ -1,10 +1,11 @@
 <template>
-	<view>
+	<view style="background-color: #f6f6fb;">
 		<view class="swiper-box">
 			<u-swiper indicator :autoplay="true" radius="10" @click="bann" :list="bannerList" />
 		</view>
-		<view class="zhuanqu" v-for="(item,i) in secondList" :key="i" v-if="item.list[0]"
-			:style="{backgroundImage:'url('+imageurl+')'}">
+		<!-- v-if="item.list[0]" -->
+		<view class="zhuanqu" v-for="(item, i) in secondList.filter(x=>x.list && x.list.length && x.list[0])" :key="i" 
+			:style="{ backgroundImage: 'url(' + imageurl + ')' }">
 			<view class="title-box" v-if="item.list[0]">
 				<text class="title">{{item.name}}</text>
 				<view class="flex align-center ml-auto" @click="JumpDetail(item.id)">
@@ -128,7 +129,6 @@
 	}
 
 	.zhuanqu {
-		// background-image: url(https://oss.jiulove.cn/uploads/20220311/ba86729c56c76a4806e7e73d88d676f3.png);
 		width: 96%;
 		margin: 0 2% 2%;
 		border-radius: 10px;

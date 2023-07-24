@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view style="background-color: #f6f6fb;">
 		<!-- 自定义导航 分类-->
 		<view class="fixed-box">
 			<view class="search-box" @click="search()">
@@ -149,7 +149,7 @@
 			top: 50%;
 			width: 10rpx;
 			height: 38rpx;
-			background: #ffaa00;
+			background: #FF6633;
 			transform: translateY(-50%);
 		}
 
@@ -204,10 +204,6 @@
 					text-align: center;
 				}
 			}
-
-			// .cate-item:nth-child(3n - 1) {
-			// 	margin: 0 0.5%;
-			// }
 
 		}
 	}

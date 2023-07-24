@@ -1,7 +1,7 @@
 <template>
 	<!--  -->
 	<view>
-		<view class="swiper-box">
+		<view class="swiper-box" style="background-color: #f6f6fb;">
 			<u-swiper indicator previousMargin="30" nextMargin="30" circular :autoplay="false" radius="5"
 			 @click="bann" :list="bannerList" />
 		</view>

@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view style="background-color: #f6f6fb;">
 		<view class="zone-box" v-for="(item,i) in list" :key="i">
 			<view class="flex align-center mx-15 mt-10 mb-15">
 				<text class="title-color ft-30 ft-bold">{{item.name}}</text>

@@ -132,7 +132,7 @@
 					// #ifdef APP-NVUE
 					this.show && this.nvueAnimate()
 					// #endif
-					// #ifdef APP-PLUS 
+					// #ifdef APP-PLUS
 					this.show && this.addEventListenerToWebview()
 					// #endif
 				}, 20)

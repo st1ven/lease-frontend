@@ -1,5 +1,5 @@
 <template>
-		<view class="u-content">
+		<view class="u-content" style="background-color: #f6f6fb;">
 
 			<image @click="goods" style="width: 100%;" :src="content.backgroundimage" mode="widthFix"></image>
 

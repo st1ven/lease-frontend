@@ -1,5 +1,5 @@
 <template>
-	<view class="page eve_page" :class="params.type==1?'Daily-page':(params.type==2?'Used_an-page':'Hot_pc-page')">
+	<view class="page eve_page" :class="params.type==1?'Daily-page':(params.type==2?'Used_an-page':'Hot_pc-page')" style="background-color: #f6f6fb;">
 		<view class="Daily_new" v-if="params.type==1">
 			<view class="Daily" :style="{backgroundColor:background}">
 				<image  class="topimage" :src="imageurl" mode="widthFix" ></image>
@@ -203,19 +203,16 @@
 	}
 
 	.Daily_new {
-		// background-image: url("https://oss.jiulove.cn/zl/new.png");
 		height: 100%;
 		background-size: 100%;
 	}
 
 	.Hot_pc {
-		// background-image: url("https://oss.jiulove.cn/zl/Digital_hot.png");
 		height: 78%;
 		background-size: 100%;
 	}
 
 	.Used_an {
-		// background-image: url("https://oss.jiulove.cn/zl/ershou.png");
 		height: 100%;
 		background-size: 100%;
 		// margin-bottom: 0.2rem;

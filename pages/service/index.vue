@@ -6,15 +6,16 @@
 			<view class="desc">您是否遇到了以下问题？</view>
 		</view>
 		<view class="help-tab">
-			<u-tabs :list="tableList" @click="click" :scrollable="false" lineColor="#ffaa00"></u-tabs>
+			<u-tabs :list="tableList" @click="click" :scrollable="false" lineColor="#FF6633"></u-tabs>
 		</view>
 		<view class="help-ul">
 			<view v-if="loading" style="padding-top: 20px;">
-				<u-loading-icon color="#ffaa00" text="正在加载..." size="16" :vertical="true" textSize="14">
+				<u-loading-icon color="#FF6633" text="正在加载..." size="16" :vertical="true" textSize="14">
 				</u-loading-icon>
 			</view>
+			<!-- #ifndef  APP-PLUS-->
 			<u-collapse accordion :border="true" :isLink="true">
-				<view v-for="(item,index) in ulList">
+				<view v-for="(item,index) in ulList" :key="index">
 					<u-collapse-item :border="false" :isLink="true">
 						<text slot="title" class="u-page__item__title__slot-title">{{item.title}}</text>
 						<text class="u-collapse-content">{{item.content}}</text>
@@ -24,13 +25,23 @@
 					</u-collapse-item>
 				</view>
 			</u-collapse>
+			<!-- #endif -->
+			<!-- #ifdef  APP-PLUS-->
+			<u-collapse accordion :border="true" :isLink="true" arrow :head-style="headStyle">
+					<u-collapse-item :border="false" :isLink="true" v-for="(item,index) in ulList" :key="index" :title="item.title" >
+						<text class="u-collapse-content">{{item.content}}</text>
+					</u-collapse-item>
+			</u-collapse>
+			<!-- #endif -->
 		</view>
 		<view class="help-footer">
+			<!-- #ifdef MP-ALIPAY -->
 			<view class="help-button">
 				<image style="width: 40rpx;" src="../../static/image/service.png" mode="widthFix"></image>
 				平台在线客服
-				<contact-button tnt-inst-id="x8o_S4gv" scene="SCE01231099" icon="../../static/image/online-button.png" color="transparent" />
+				<contact-button tnt-inst-id="6NO_URj2" scene="SCE01241131" color="transparent" />
 			</view>
+			<!-- #endif -->
 			<view class="help-button" @click="phoneCall">
 				<image style="width: 40rpx;" src="../../static/image/phonecall.png" mode="widthFix"></image>
 				平台热线客服
@@ -51,7 +62,10 @@
 				tableList: [],
 				ulList: [],
 				allList: [],
-				iphoneNum: ''
+				iphoneNum: '',
+				headStyle: {
+					// border:'1px solid red'
+				}
 			}
 		},
 		onLoad() {
@@ -148,7 +162,13 @@
 	}
 
 	.help-page {
-		background-color: #ffaa00;
+		/* #ifdef H5 */
+		padding-top: 24px;
+		/* #endif */
+		/* #ifdef APP-PLUS */
+		padding-top: 48px;
+		/* #endif */
+		background-color: #FF6633;
 		// height: 100vh;
 
 		.help-header {
@@ -157,9 +177,14 @@
 			justify-content: flex-end;
 			padding: 0 12px 24px 12px;
 			color: #fff;
+			/* #ifdef MP-ALIPAY  */
 			height: 13vh;
-			background: url('../../static/image/honeycomb.png');
-			background-size: 50%;
+			/* #endif */
+			/* #ifndef MP-ALIPAY  */
+			height: 10vh;
+			/* #endif */
+			background: url('../../static/image/header.png');
+			background-size: 20vh;
 			background-repeat: no-repeat;
 			background-position: 100% 0;
 
@@ -191,12 +216,19 @@
 		.help-footer {
 			display: flex;
 			background: #fff;
-			padding: 64rpx 12px 24rpx 12px;
 			justify-content: space-between;
+			// #ifdef MP-ALIPAY
 			gap: 12px;
+			padding: 64rpx 12px 24rpx 12px;
 			margin: -1px 0;
+			// #endif
+			// #ifndef MP-ALIPAY
+			padding: 0 12rpx;
+			// #endif
+			
 		}
 
+		// #ifdef MP-ALIPAY
 		.help-button {
 			position: relative;
 			display: flex;
@@ -211,7 +243,25 @@
 			background: #F1F2F5;
 			border-radius: 10px;
 		}
-
+		// #endif
+		// #ifndef MP-ALIPAY
+		.help-button {
+			position: relative;
+			display: flex;
+			gap: 16rpx;
+			justify-content: center;
+			align-items: center;
+			// width: 48%;
+			flex: 1;
+			padding: 30rpx 0;
+			font-size: 16px;
+			font-weight: bold;
+			color: #fff;
+			background: #FF6633;
+			border-radius: 10px;
+			margin-top: 10rpx;
+		}
+		// #endif
 		.help-time {
 			color: #9FA3B0;
 			font-size: 12px;

@@ -26,7 +26,7 @@
 	export default {
 	data() {
 		return {
-			canUse: my.canIUse('lifestyle'),
+			canUse: uni.canIUse('lifestyle'),
 			action: {},
 			activityId: '',
 			isReady: false,
@@ -49,7 +49,7 @@
 			}
 		}
 		this.action={ type: '' } //红包不弹窗
-		my.loadPlugin({
+		uni.loadPlugin({
 		  plugin: '2021003125612168@*',
 		  success: () => {
 			this.isReady= true
@@ -151,7 +151,7 @@
 		 	uni.showLoading({
 		 		title: "登录中..."
 		 	})
-		 	my.getOpenUserInfo({
+		 	uni.getOpenUserInfo({
 		 		fail: res => {
 		 			
 		 		},
@@ -169,7 +169,7 @@
 					loginObj.red  = '1'
 		 			this.avatar = userInfo.avatar
 		 			this.nickName = userInfo.nickName
-		 			my.getAuthCode({
+		 			uni.getAuthCode({
 		 				scopes: 'auth_base',
 		 				// scopes: ['auth_base','order_service'],
 		 				success: (authData) => {

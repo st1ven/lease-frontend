@@ -1,5 +1,5 @@
 <template>
-	<view class="page eve_page" :class="params.type==1?'Daily-page':(params.type==2?'Used_an-page':'Hot_pc-page')">
+	<view class="page eve_page" :class="params.type==1?'Daily-page':(params.type==2?'Used_an-page':'Hot_pc-page')" style="background-color: #f6f6fb;">
 		
 		
 			<view class="Daily" style="margin-bottom: 50px;" :style="{backgroundColor:background}">

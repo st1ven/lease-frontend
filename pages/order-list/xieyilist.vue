@@ -1,5 +1,5 @@
 <template>
-	<view class="pages">
+	<view class="pages" style="background-color: #f6f6fb;height: 96vh;">
 
 		<view class="idCard-box" v-for="(item,index) in content"  :key='index'>
 			<u-cell-group :border="false">
@@ -41,8 +41,6 @@
 
 <style>
 	.pages{
-		/* background-color: #F6F6FB; */
-		/* background-color: #fff; */
 		padding: 10px;
 		height: 100%;
 	}

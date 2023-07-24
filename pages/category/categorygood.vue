@@ -5,23 +5,23 @@
 			<u-scroll-list :indicator="false" style="background-color: #fff;">
 				<view class="uscroll" v-for="(item, index) in tarlist" :key="index" @click="fenleibig(item.id,index)">
 					<image :src="item.image" mode="widthFix" style="width: 80rpx; margin: 0px 8px;" ></image>
-					<text v-if="activetext == index" style="font-size: 12px;font-weight:bold;color: #FFAA00;">{{item.name}}</text>
+					<text v-if="activetext == index" style="font-size: 12px;font-weight:bold;color: #FF6633;">{{item.name}}</text>
 					<text v-else style="font-size: 12px; color: #61687C;">{{item.name}}</text>
 				</view>
 			</u-scroll-list>
 		</view>
 		<view class="content-box">
 			<!-- 侧边导航栏 -->
-			<scroll-view scroll-y="true" :scroll-into-view="'nav-' + activeIndex" scroll-with-animation="true">
-				<view :class="activeIndex === i ? 'active' : ''" v-for="(item,i) in sidebarList" :key="i" :id="item.id"
-					class="tab-item" @click="genleigood(item.id,i)">
-					{{item.name}}
+			<scroll-view scroll-y="true" :scroll-into-view="'nav-' + activeIndex" scroll-with-animation="true" style="background: #f6f6fb;height: 100%;">
+				<view :class="activeIndex === i ? 'active' : ''" v-for="(item, i) in sidebarList" :key="i" :id="item.id"
+					class="tab-item" @click="genleigood(item.id, i)">
+					{{ item.name }}
 				</view>
 			</scroll-view>
 			<!-- 内容 -->
 			<view class="content" >
 				<view v-if="loading" style="padding: 10px 0;">
-					<u-loading-icon color="#ffaa00" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+					<u-loading-icon color="#FF6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 				</view>
 				<view v-for="(item,inx) in targetList" :key="inx" class="cate-item" @click="more(item)">
 					<view class="contentview">
@@ -173,6 +173,12 @@
 		width: 100%;
 		height: 70rpx;
 		line-height: 70rpx;
+		/* #ifdef H5 */
+		padding-top: 16px;
+		/* #endif */
+		/* #ifdef APP-PLUS */
+		padding-top: 48px;
+		/* #endif */
 		padding-bottom: 0rpx;
 		box-shadow: 0px 1rpx 0px 0px rgba(68, 67, 67, 0.13);
 		background-color: #fff;
@@ -194,23 +200,31 @@
 		}
 	}
 
-	.content-box {
-		position: relative;
-		top: 155rpx;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: #fff;
-
-		.tab-item {
-			width: 170rpx;
-			height: 90rpx;
-			color: #61687C;
-			font-size: 24rpx;
-			font-weight: 400;
-			line-height: 90rpx;
-			text-align: center;
-		}
+.content-box {
+	position: relative;
+	top: 155rpx;
+	/* #ifdef H5 */
+	top: calc(155rpx + 16px);
+	/* #endif */
+	/* #ifdef APP-PLUS */
+	top: calc(155rpx + 48px);
+	/* #endif */
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #f6f6fb;
+	// border: 1px solid red;
+	.tab-item {
+		width: 170rpx;
+		height: 90rpx;
+		color: #61687C;
+		font-size: 24rpx;
+		font-weight: 400;
+		line-height: 90rpx;
+		text-align: center;
+		// border: 1px solid red;
+		
+	}
 
 		.active {
 			color: #414960;
@@ -227,7 +241,7 @@
 			top: 50%;
 			width: 10rpx;
 			height: 38rpx;
-			background: #FFAA00;
+			background: #FF6633;
 			transform: translateY(-50%);
 			border-radius: 0 10rpx 10rpx 0;
 		}
@@ -238,22 +252,33 @@
 			position: fixed;
 		}
 
-		.goods-tags {
-			display: flex;
-			gap: 8rpx;
-			margin: 15rpx 0;
-		}
+	.goods-tags {
+		display: flex;
+		// #ifdef MP-ALIPAY
+		gap: 8rpx;
+		// #endif
+		// #ifndef MP-ALIPAY
+		// width: 40%;
+		// justify-content: space-between;
+		// #endif
+		margin: 15rpx 0;
+	}
 
-		.goods-tag {
-			color: #4D79FF;
-			font-size: 18rpx;
-			font-weight: 400;
-			width: max-content;
-			border-radius: 8rpx;
-			padding: 5rpx 10rpx;
-			border: .5px solid #4D79FF;
-			background: rgba(77, 121, 255, 0.1);
-		}
+	.goods-tag {
+		color: #4D79FF;
+		font-size: 18rpx;
+		font-weight: 400;
+		width: max-content;
+		border-radius: 8rpx;
+		padding: 5rpx 10rpx;
+		border: .5px solid #4D79FF;
+		background: rgba(77, 121, 255, 0.1);
+
+		// #ifndef MP-ALIPAY
+		margin-right: 15rpx;
+		// #endif
+
+	}
 
 		.tag-red {
 			color: #FF5B56;
@@ -262,8 +287,8 @@
 		}
 
 		.tag-orange {
-			color: #FFAA00;
-			border: .5px solid #FFAA00;
+			color: #FF6633;
+			border: .5px solid #FF6633;
 			background: rgba(255, 170, 0, 0.1);
 		}
 
@@ -318,11 +343,6 @@
 					text-align: center;
 				}
 			}
-
-			// .cate-item:nth-child(3n - 1) {
-			// 	margin: 0 0.5%;
-			// }
-
 		}
 	}
 </style>

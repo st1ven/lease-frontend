@@ -1,5 +1,5 @@
 <template>
-	<view class="">
+	<view class="" style="background-color: #f6f6fb;">
 		<view class="topyao">
 			<view class="toptwo">
 				<text class="toptext">邀请人数</text>
@@ -90,12 +90,15 @@
 		justify-content: space-evenly;
 		align-items: center;
 		background: #ffdfc9;
+		/* border: 1px solid red; */
 	}
 	.toptwo{
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		line-height: 35px;
+		/* border: 1px solid red; */
+		flex: 1;
 	}
 	.toptext{
 		font-size: 16px;

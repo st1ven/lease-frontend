@@ -1,5 +1,5 @@
 <template>
-	<view class="content">
+	<view class="content" style="background-color: #f6f6fb;">
 		
 		<choose-date ref="chooseDate" layout="horizontal" :mode="mode1" @changeDateFun="changeDateFun1" @show="onDateViewShow" @hide="onDateViewHide" />
 		<view class="box">
@@ -130,7 +130,7 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.order{
 		text-align: center;
 	}

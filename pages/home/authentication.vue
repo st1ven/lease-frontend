@@ -1,6 +1,6 @@
 <template>
-	<view>
-		<view class="notice-box">
+	<view style="background-color: #f6f6fb;height: 100vh;">
+		<view class="notice-box" >
 			<u-notice-bar text="请尽快完成以下信息认证，如实填写会大幅提高审核通过率"></u-notice-bar>
 		</view>
 		<view class="auth-box">

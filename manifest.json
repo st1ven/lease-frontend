@@ -1,6 +1,6 @@
 {
-    "name" : "蜂窝租机",
-    "appid" : "__UNI__CEC08E2",
+    "name" : "机转转",
+    "appid" : "__UNI__1EEB566",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : 1,
@@ -24,11 +24,16 @@
         "nvueCompiler" : "uni-app",
         "compilerVersion" : 3,
         "modules" : {
-            "Webview-x5" : {}
+            "Webview-x5" : {},
+            "Payment" : {},
+            "Contacts" : {},
+            "Camera" : {},
+            "Geolocation" : {}
         },
         "distribute" : {
             "android" : {
                 "permissions" : [
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
                     "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
                     "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
@@ -55,10 +60,27 @@
                 "abiFilters" : [ "armeabi-v7a", "arm64-v8a" ]
             },
             "ios" : {
-                "idfa" : false
+                "idfa" : false,
+                "dSYMs" : false,
+                "privacyDescription" : {
+                    "NSPhotoLibraryUsageDescription" : "需要打开相册获取您想要上传的图片",
+                    "NSCameraUsageDescription" : "需要摄像头权限进行拍摄",
+                    "NSLocationWhenInUseUsageDescription" : "请提供您的位置方便为您设置收货地址",
+                    "NSContactsUsageDescription" : "需要您的通讯录权限以快速设置您的联系人"
+                }
             },
             "sdkConfigs" : {
-                "ad" : {}
+                "ad" : {},
+                "payment" : {
+                    "alipay" : {
+                        "__platform__" : [ "ios", "android" ]
+                    }
+                },
+                "geolocation" : {
+                    "system" : {
+                        "__platform__" : [ "ios", "android" ]
+                    }
+                }
             },
             "icons" : {
                 "android" : {
@@ -91,8 +113,12 @@
                         "spotlight@3x" : ""
                     }
                 }
+            },
+            "splashscreen" : {
+                "iosStyle" : "common"
             }
-        }
+        },
+        "nvueLaunchMode" : ""
     },
     "quickapp" : {},
     "mp-weixin" : {
@@ -112,7 +138,7 @@
         "useDynamicPlugins" : true,
         "usingComponents" : true,
         "component2" : true,
-        "appid" : "2021003160663109",
+        "appid" : "2021003182690896",
         "plugins" : {
             "alipassToolKit" : {
                 "version" : "*",
@@ -150,10 +176,10 @@
         },
         "optimization" : {
             "treeShaking" : {
-                "enable" : false
+                "enable" : true
             }
         },
-        "title" : "蜂窝租机",
+        "title" : "机转转",
         "sdkConfigs" : {
             "maps" : {
                 "qqmap" : {

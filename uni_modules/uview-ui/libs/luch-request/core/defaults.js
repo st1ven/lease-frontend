@@ -14,13 +14,13 @@ export default {
     // #ifdef H5 || APP-PLUS || MP-ALIPAY || MP-WEIXIN
     timeout: 60000,
     // #endif
-    // #ifdef APP-PLUS
+    // #ifndef MP-ALIPAY
     sslVerify: true,
     // #endif
     // #ifdef H5
     withCredentials: false,
     // #endif
-    // #ifdef APP-PLUS
+    // #ifndef MP-ALIPAY
     firstIpv4: false,
     // #endif
     validateStatus: function validateStatus(status) {

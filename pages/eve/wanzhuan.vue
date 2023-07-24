@@ -1,7 +1,7 @@
 <template>
-		<view class="u-content">
+		<view class="u-content" style="background-color: #f6f6fb;">
 
-			<view class=""@click="fanhui">
+			<view class="" @click="fanhui">
 				<u-parse :content="content" :previewImg="false"></u-parse>
 			</view>
 		</view>

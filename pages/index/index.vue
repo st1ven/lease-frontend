@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view style="background-color: #f6f6fb;">
 		<!-- 搜索 & 轮播  首页 -->
 		<view class="tab-box"
 			:style="{background:'linear-gradient(1deg, #ffffff 0%, '+ backgroundcolor +' 100%)', paddingTop:statusBarHeight + titleBarHeight}">
@@ -11,43 +11,50 @@
 		</view>
 		<view class="gonggao" v-if="imagee.dynamic != '0'">
 			<view class="content">
-				<text class="zulin">租赁<text style="color: #FFAA00;">动态</text></text>
+				<text class="zulin">租赁<text style="color: #FF6633;">动态</text></text>
 				<text v-if="(imagee.gonggao).length < 15 " class="tishi">{{imagee.gonggao}}</text>
 				<u-notice-bar v-else :text="''+imagee.gonggao+''" direction="row" icon=" " bgColor=" " speed="60"
 					color="#414960"></u-notice-bar>
 			</view>
 		</view>
+		<!-- 滞纳金 -->
+		<view class="gonggao" v-for="(item) in latefee" :key="item.order_sn">
+			<u-alert :title="'订单号：' + item.order_sn + '\n' + item.late_fee_title" :description="item.late_fee_desc"
+				type="error" fontSize="28rpx" @click="order(item)"></u-alert>
+		</view>
 		<view class="gongge">
 			<u-skeleton :loading="loading" rows="1"></u-skeleton>
-			<swiper class="swiper" :indicator-dots="true" indicator-color="#D5D7DC" indicator-active-color="#9FA3B0">
+			<swiper class="swiper" :indicator-dots="true" indicator-color="#D5D7DC" indicator-active-color="#9FA3B0"
+				style="height:180rpx">
 				<swiper-item>
 					<u-grid col="5" :border="false">
-						<u-grid-item v-for="(baseListItem,baseListIndex) in baseList.slice(0, 5)" :key="baseListIndex"
+						<u-grid-item v-for="(baseListItem) in baseList.slice(0, 5)" :key="baseListItem.categoryid"
 							@click="gongge(baseListItem)">
 							<u-image :src="baseListItem.image" mode="aspectFit" shape="circle" width="96rpx"
 								height="96rpx"></u-image>
-							<text class="grid-text">{{baseListItem.name}}</text>
+							<text class="grid-text">{{ baseListItem.name }}</text>
 						</u-grid-item>
 					</u-grid>
 				</swiper-item>
 				<swiper-item>
 					<u-grid col="5" :border="false">
-						<u-grid-item v-for="(baseListItem,baseListIndex) in baseList.slice(5)" :key="baseListIndex"
+						<u-grid-item v-for="(baseListItem) in baseList.slice(5)" :key="baseListItem.categoryid"
 							@click="gongge(baseListItem)">
 							<u-image :src="baseListItem.image" mode="aspectFit" shape="circle" width="96rpx"
 								height="96rpx"></u-image>
-							<text class="grid-text">{{baseListItem.name}}</text>
+							<text class="grid-text">{{ baseListItem.name }}</text>
 						</u-grid-item>
 					</u-grid>
 				</swiper-item>
 			</swiper>
 		</view>
-		<view class="bannerbottom">
-			<image v-for="(item,index) in imagee.bannerbottom" :key="index" :src="item" mode="widthFix"></image>
+		<view class="bannerbottom" v-if="imagee && imagee.bannerbottom">
+
+			<image v-for="(item, index) in imagee.bannerbottom" :key="index" :src="item" mode="widthFix"></image>
 		</view>
 		<!-- #ifdef MP-ALIPAY -->
 		<view v-if="imagee.followopen == '1'" style="padding: 4px 12px 0 12px;">
-			<view :style="{backgroundImage:'url('+imagee.follow+')'}" class="guanzhu" @click="huiyuan()">
+			<view :style="{ backgroundImage: 'url(' + imagee.follow + ')' }" class="guanzhu" @click="huiyuan()">
 			</view>
 		</view>
 		<!-- #endif -->
@@ -57,16 +64,16 @@
 					<u-swiperbot @click="bannbottom" indicatorMode="dot" interval="4000" indicator height="100%"
 						:list="listimage.map(item => item.image)" :circular="true" />
 				</view>
-				<view class="imageimage" style="margin-left: 2px; display: flex; flex-direction: column; gap: 4px;">
+				<view class="imageimage" style="margin-left: 2px; display: flex; flex-direction: column;">
 					<image :lazy-load="true" :src="imagee.bigright1" mode="widthFix"
-						style="width: 100%; border-radius: 4px;" @click='haohuoright()'></image>
+						style="width: 100%; border-radius: 4px;margin-bottom: 4px;" @click='haohuoright()'></image>
 					<image :lazy-load="true" :src="imagee.bigright2" mode="widthFix"
 						style="width: 100%; border-radius: 4px;" @click='huiyuanding()'></image>
 				</view>
 			</view>
 		</view>
 		<view style="background: #fff;">
-			<view style="background: #fff;" v-for="(item,index) in activity" :key="index">
+			<view style="background: #fff;" v-for="(item) in activity" :key="item.id">
 				<view class="changtu" @click="huodongtiao(item)" style="height: auto;">
 					<u-image :src="item.banner_image" mode="widthFix" radius="7px" width="100%">
 					</u-image>
@@ -74,10 +81,11 @@
 			</view>
 		</view>
 		<!-- 生活号 -->
+		<!-- #ifdef MP-ALIPAY -->
 		<view class="" style="padding: 10px 12px 0;">
-			<lifestyle sceneId="6fdff7bd819d4a28b170d00ef6d750c6" />
+			<lifestyle sceneId="2549dcc7030844a88cdfa772e46859f4" />
 		</view>
-
+		<!-- #endif -->
 		<!-- 热门推荐 -->
 
 		<view class="rank-box boxx">
@@ -89,8 +97,8 @@
 				<view class="diso dioo"
 					style="display: flex;flex-direction: row;flex-wrap: nowrap;flex-wrap: wrap;justify-content: space-between;">
 
-					<view class="rank-item" style="margin-left: 2rpx;" v-for="(item,i) in hotList.slice(0,6)" :key="i"
-						@click="JumpDetail(item)">
+					<view class="rank-item" style="margin-left: 2rpx;" v-for="(item) in hotList.slice(0, 6)"
+						:key="item.id" @click="JumpDetail(item)">
 						<view class="uimage">
 							<u-image :lazy-load="true" width="113rpx" height="113rpx" :src="item.image"><template
 									v-slot:loading>
@@ -111,59 +119,59 @@
 		</view>
 
 		<view v-if="loadding" style="padding-top: 20px;">
-			<u-loading-icon color="#ffaa00" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+			<u-loading-icon color="#FF6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 		</view>
-		<view class="zhuanqu" v-for="(item,index) in phoneList" :key="index">
+		<view class="zhuanqu" v-for="(item) in phoneList" :key="item.id">
 			<view class="bannerbig">
 				<view class="bannergood">
-					<image style="width: 100%;" :src="item.index_image" mode="widthFix" @click="tiaozhuan(item.id)"></image>
+					<image style="width: 100%;" :src="item.index_image" mode="widthFix" @click="tiaozhuan(item.id)">
+					</image>
 					<scroll-view scroll-x="true" class="flex">
-						<!-- #ifdef H5 -->
 						<view class="diso">
-							<!-- #endif -->
 							<view class="rank-item" style="padding: 0 12px 16px;margin-left: 8rpx;"
-								v-for="(ite,i) in item.list" :key="i" @click="JumpDetail(ite)">
+								v-for="(ite, i) in item.list" :key="i" @click="JumpDetail(ite)">
 								<view class="uimage">
 									<u-image :lazy-load="true" width="180rpx" height="180rpx" :src="ite.image" />
 								</view>
-								<text class="u-line-2 ft-24 my-10"
-									style="width: 220rpx;height: 52rpx;margin-bottom: 8px;">{{ite.title}}</text>
-								<view class="goods-price">
-									<text class="price-number">¥{{ite.day_price}}</text>
-									<text class="price-company">/天</text>
-								</view>
+								<div class="rank-bottom">
+									<text class="u-line-2 ft-24 my-10" style="width: 220rpx;margin-bottom: 8px;">{{
+										ite.title
+									}}</text>
+									<view class="goods-price">
+										<text class="price-number">¥{{ ite.day_price }}</text>
+										<text class="price-company">/天</text>
+									</view>
+								</div>
 							</view>
-							<!-- #ifdef H5 -->
 						</view>
-						<!-- #endif -->
 					</scroll-view>
 				</view>
 			</view>
 		</view>
 
-		<view class="zhuanqu" v-for="(item,index) in pcList" :key="index">
+		<view class="zhuanqu" v-for="(item) in pcList" :key="item.id">
 			<view class="bannerbig">
 				<view class="bannergood">
-					<image style="width: 100%;" :src="item.index_image" mode="widthFix" @click="tiaozhuan(item.id)"></image>
+					<image style="width: 100%;" :src="item.index_image" mode="widthFix" @click="tiaozhuan(item.id)">
+					</image>
 					<scroll-view scroll-x="true" class="flex">
-						<!-- #ifdef H5 -->
 						<view class="diso">
-							<!-- #endif -->
 							<view class="rank-item" style="padding: 0 12px 16px;margin-left: 8rpx;"
-								v-for="(ite,i) in item.list" :key="i" @click="JumpDetail(ite)">
+								v-for="(ite, i) in item.list" :key="i" @click="JumpDetail(ite)">
 								<view class="uimage">
 									<u-image :lazy-load="true" width="180rpx" height="180rpx" :src="ite.image" />
 								</view>
-								<text class="u-line-2 ft-24 my-10"
-									style="width: 220rpx;height: 52rpx;margin-bottom: 8px;">{{ite.title}}</text>
-								<view class="goods-price">
-									<text class="price-number">¥{{ite.day_price}}</text>
-									<text class="price-company">/天</text>
-								</view>
+								<div class="rank-bottom">
+									<text class="u-line-2 ft-24 my-10"
+										style="width: 220rpx;margin-bottom: 8px;height: 3.8dvh;">{{ ite.title
+									}}</text>
+									<view class="goods-price">
+										<text class="price-number">¥{{ ite.day_price }}</text>
+										<text class="price-company">/天</text>
+									</view>
+								</div>
 							</view>
-							<!-- #ifdef H5 -->
 						</view>
-						<!-- #endif -->
 					</scroll-view>
 				</view>
 			</view>
@@ -175,7 +183,7 @@
 			<text class="line"></text>
 		</view>
 		<view v-if="loaadding" style="padding-top: 20px;">
-			<u-loading-icon color="#ffaa00" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+			<u-loading-icon color="#FF6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 		</view>
 		<view class="recommend-goods" style="margin-top: 10px;">
 			<view class="recommend-goods-ul">
@@ -202,7 +210,9 @@
 				newList: [],
 				hotList: [],
 				good: [],
-				imagee: {},
+				imagee: {
+					gonggao: []
+				},
 				baseList: [],
 
 				windowTop: '',
@@ -220,8 +230,9 @@
 				loadding: true,
 				loaadding: true,
 				backgroundcolor: '',
+				latefee: [],
 				// #ifdef MP-ALIPAY
-				canUse: my.canIUse('lifestyle'),
+				canUse: uni.canIUse('lifestyle'),
 				show: true,
 				checkFollow: true,
 				templateId: ''
@@ -237,12 +248,17 @@
 			}
 		},
 		onLoad() {
+			// #ifdef MP-ALIPAY
 			this.user = my.getLaunchOptionsSync()
 			this.userid = this.user.query
-			console.log(this.userid)
+			console.log(this.user, this.userid, 'userid')
+			// #endif
+
 			this.cookiee()
 		},
 		onShow() {
+			this.token = uni.getStorageSync('token')
+
 			this.swiperList() //轮播图
 			this.gonggeurl()
 			this.image()
@@ -254,6 +270,9 @@
 				this.pcHttp() //电脑
 				this.newListHttp() //最新上架
 			}
+			if (this.token != '') {
+				this.getLateFee()
+			}
 		},
 
 		created() {
@@ -261,20 +280,52 @@
 			this.getStateBarHeight();
 		},
 		methods: {
+			order(item) {
+				uni.navigateTo({
+					url: '../order-list/order?id=' + item.id
+				})
+			},
+			getLateFee() {
+				let opt = {
+					url: '/user/latefee'
+				}
+				this.$request(opt).then(res => {
+					// 打印调用成功回调
+					uni.setStorageSync('latefee', res.data)
+					this.latefee = res.data
+				})
+			},
 			huiyuanding() {
+				// #ifndef MP-ALIPAY
+				let token = uni.getStorageSync('token');
+				if (!token) {
+					// 提示请先登录
+					this.$u.toast('请先登录');
+					uni.navigateTo({
+						url: '../login/login?fromPage=/pages/invitation/invitation',
+					})
+					return;
+				}
+				// #endif
+				// #ifdef MP-ALIPAY
 				let opt = {
 					url: '/index/dingyue?biaoshi=indexinvite'
 				}
 				this.$request(opt).then(res => {
 					var dingyueid = res.data
-					my.requestSubscribeMessage({
+					uni.requestSubscribeMessage({
 						entityIds: dingyueid,
 						complete: (res) => {
 							this.huiyuanyao()
 						}
 					});
 				})
+				// #endif
 
+				// #ifndef  MP-ALIPAY
+				console.log('huiyuanyao')
+				this.huiyuanyao()
+				// #endif
 			},
 			huiyuanyao() {
 				let opt = {
@@ -632,9 +683,9 @@
 		font-size: 14px;
 		color: #414960;
 		padding: 10rpx 0 40rpx 0rpx;
-		/* #ifndef APP-PLUS */
+		// #ifndef APP-PLUS
 		box-sizing: border-box;
-		/* #endif */
+		// #endif
 	}
 
 	.bannergood {
@@ -646,6 +697,12 @@
 	.tab-box {
 		// #ifdef H5
 		padding-top: 30rpx;
+		// #endif
+		// #ifdef APP-PLUS 
+		padding-top: 92rpx;
+		// #endif
+		// #ifdef MP-WEIXIN 
+		padding-top: 20rpx;
 		// #endif
 		// #ifdef MP-ALIPAY
 		padding-top: 170rpx;
@@ -662,6 +719,16 @@
 			// #ifdef H5
 			width: 90%;
 			height: 60rpx;
+			margin: 0 auto;
+			border-radius: 10rpx;
+			// #endif
+			// #ifndef MP-ALIPAY  
+			width: 92%;
+			margin: 0 auto;
+			border-radius: 10rpx;
+			// #endif
+			// #ifdef MP-WEIXIN
+			width: 92%;
 			margin: 0 auto;
 			border-radius: 10rpx;
 			// #endif
@@ -701,9 +768,6 @@
 		}
 	}
 
-	.diso {
-		display: flex;
-	}
 
 	.rank-box {
 		margin-top: 15rpx;
@@ -741,6 +805,11 @@
 		}
 	}
 
+	.diso {
+		display: flex;
+
+	}
+
 	.rank-item {
 		display: flex;
 		margin-left: 20rpx;
@@ -765,6 +834,13 @@
 		}
 	}
 
+	.rank-bottom {
+		// border: 1px solid red;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between
+	}
 
 	.recommend-box {
 		display: flex;

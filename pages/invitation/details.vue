@@ -1,5 +1,5 @@
 <template>
-		<view class="u-content">
+		<view class="u-content" style="background-color: #f6f6fb;">
 			<u-parse :content="content" :selectable="true" :scrollTable="false"></u-parse>
 		</view>
 </template>

@@ -16,7 +16,7 @@ platform = 'vue3'
 platform = 'vue2'
 // #endif
 
-// #ifdef APP-PLUS
+// #ifndef MP-ALIPAY
 platform = 'plus'
 // #endif
 

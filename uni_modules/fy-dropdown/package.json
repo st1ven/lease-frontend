@@ -1,0 +1,13 @@
+{
+    "id": "dx-fy-dropdown",
+    "name": "fy-dropdown",
+    "version": "1.0.1",
+    "description": "下拉筛选框，可自定义下拉显示内容，兼容app-nvue、app-plus、H5、微信小程序等。",
+    "keywords": [
+        "下拉菜单",
+        "筛选菜单",
+        "filters",
+        "dropdown",
+        "menu"
+    ]
+}

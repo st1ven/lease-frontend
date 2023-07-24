@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import App from './App'
 
-my.onPageNotFound(res => {
-	my.switchTab({
-		url: '/pages/index/index'
-	});
-});
+// uni.onPageNotFound(res => {
+// 	uni.switchTab({
+// 		url: '/pages/index/index'
+// 	});
+// });
 
 // vuex
 import store from './store'

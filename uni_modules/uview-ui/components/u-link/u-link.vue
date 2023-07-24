@@ -45,7 +45,7 @@
 		},
 		methods: {
 			openLink() {
-				// #ifdef APP-PLUS
+				// #ifndef MP-ALIPAY
 				plus.runtime.openURL(this.href)
 				// #endif
 				// #ifdef H5

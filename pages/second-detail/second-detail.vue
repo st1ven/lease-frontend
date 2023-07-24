@@ -1,5 +1,5 @@
 <template>
-	<view class="goods-box">
+	<view class="goods-box" style="background-color: #f6f6fb;">
 		<iz-goods-item ImgBoxH="333rpx" :newList="list" v-if="list.length" />
 
 		<view class="product-list-tip" v-else>

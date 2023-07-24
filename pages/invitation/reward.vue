@@ -1,5 +1,5 @@
 <template>
-	<view class="">
+	<view class="" style="background-color: #f6f6fb;">
 		<view class="topyao">
 			<view class="toptwo">
 				<text class="toptext">总奖励</text>

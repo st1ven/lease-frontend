@@ -1,6 +1,6 @@
 <template>
 	<!-- 店铺详情 -->
-	<view class="shop-page">
+	<view class="shop-page" style="background-color: #f6f6fb;">
 		<view class="shop-cont">
 			<!-- 店铺信息 -->
 			<view class="shop" v-if="shopType==0">
@@ -322,10 +322,6 @@
 								text-align: center;
 							}
 						}
-
-						.cate-item:nth-child(3n - 1) {
-							margin: 0 0.5%;
-						}
 					}
 
 					.tab-item {
@@ -354,7 +350,7 @@
 						top: 50%;
 						width: 10rpx;
 						height: 38rpx;
-						background: #ffaa00;
+						background: #FF6633;
 						transform: translateY(-50%);
 					}
 
@@ -403,7 +399,7 @@
 			}
 
 			view.on {
-				color: #ffaa00;
+				color: #FF6633;
 			}
 		}
 	}

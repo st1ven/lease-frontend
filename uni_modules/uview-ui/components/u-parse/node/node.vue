@@ -21,7 +21,7 @@
         <node name="span" :childs="n.children" :opts="opts" style="display:inherit" />
       </view>
       <!-- 视频 -->
-      <!-- #ifdef APP-PLUS -->
+      <!-- #ifndef MP-ALIPAY -->
       <view v-else-if="n.html" :id="n.attrs.id" :class="'_video '+n.attrs.class" :style="n.attrs.style" v-html="n.html" />
       <!-- #endif -->
       <!-- #ifndef APP-PLUS -->
@@ -214,7 +214,7 @@ export default {
      * @description 图片长按
      */
     imgLongTap(e) {
-      // #ifdef APP-PLUS
+      // #ifndef MP-ALIPAY
       var attrs = this.childs[e.currentTarget.dataset.i].attrs
       if (!attrs.ignore)
         uni.showActionSheet({
@@ -282,7 +282,7 @@ export default {
                 })
             })
             // #endif
-            // #ifdef APP-PLUS
+            // #ifndef MP-ALIPAY
             plus.runtime.openWeb(href)
             // #endif
           }
@@ -490,7 +490,7 @@ export default {
   display: inline;
 }
 
-/* #ifdef APP-PLUS */
+/* #ifndef MP-ALIPAY */
 ._video {
   width: 300px;
   height: 225px;

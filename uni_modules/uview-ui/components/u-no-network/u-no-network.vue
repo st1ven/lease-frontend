@@ -19,7 +19,7 @@
 			></u-icon>
 			<text class="u-no-network__tips">{{tips}}</text>
 			<!-- 只有APP平台，才能跳转设置页，因为需要调用plus环境 -->
-			<!-- #ifdef APP-PLUS -->
+			<!-- #ifndef MP-ALIPAY -->
 			<view class="u-no-network__app">
 				<text class="u-no-network__app__setting">请检查网络，或前往</text>
 				<text

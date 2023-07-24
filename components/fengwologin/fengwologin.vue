@@ -34,7 +34,7 @@
 				uni.showLoading({
 					title: "登录中..."
 				})
-				my.getOpenUserInfo({
+				uni.getOpenUserInfo({
 					fail: res => {
 						// console.log(res);
 					},
@@ -51,7 +51,7 @@
 						loginObj.userid = uni.getStorageSync('yaouserid')
 						this.avatar = userInfo.avatar
 						this.nickName = userInfo.nickName
-						my.getAuthCode({
+						uni.getAuthCode({
 							scopes: 'auth_base',
 							// scopes: ['auth_base','order_service'],
 							success: (authData) => {
@@ -100,7 +100,6 @@
 	.buy-ok {
 		width: 626rpx;
 		height: 80rpx;
-		/* background: #ffaa00; */
 		border-radius: 20rpx;
 		text-align: center;
 		line-height: 80rpx;

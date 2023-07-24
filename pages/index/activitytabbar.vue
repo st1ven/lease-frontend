@@ -15,7 +15,7 @@
 					</get-coupon>
 				</view>
 				<view v-if="loadding" style="padding-top: 20px;">
-					<u-loading-icon  color="#ffaa00" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+					<u-loading-icon  color="#FF6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 				</view>
 				<image :src="xinxi.background_image" mode="widthFix" style="width: 100%;"></image>
 					
@@ -107,7 +107,7 @@
 				}
 				this.$request(opt).then(res => {
 					var dingyueid = res.data
-				my.requestSubscribeMessage({
+				uni.requestSubscribeMessage({
 					//优惠券到期提醒，优惠券领取提醒
 					entityIds: dingyueid,
 					fail: (res) => {
@@ -298,7 +298,6 @@
 	}
 
 	.Used_an {
-		// background-image: url("https://oss.jiulove.cn/zl/ershou.png");
 		height: 100%;
 		background-size: 100%;
 		// margin-bottom: 0.2rem;

@@ -9,7 +9,7 @@
 		<text class="title">
 			<text style="color: #FF5B56;">热搜</text>榜单
 		</text>
-		<view class="hot-li" v-for="(item, index) in hotList" @click="searchCustom(item.title)">
+		<view class="hot-li" v-for="(item, index) in hotList" :key="index" @click="searchCustom(item.title)">
 			<view class="hot-rank" :class="'hot-rank-'+(index+1)">{{index+1}}</view>
 			<view class="hot-txt u-line-1">{{item.title}}</view>
 		</view>
@@ -109,7 +109,7 @@
 				color: #fff;
 				font-size: 24rpx;
 				font-weight: bold;
-				background-color: #ffaa00;
+				background-color: #FF6633;
 			}
 			.hot-txt {
 				width: 90%;

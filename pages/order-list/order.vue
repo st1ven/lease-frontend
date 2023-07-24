@@ -1,6 +1,6 @@
 <template>
 	<!-- 订单详情 -->
-	<view class="order-detail">
+	<view class="order-detail" style="background-color: #f6f6fb;">
 
 		<!-- 0              1,2       3       4         9        7        -1 -->
 		<!-- ["待付款", "待发货", "待收货", "待归还", "归还中", '已完成', "已取消"] -->
@@ -13,47 +13,46 @@
 						labelColor="#fff"></u-icon>
 					<!-- <text class="status" style="margin-left: 10rpx;">{{initList.status_text_title}}</text> -->
 				</view>
-				<view class="status-detail">{{initList.status_text_content}} </view>
+				<view class="status-detail">{{ initList.status_text_content }} </view>
 			</view>
 			<!-- 已取消 -->
-			<view class="status-box" v-if="status =='-1'">
+			<view class="status-box" v-if="status == '-1'">
 				<view class="status-img">
-					<u-icon name="close-circle" color="#fff" size="35rpx" :label="initList.status_text_title"
-						labelColor="#fff"> </u-icon>
+					<u-icon name="close-circle" color="#fff" size="35rpx" :label="initList.status_text_title" labelColor="#fff">
+					</u-icon>
 					<!-- <text class="status" style="margin-left: 10rpx;">{{initList.status_text_title}}</text> -->
 				</view>
-				<view class="status-detail">{{initList.status_text_content}} </view>
+				<view class="status-detail">{{ initList.status_text_content }} </view>
 			</view>
 
 			<!-- 待收货 -->
 			<view class="status-box" v-if="status == '1' || status == '2'">
 				<view class="status-img">
-					<u-icon name="info-circle" color="#fff" size="35rpx" :label="initList.status_text_title"
-						labelColor="#fff"> </u-icon>
+					<u-icon name="info-circle" color="#fff" size="35rpx" :label="initList.status_text_title" labelColor="#fff">
+					</u-icon>
 					<!-- 	<u-image src="/static/image/daishouhuo.webp" width="30rpx" height="30rpx"></u-image>
 					<text class="status" style="margin-left: 10rpx;">{{initList.status_text_title}}</text> -->
 				</view>
-				<view class="status-detail">{{initList.status_text_content}} </view>
+				<view class="status-detail">{{ initList.status_text_content }} </view>
 			</view>
 			<!-- 待发货 -->
 			<view class="status-box" v-if="status == '3'">
 				<view class="status-img">
-					<u-icon name="calendar" color="#fff" size="35rpx" :label="initList.status_text_title"
-						labelColor="#fff"> </u-icon>
+					<u-icon name="calendar" color="#fff" size="35rpx" :label="initList.status_text_title" labelColor="#fff">
+					</u-icon>
 					<!-- <u-image src="/static/image/daifahuo.png" width="30rpx" height="30rpx"></u-image>
 					<text class="status" style="margin-left: 10rpx;">{{initList.status_text_title}}</text> -->
 				</view>
-				<view class="status-detail">{{initList.status_text_content}} </view>
+				<view class="status-detail">{{ initList.status_text_content }} </view>
 			</view>
 			<!-- 待归还 -->
 			<view class="status-box" v-if="status == '4'">
 				<view class="status-img">
-					<u-icon name="order" color="#fff" size="35rpx" :label="initList.status_text_title"
-						labelColor="#fff"> </u-icon>
+					<u-icon name="order" color="#fff" size="35rpx" :label="initList.status_text_title" labelColor="#fff"> </u-icon>
 					<!-- 	<u-image src="/static/image/guihuanzhong.webp" width="30rpx" height="30rpx"></u-image>
 					<text class="status" style="margin-left: 10rpx;">{{initList.status_text_title}}</text> -->
 				</view>
-				<view class="status-detail">{{initList.status_text_content}} </view>
+				<view class="status-detail">{{ initList.status_text_content }} </view>
 			</view>
 			<!-- 归还中 -->
 			<view class="status-box" v-if="status == '9'">
@@ -63,60 +62,66 @@
 					<u-icon name="car" color="#fff" size="35rpx" :label="initList.status_text_title" labelColor="#fff">
 					</u-icon>
 				</view>
-				<view class="status-detail">{{initList.status_text_content}} </view>
+				<view class="status-detail">{{ initList.status_text_content }} </view>
 			</view>
 
 			<!-- 待付款 -->
 			<view class="status-box" v-if="status == '0'">
 				<view class="status-img">
 					<u-image src="/static/image/daifukuan.png" width="30rpx" height="30rpx"></u-image>
-					<text class="status" style="margin-left: 10rpx;">{{initList.status_text_title}}</text>
+					<text class="status" style="margin-left: 10rpx;">{{ initList.status_text_title }}</text>
 				</view>
 
 				<view class="countdown">剩余 <text>
 						<view class="time">
 
-							{{time}}
+							{{ time }}
 						</view>
 					</text> 自动取消 </view>
-				<view class="status-detail">{{initList.status_text_content}} </view>
+				<view class="status-detail">{{ initList.status_text_content }} </view>
 			</view>
 
 		</view>
 		<view class="detail-box">
+			<!-- 滞纳金 -->
+			<view class="late_fee" v-if="initList.late_fee_show">
+				<u-alert :title="initList.late_fee_title" :description="initList.late_fee_desc" type="error"
+					fontSize="28rpx"></u-alert>
+			</view>
+
 			<!-- 地址栏 -->
 			<view class="address_bar">
 				<view class="address-info">
-					<text>{{initList.consignee}}</text>
-					<text class="address_bar_num">{{initList.phone}}</text>
+					<text>{{ initList.consignee }}</text>
+					<text class="address_bar_num">{{ initList.phone }}</text>
 				</view>
-				<view class="address"> {{initList.province_name+initList.city_name+initList.area_name+initList.address}}
+				<view class="address"> {{ initList.province_name + initList.city_name + initList.area_name + initList.address }}
 				</view>
 
 			</view>
 
-
+			<!-- {{initList.item.goods_image}} -->
 			<!-- 订单信息 -->
 			<view class="order">
 				<view class="info-box">
 					<view class="order-img">
-						<u-image :showLoading="true" :src="initList.item.goods_image||'/static/index-icon/10.webp'"
-							width="160rpx" height="160rpx" />
+						<image :showLoading="true" :src="initList.item.goods_image || '/static/index-icon/10.webp'"
+							class="imgae_wh" />
 					</view>
 					<view class="order-info">
-						<view class="info-title">{{initList.item.goods_title}} </view>
-						<view class="info-package">套餐：{{initList.item.goods_sku_text}}</view>
-						<view class="info-package">数量：{{initList.item.goods_num}}</view>
+						<view class="info-title">{{ initList.item.goods_title }} </view>
+						<view class="info-package">套餐：{{ initList.item.goods_sku_text }}</view>
+						<view class="info-package">数量：{{ initList.item.goods_num }}</view>
 					</view>
 				</view>
 				<view class="zujinkuang" style="margin: 24rpx;">
 					<view class="rent-li">
 						<text>预计起租日</text>
-						<text class="li-r">{{initList.startleasetime || ''}}</text>
+						<text class="li-r">{{ initList.startleasetime || '' }}</text>
 					</view>
 					<view class="rent-li">
 						<text>到期日</text>
-						<text class="li-r">{{initList.endleasetime || ''}}</text>
+						<text class="li-r">{{ initList.endleasetime || '' }}</text>
 					</view>
 				</view>
 				<view class="order-tag-box">
@@ -138,8 +143,8 @@
 					<text>剩余租金 </text> <text class="li-r">￥{{ rentinfo.bottom_rent || 0}} </text>
 				</view> -->
 				<view class="rent-li">
-					<text>首期租金 </text> <text
-						class="li-r">￥{{(initList.goods_amount/12).toFixed(2)==null?0:(initList.goods_amount/12).toFixed(2)}}
+					<text>首期租金 </text> <text class="li-r">￥{{ (initList.goods_amount / 12).toFixed(2) == null ? 0 :
+						(initList.goods_amount / 12).toFixed(2) }}
 					</text>
 				</view>
 				<!-- <view class="rent-li">
@@ -147,11 +152,11 @@
 				</view> -->
 				<view class="rent-li">
 					<text>剩余租金 </text> <text class="li-r">
-						{{(initList.goods_amount/12*11).toFixed(2)==null?0:(initList.goods_amount/12*11).toFixed(2)}}
+						{{ (initList.goods_amount / 12 * 11).toFixed(2) == null ? 0 : (initList.goods_amount / 12 * 11).toFixed(2) }}
 					</text>
 				</view>
 				<view class="rent-li">
-					<text>总租金 </text> <text class="li-r">￥{{initList.goods_amount ==null?0:initList.goods_amount}}
+					<text>总租金 </text> <text class="li-r">￥{{ initList.goods_amount == null ? 0 : initList.goods_amount }}
 					</text>
 				</view>
 
@@ -159,8 +164,8 @@
 					<text>配送方式 </text> <text class="li-r"> 寄出包邮/顺丰包邮 </text>
 				</view>
 				<view class="rent-li" v-if="guard_data.id">
-					<text>{{guard_data.guard_title}} </text> <text
-						class="li-r u-line-1">{{guard_data.guard_desc}}￥{{guard_data.defaultamount || 0}}</text>
+					<text>{{ guard_data.guard_title }} </text> <text class="li-r u-line-1">{{ guard_data.guard_desc }}￥{{
+						guard_data.defaultamount || 0 }}</text>
 				</view>
 				<!-- <view class="rent-li">
 					<text>买断尾款 </text> <text
@@ -199,16 +204,16 @@
 			<view class="rent-detail">
 				<view class="rent-title">
 					<text class="title-l">冻结押金</text>
-					<text class="title-r">￥{{initList.deposit}} </text>
+					<text class="title-r">￥{{ initList.deposit }} </text>
 				</view>
 				<view class="rent-li">
 					<text>商品押金</text> <text class="li-r">￥{{ initList.deposit }} </text>
 				</view>
 				<view class="rent-li">
-					<text>芝麻信用免押金</text> <text class="li-r">￥{{ initList.credit_amount}} </text>
+					<text>芝麻信用免押金</text> <text class="li-r">￥{{ initList.credit_amount }} </text>
 				</view>
 				<view class="rent-li">
-					<text>支付宝冻结押金</text> <text class="li-r">￥{{ initList.deposit - initList.credit_amount}} </text>
+					<text>支付宝冻结押金</text> <text class="li-r">￥{{ initList.deposit - initList.credit_amount }} </text>
 				</view>
 				<view class="rent-li">
 					<text>押金冻结方式</text> <text class="li-r">支付宝资金授权</text>
@@ -221,7 +226,7 @@
 		</view> -->
 			<view class="sesame">
 				<text class="title-l">优惠劵可减免金额 </text>
-				<text class="title-r">￥ {{initList.rentinfo.discount_price}} </text>
+				<text class="title-r">￥ {{ initList.rentinfo.discount_price }} </text>
 			</view>
 			<!-- 商品及赠品 -->
 			<!-- 		<view class="accessories">
@@ -252,9 +257,14 @@
 			<!-- 备注 -->
 			<view class="note">
 				<text>备注</text>
-				<view class="note-input">
+				<text class="note-text">
+					{{ initList.remark }}
+					<!-- 11111111111111111111111111111111111 -->
+				</text>
+				<!-- <view class="note-input">
+					{{ initList.remark }}
 					<u-input :disabled="true" :value="initList.remark || ''" border="none"></u-input>
-				</view>
+				</view> -->
 			</view>
 
 			<!-- 租赁协议 -->
@@ -264,18 +274,18 @@
 				</view> -->
 				<view class="rent-li">
 					<text>订单编号 </text>
-					<view class="li-r">{{ initList.order_sn}} <text class="copy" @click="copy">复制</text> </view>
+					<view class="li-r">{{ initList.order_sn }} <text class="copy" @click="copy">复制</text> </view>
 				</view>
 				<view class="rent-li">
-					<text>创建时间 </text> <text class="li-r"> {{ initList.createtime}} </text>
+					<text>创建时间 </text> <text class="li-r"> {{ initList.createtime }} </text>
 				</view>
 			</view>
 		</view>
-		<!--   0       1   2       3       4         9        7        -1 -->
+		<!--   0       1          2       3       4         9        7        -1 -->
 		<!-- ["待付款", "待审核","待发货", "待收货", "待归还", "归还中", '已完成', "已取消"] -->
 		<!-- 底部按钮-->
 		<view class="">
-			<view class="detail-btn-box" v-if="status=='0'">
+			<view class="detail-btn-box" v-if="status == '0'">
 				<!-- v-if="params.type==0" -->
 				<view class="btn" @click="$refs.contact.setStatus(true)">
 					联系商家
@@ -290,14 +300,14 @@
 				</view>
 			</view>
 			<view class="detail-btn-box"
-				v-if="status=='1' || status=='2' || status=='3'||status=='4' || status=='9' || status=='7'">
+				v-if="status == '1' || status == '2' || status == '3' || status == '4' || status == '9' || status == '7'">
 				<!-- v-if="params.type==0" -->
 				<view class="btn" @click="$refs.contact.setStatus(true)">
 					联系商家
 				</view>
 
 			</view>
-			<view class="detail-btn-box" v-if="status=='-1'">
+			<view class="detail-btn-box" v-if="status == '-1'">
 				<!-- v-if="params.type==0" -->
 				<view class="btn" @click="order_again()">
 					再次下单
@@ -315,286 +325,520 @@
 				<u-parse :content="agreement.text"></u-parse>
 			</view>
 		</u-modal>
+
+
 	</view>
 </template>
 
 <script>
-	import Contact from "../../pages/home/components/contact.vue"
-	export default {
-		components: {
-			Contact
-		},
-		data() {
-			return {
-				detailStatu: 1,
-				address_id: 0,
-				// time: {},
-				time: '',
-				timeObj: {
-					m: '00',
-					s: '00',
-					h: '00'
-				},
-				params: {},
-				agreement: {
-					title: '',
-					agreementShow: false,
-					text: "",
-					type: 1, //1取消
-				},
-				initList: {},
-				status: String,
-				idCardUrl: '', //身份证上传路径
-				guard_data: {} //保障方案
-			};
-		},
-		onLoad(obj) {
-			// 0 1,2 3 4 9 7 -1
-			// ["待付款", "待发货", "待收货", "待归还", "归还中", '已完成', "已取消"]
-			this.params = obj
-		},
-		onShow() {
-			this.init()
-			this.idCardUrl = "/pages/idcard/idcard?type=order&id=" + this.initList.goods_id
-		},
-
-		watch: {
-			params(newVal, oldVal) {
-				this.params = newVal
+import Contact from "../home/components/contact.vue"
+import uImage from "@/uni_modules/uview-ui/components/u-image/u-image.vue"
+export default {
+	components: {
+		Contact,
+		uImage
+	},
+	data() {
+		return {
+			detailStatu: 1,
+			address_id: 0,
+			// time: {},
+			time: '',
+			timeObj: {
+				m: '00',
+				s: '00',
+				h: '00'
 			},
-		},
-		methods: {
+			params: {},
+			agreement: {
+				title: '',
+				agreementShow: false,
+				text: "",
+				type: 1, //1取消
+			},
+			initList: {
+				item: {},
+				rentinfo:{},
+			},
+			status: String,
+			idCardUrl: '', //身份证上传路径
+			guard_data: {}, //保障方案
+			popupShow:true,
+		};
+	},
+	onLoad(obj) {
+		// 0 1,2 3 4 9 7 -1
+		// ["待付款", "待发货", "待收货", "待归还", "归还中", '已完成', "已取消"]
+		this.params = obj
+	},
+	onShow() {
+		this.init()
+		this.idCardUrl = "/pages/idcard/idcard?type=order&id=" + this.initList.goods_id
+	},
 
-			subOrder() {
-				let opt = {
-					url: '/pay/again',
-					// method: "POST",
-					header: "application/x-www-form-urlencoded;charset=utf-8",
-					data: {
-						order_id: this.initList.id
-					}
+	watch: {
+		params(newVal, oldVal) {
+			this.params = newVal
+		},
+	},
+	methods: {
+
+		subOrder() {
+			let opt = {
+				url: '/pay/again',
+				// method: "POST",
+				header: "application/x-www-form-urlencoded;charset=utf-8",
+				data: {
+					order_id: this.initList.id
 				}
+			}
+			let _this = this
+			this.$request(opt).then(res => {
+				let trade_no = res.data.alipay_trade_create_response.trade_no
+				let order_sn = this.initList.order_sn
+				console.log(order_sn)
+				let order_nn = res.url
 				let _this = this
-				this.$request(opt).then(res => {
-					let trade_no = res.data.alipay_trade_create_response.trade_no
-					let order_sn = this.initList.order_sn
-					console.log(order_sn)
-					let order_nn = res.url
-					let _this = this
-					_this.payType = 'go'
-					_this.tradeYa(order_nn, order_sn, trade_no)
-					//原直接支付通道
-					// let trade_no = res.data.alipay_trade_create_response.trade_no
-					// let order_sn = this.initList.order_sn
-					// let _this = this
-					// _this.payType = 'go'
-					// _this.tradePay(trade_no, order_sn)
-				})
-			},
-			//免押支付
-			tradeYa(order_nn, order_sn, trade_no) {
-				let _this = this
-				my.tradePay({
-					orderStr: order_nn,
-					success: (res) => {
-						console.log(res);
-						if (res.resultCode == 9000) {
-							uni.navigateTo({
-								url: "../identity/identity?order_sn=" + order_sn
-							})
-						} else {
-							uni.showToast({
-								title: res.memo,
-								duration: 2000,
-								icon: 'none'
-							});
-							uni.navigateTo({
-								url: '../eve/introduce',
-							});
-							// _this.tradePay(trade_no, order_sn)
-						}
-						// my.alert({
-						//   content: JSON.stringify(res),
-						// });
+				_this.payType = 'go'
 
-					},
-					fail: (res) => {
-						console.log(res);
+				// 不管是app还是小程序，都是直接进认证界面付款
+				uni.navigateTo({
+					url: "../identity/identity?order_sn=" + order_sn
+				})
+				return
+				// 支付宝直接支付
+				// #ifdef MP-ALIPAY
+				_this.tradeYa(order_nn, order_sn, trade_no)
+				// #endif
+				// app 弹窗选择支付方式
+				// #ifndef MP-ALIPAY
+				uni.showActionSheet({
+					title: '请选择支付方式',
+					itemList: ['支付宝', '微信'],
+					success: function (res) {
+						if (res.tapIndex == 0) {
+							// 支付宝支付
+							_this.tradeYa(order_nn, order_sn, trade_no)
+						} else if (res.tapIndex == 1) {
+							// 微信支付
+							uni.showToast({
+								title: '暂未开通微信支付',
+								icon: 'none'
+							})
+						}
+					}
+				});
+				// #endif
+			})
+		},
+		//免押支付
+		tradeYa(order_nn, order_sn, trade_no) {
+			let _this = this
+			// #ifdef MP-ALIPAY
+			uni.tradePay({
+				orderStr: order_nn,
+				success: (res) => {
+					console.log(res);
+					uni.navigateTo({
+						url: "../identity/identity?order_sn=" + order_sn
+					})
+				},
+				fail: (res) => {
+					console.log(res);
+					uni.showToast({
+						title: res.memo,
+						duration: 2000,
+						icon: 'none'
+					});
+					// uni.alert({
+					//   content: JSON.stringify(res),
+					// });
+					// _this.tradePay(trade_no, order_sn)
+				}
+			});
+			// #endif
+			// #ifdef  APP-PLUS
+			uni.requestPayment({
+				provider: 'alipay',
+				orderInfo: order_nn,
+				success: function (res) {
+					console.log(res);
+					if (res.resultCode == 9000) {
+						uni.navigateTo({
+							url: "../identity/identity?order_sn=" + order_sn
+						})
+					} else {
 						uni.showToast({
 							title: res.memo,
 							duration: 2000,
 							icon: 'none'
 						});
-						// my.alert({
-						//   content: JSON.stringify(res),
-						// });
+						uni.navigateTo({
+							url: '../eve/introduce',
+						});
 						// _this.tradePay(trade_no, order_sn)
 					}
-				});
-			},
-			//支付押金
-			tradePay(trade_no, order_sn) {
-				let _this = this
-				my.tradePay({
-					tradeNO: trade_no,
-					success: function(res) {
-						// my.alert(res.resultCode); 
-						if (res.resultCode == 9000) {
-							uni.navigateTo({
-								url: "../identity/identity?order_sn=" + order_sn
-							})
-						} else {
-							_this.$refs.uToast.show({
-								message: res.memo || '取消支付',
-								icon: 'error',
-								type: 'error',
-							})
-						}
-					},
-					fail: function(res) {
-						// my.alert(res.resultCode);
-						console.log(res, '支付失败')
-					},
-				});
-			},
-			copy() {
-				uni.setClipboardData({
-					data: this.initList.order_sn,
-					success: function(res) {
-						uni.showToast({
-							title: '复制成功',
-						});
-					}
-				});
-			},
-			// 拒绝身份证号
-			errorIDNumber(e) {
-				console.log('拒绝授权', e)
+				},
+				fail: function (err) {
+					console.log(err);
+					uni.showToast({
+						title: err.memo,
+						duration: 2000,
+						icon: 'none'
+					});
+					// _this.tradePay(trade_no, order_sn)
+				}
+			});
+			// #endif
+		},
+		copy() {
+			uni.setClipboardData({
+				data: this.initList.order_sn,
+				success: function (res) {
+					uni.showToast({
+						title: '复制成功',
+					});
+				}
+			});
+		},
+		// 拒绝身份证号
+		errorIDNumber(e) {
+			console.log('拒绝授权', e)
+			this.$refs.uToast.show({
+				message: e || '失败',
+				icon: 'error',
+				type: 'error'
+			})
+		},
+		closeModal() {
+			this.agreement = {
+				title: '',
+				agreementShow: false,
+				text: "",
+				type: 0, //1取消
+				showCancelButton: false
+			}
+		},
+		order_again() {
+			console.log(this.initList,'this.initList')
+			uni.navigateTo({
+				url: "../goods-detail/goods-detail?id=" + this.initList.item.goods_id
+			})
+		},
+		//查看物流
+		logistics(item) {
+			uni.navigateTo({
+				url: "logistics?id=" + item.id
+			})
+		},
+		cancelOrder() {
+			this.agreement = {
+				title: '',
+				agreementShow: true,
+				text: "确认取消订单吗",
+				type: 1, //1取消
+				showCancelButton: true
+			}
+		},
+		//模块关闭
+		modalConfirm() {
+			if (this.agreement.type == 1) {
+				this.cancelOrderHttp()
+			}
+		},
+		cancelOrderHttp() {
+			let opt = {
+				url: '/order/cancel',
+				data: {
+					id: this.initList.id
+				}
+			}
+
+			this.$request(opt).then(res => {
+				// console.log('-----订单', res)
 				this.$refs.uToast.show({
-					message: e || '失败',
-					icon: 'error',
-					type: 'error'
+					message: res.msg || '成功',
+					icon: 'success',
+					type: 'success'
 				})
-			},
-			closeModal() {
-				this.agreement = {
-					title: '',
-					agreementShow: false,
-					text: "",
-					type: 0, //1取消
-					showCancelButton: false
+				this.init()
+				this.closeModal()
+			})
+		},
+		//-----确认订单---------
+		init() {
+			let opt = {
+				url: '/order/detail',
+				data: {
+					id: this.params.id
 				}
-			},
-			order_again() {
-				uni.navigateTo({
-					url: "../goods-detail/goods-detail?id=" + this.initList.goods_id
-				})
-			},
-			//查看物流
-			logistics(item) {
-				uni.navigateTo({
-					url: "logistics?id=" + item.id
-				})
-			},
-			cancelOrder() {
-				this.agreement = {
-					title: '',
-					agreementShow: true,
-					text: "确认取消订单吗",
-					type: 1, //1取消
-					showCancelButton: true
-				}
-			},
-			//模块关闭
-			modalConfirm() {
-				if (this.agreement.type == 1) {
-					this.cancelOrderHttp()
-				}
-			},
-			cancelOrderHttp() {
-				let opt = {
-					url: '/order/cancel',
-					data: {
-						id: this.initList.id
-					}
-				}
+			}
 
-				this.$request(opt).then(res => {
-					// console.log('-----订单', res)
-					this.$refs.uToast.show({
-						message: res.msg || '成功',
-						icon: 'success',
-						type: 'success'
-					})
-					this.init()
-					this.closeModal()
-				})
-			},
-			//-----确认订单---------
-			init() {
-				let opt = {
-					url: '/order/detail',
-					data: {
-						id: this.params.id
-					}
+			this.$request(opt).then(res => {
+				// console.log('-----订单', res)
+				this.initList = res.data
+				// console.log(this.initList)
+				console.log(this.initList.item.goods_image, 'initList.item.goods_image')
+				// console.log(JSON.stringify(res))
+				this.status = res.data.status
+				this.guard_data = res.data.guard_data || {}
+				this.time = res.data.count_down || '00:00:00'
+				if (this.status == 0 && this.time) {
+					this.timeData()
 				}
-
-				this.$request(opt).then(res => {
-					// console.log('-----订单', res)
-					this.initList = res.data
-					// console.log(this.initList)
-					// console.log(JSON.stringify(res))
-					this.status = res.data.status
-					this.guard_data = res.data.guard_data || {}
-					this.time = res.data.count_down || '00:00:00'
-					if (this.status == 0 && this.time) {
-						this.timeData()
-					}
-				})
-			},
-			times(time) {
-				if (time !== null) {
-					var s = "";
-					var hour = time.split(":")[0];
-					var min = time.split(":")[1];
-					var sec = time.split(":")[2];
-					s = Number(hour * 3600) + Number(min * 60) + Number(sec);
-					return s;
+			})
+		},
+		times(time) {
+			if (time !== null) {
+				var s = "";
+				var hour = time.split(":")[0];
+				var min = time.split(":")[1];
+				var sec = time.split(":")[2];
+				s = Number(hour * 3600) + Number(min * 60) + Number(sec);
+				return s;
+			}
+		},
+		timesFunc(data) {
+			var time = Number(data);
+			var h = Math.floor(time / 3600);
+			var m = Math.floor((time % 3600) / 60);
+			var s = parseInt(time % 3600) % 60;
+			var hh = h < 10 ? "0" + h : h;
+			var mm = m < 10 ? "0" + m : m;
+			var ss = s < 10 ? "0" + s : s;
+			return hh + ":" + mm + ":" + ss;
+		},
+		timeData() {
+			let totalSeconds = this.times(this.time);
+			let times = setInterval(() => {
+				totalSeconds = totalSeconds - 1;
+				if (totalSeconds <= 0) {
+					this.time = '00:00:00'
+					clearInterval(times)
+					return
 				}
-			},
-			timesFunc(data) {
-				var time = Number(data);
-				var h = Math.floor(time / 3600);
-				var m = Math.floor((time % 3600) / 60);
-				var s = parseInt(time % 3600) % 60;
-				var hh = h < 10 ? "0" + h : h;
-				var mm = m < 10 ? "0" + m : m;
-				var ss = s < 10 ? "0" + s : s;
-				return hh + ":" + mm + ":" + ss;
-			},
-			timeData() {
-				let totalSeconds = this.times(this.time);
-				let times = setInterval(() => {
-					totalSeconds = totalSeconds - 1;
-					if (totalSeconds <= 0) {
-						this.time = '00:00:00'
-						clearInterval(times)
-						return
-					}
-					this.time = this.timesFunc(totalSeconds);
-				}, 1000)
-			},
+				this.time = this.timesFunc(totalSeconds);
+			}, 1000)
+		},
 
-		}
+	}
 
-	};
+};
 </script>
 
 <style lang="scss" scoped>
-	.zujinkuang {
-		background: #FAFAFB;
-		padding: 1px 12px;
-		border-radius: 6px;
+.zujinkuang {
+	background: #FAFAFB;
+	padding: 1px 12px;
+	border-radius: 6px;
+
+	.rent-li {
+		font-size: 24rpx;
+		color: #9FA3B0;
+		line-height: 50rpx;
+
+		.li-r {
+			float: right;
+			color: #61687C;
+		}
+	}
+}
+
+.order-detail {
+	background-color: #F6F6FB;
+	width: 100%;
+	overflow: hidden;
+
+	.notice-box {
+		// margin-bottom: 80rpx;
+	}
+
+	// height: 100vh;
+	.order-status {
+		height: 209rpx;
+		background: #FF6633;
+		border-radius: 0 0 30rpx 30rpx;
+
+		.status-box {
+			color: #fff;
+			font-size: 24rpx;
+			padding: 46rpx 0 0rpx 60rpx;
+			position: relative;
+
+			.status-img {
+				display: flex;
+			}
+
+			.status {
+				font-size: 30rpx;
+			}
+
+			.status-detail {
+				padding-top: 23rpx;
+			}
+
+			.countdown {
+				@include flex;
+				position: absolute;
+				right: 20rpx;
+				top: 50rpx;
+
+				.time {
+					margin: 0 2rpx;
+					display: flex;
+
+					.time-doc {
+						color: #fff;
+						margin: 0 4rpx;
+					}
+
+					.time-m,
+					.time-s {
+						color: #FF6633;
+						padding: 3rpx 6rpx;
+						border-radius: 10rpx;
+						font-size: 22rpx;
+						background-color: #fff;
+					}
+				}
+
+			}
+		}
+	}
+
+	.detail-box {
+		width: 92%;
+		margin: 0 auto;
+		box-sizing: border-box;
+	}
+
+	.late_fee {
+		margin-top: 18rpx;
+	}
+
+	.address_bar {
+		background-color: #fff;
+		border-radius: 14rpx;
+		padding: 33rpx 38rpx;
+		position: relative;
+		margin: 18rpx 0 18rpx;
+		border-radius: 14rpx;
+
+		.address {
+			font-size: 24rpx;
+			color: #9FA3B0;
+		}
+
+		.address_arrow {
+			position: absolute;
+			top: 50rpx;
+			right: 40rpx;
+		}
+
+		.address-info {
+			color: #171B25;
+			font-size: 30rpx;
+			margin-bottom: 20rpx;
+
+			.address_bar_num {
+				margin-left: 38rpx;
+			}
+		}
+	}
+
+	.idCard-box {
+		background-color: #fff;
+		border-radius: 14rpx;
+		margin-bottom: 18rpx;
+	}
+
+	.order {
+		background-color: #fff;
+		/* ifdef MP-ALIPAY */
+		padding: 30rpx 0 0 0;
+		/* endif */
+		/* ifndef MP-ALIPAY */
+		padding: 30rpx 0;
+		/* endif */
+		margin-bottom: 18rpx;
+		border-radius: 14rpx;
+
+		.info-box {
+			display: flex;
+
+			.order-img {
+				width: 160rpx;
+				height: 160rpx;
+				margin: 0 20rpx;
+			}
+
+			.order-info {
+				font-size: 24rpx;
+				color: #9FA3B0;
+				// line-height: 42rpx;
+
+				.info-title {
+					font-size: 28rpx;
+					color: #171B25;
+					margin-bottom: 25rpx;
+				}
+			}
+		}
+
+		.order-date {
+			width: 90%;
+			height: 88rpx;
+			background-color: #c4e6fd;
+			border-radius: 44rpx;
+			margin: 28rpx auto;
+			display: flex;
+			flex: 1;
+
+			.date-box {
+				padding: 13rpx 0 13rpx 32rpx;
+				width: 50%;
+				display: flex;
+
+				.start-box {
+					padding-left: 12rpx;
+				}
+
+				.date-icon {
+					border-radius: 50%;
+					background-color: #FF6633;
+					position: relative;
+
+					.icon-box {
+						margin-right: 12rpx;
+					}
+
+					.icon-txt {
+						position: absolute;
+						left: 13rpx;
+						top: 13rpx;
+						font-size: 20rpx;
+						color: #FF6633;
+					}
+				}
+
+				.start-txt {
+					font-size: 24rpx;
+				}
+
+				.time {
+					font-size: 20rpx;
+					color: #9FA3B0;
+				}
+			}
+		}
+	}
+
+	.rent-detail {
+		background-color: #fff;
+		// height: 370rpx;
+		padding: 20rpx 24rpx 20rpx 29rpx;
+		margin-bottom: 18rpx;
+		border-radius: 14rpx;
 
 		.rent-li {
 			font-size: 24rpx;
@@ -603,391 +847,208 @@
 
 			.li-r {
 				float: right;
-				color: #61687C;
+				color: #61687c;
 			}
-		}
-	}
 
-	.order-detail {
-		background-color: #F6F6FB;
-		width: 100%;
-		overflow: hidden;
-
-		.notice-box {
-			// margin-bottom: 80rpx;
-		}
-
-		// height: 100vh;
-		.order-status {
-			height: 209rpx;
-			background: #ffaa00;
-			border-radius: 0 0 30rpx 30rpx;
-
-			.status-box {
-				color: #fff;
-				font-size: 24rpx;
-				padding: 46rpx 0 0rpx 60rpx;
-				position: relative;
-
-				.status-img {
-					display: flex;
-				}
-
-				.status {
-					font-size: 30rpx;
-				}
-
-				.status-detail {
-					padding-top: 23rpx;
-				}
-
-				.countdown {
-					@include flex;
-					position: absolute;
-					right: 20rpx;
-					top: 50rpx;
-
-					.time {
-						margin: 0 2rpx;
-						display: flex;
-
-						.time-doc {
-							color: #fff;
-							margin: 0 4rpx;
-						}
-
-						.time-m,
-						.time-s {
-							color: #ffaa00;
-							padding: 3rpx 6rpx;
-							border-radius: 10rpx;
-							font-size: 22rpx;
-							background-color: #fff;
-						}
-					}
-
-				}
+			.copy {
+				color: #FF6633;
+				margin-left: 10rpx;
 			}
 		}
 
-		.detail-box {
-			width: 92%;
-			margin: 0 auto;
-			box-sizing: border-box;
-		}
-
-		.address_bar {
-			background-color: #fff;
-			border-radius: 14rpx;
-			padding: 33rpx 38rpx;
-			position: relative;
-			margin: 18rpx 0 18rpx;
-			border-radius: 14rpx;
-
-			.address {
-				font-size: 24rpx;
-				color: #9FA3B0;
-			}
-
-			.address_arrow {
-				position: absolute;
-				top: 50rpx;
-				right: 40rpx;
-			}
-
-			.address-info {
-				color: #171B25;
-				font-size: 30rpx;
-				margin-bottom: 20rpx;
-
-				.address_bar_num {
-					margin-left: 38rpx;
-				}
-			}
-		}
-
-		.idCard-box {
-			background-color: #fff;
-			border-radius: 14rpx;
-			margin-bottom: 18rpx;
-		}
-
-		.order {
-			background-color: #fff;
-			padding: 30rpx 0 0 0;
-			margin-bottom: 18rpx;
-			border-radius: 14rpx;
-
-			.info-box {
-				display: flex;
-
-				.order-img {
-					width: 160rpx;
-					height: 160rpx;
-					margin: 0 20rpx;
-				}
-
-				.order-info {
-					font-size: 24rpx;
-					color: #9FA3B0;
-					// line-height: 42rpx;
-
-					.info-title {
-						font-size: 28rpx;
-						color: #171B25;
-						margin-bottom: 25rpx;
-					}
-				}
-			}
-
-			.order-date {
-				width: 90%;
-				height: 88rpx;
-				background-color: #c4e6fd;
-				border-radius: 44rpx;
-				margin: 28rpx auto;
-				display: flex;
-				flex: 1;
-
-				.date-box {
-					padding: 13rpx 0 13rpx 32rpx;
-					width: 50%;
-					display: flex;
-
-					.start-box {
-						padding-left: 12rpx;
-					}
-
-					.date-icon {
-						border-radius: 50%;
-						background-color: #ffaa00;
-						position: relative;
-
-						.icon-box {
-							margin-right: 12rpx;
-						}
-
-						.icon-txt {
-							position: absolute;
-							left: 13rpx;
-							top: 13rpx;
-							font-size: 20rpx;
-							color: #ffaa00;
-						}
-					}
-
-					.start-txt {
-						font-size: 24rpx;
-					}
-
-					.time {
-						font-size: 20rpx;
-						color: #9FA3B0;
-					}
-				}
-			}
-		}
-
-		.rent-detail {
-			background-color: #fff;
-			// height: 370rpx;
-			padding: 20rpx 24rpx 20rpx 29rpx;
-			margin-bottom: 18rpx;
-			border-radius: 14rpx;
-
-			.rent-li {
-				font-size: 24rpx;
-				color: #9FA3B0;
-				line-height: 50rpx;
-
-				.li-r {
-					float: right;
-					color: #61687c;
-				}
-
-				.copy {
-					color: #ffaa00;
-					margin-left: 10rpx;
-				}
-			}
-
-			.rent-title {
-				height: 90rpx;
-				line-height: 90rpx;
-				font-weight: bold;
-				font-size: 30rpx;
-				color: #414960;
-				border-bottom: 1rpx solid #F1F2F5;
-
-				.title-r {
-					float: right;
-				}
-			}
-		}
-
-		.sesame {
+		.rent-title {
 			height: 90rpx;
 			line-height: 90rpx;
 			font-weight: bold;
 			font-size: 30rpx;
-			background-color: #fff;
-			padding: 0 26rpx 0 30rpx;
-			margin-bottom: 18rpx;
-			border-radius: 14rpx;
 			color: #414960;
+			border-bottom: 1rpx solid #F1F2F5;
 
 			.title-r {
 				float: right;
 			}
 		}
+	}
 
-		.accessories {
-			height: 360rpx;
+	.sesame {
+		height: 90rpx;
+		line-height: 90rpx;
+		font-weight: bold;
+		font-size: 30rpx;
+		background-color: #fff;
+		padding: 0 26rpx 0 30rpx;
+		margin-bottom: 18rpx;
+		border-radius: 14rpx;
+		color: #414960;
+
+		.title-r {
+			float: right;
+		}
+	}
+
+	.accessories {
+		height: 360rpx;
+		border-radius: 14rpx;
+		padding: 0 14rpx 14rpx;
+		background-color: #fff;
+
+		.accessories-title {
+			height: 70rpx;
+			line-height: 70rpx;
+			padding-left: 13rpx;
+		}
+
+		.accessories-box {
+			background-color: #F9F9F9;
+			height: 270rpx;
+			font-size: 14rpx;
 			border-radius: 14rpx;
-			padding: 0 14rpx 14rpx;
-			background-color: #fff;
+			padding: 0 12rpx 0 14rpx;
 
-			.accessories-title {
-				height: 70rpx;
-				line-height: 70rpx;
-				padding-left: 13rpx;
-			}
+			.accessories-li {
+				font-size: 20rpx;
+				color: #9FA3B0;
+				border-bottom: 1rpx solid #E5E5E5;
 
-			.accessories-box {
-				background-color: #F9F9F9;
-				height: 270rpx;
-				font-size: 14rpx;
-				border-radius: 14rpx;
-				padding: 0 12rpx 0 14rpx;
+				.note {
+					height: 90rpx;
+					line-height: 90rpx;
+					border-radius: 14rpx;
+					background-color: #fff;
+					padding-left: 31rpx;
+				}
 
-				.accessories-li {
-					font-size: 20rpx;
-					color: #9FA3B0;
-					border-bottom: 1rpx solid #E5E5E5;
+				.li-title {
+					font-size: 24rpx;
+					color: #171B25;
+					padding: 22rpx 0 26rpx;
+				}
 
-					.note {
-						height: 90rpx;
-						line-height: 90rpx;
-						border-radius: 14rpx;
-						background-color: #fff;
-						padding-left: 31rpx;
-					}
+				.li-cont {
+					margin-bottom: 29rpx;
 
-					.li-title {
-						font-size: 24rpx;
-						color: #171B25;
-						padding: 22rpx 0 26rpx;
-					}
-
-					.li-cont {
-						margin-bottom: 29rpx;
-
-						.cont-price {
-							float: right;
-						}
+					.cont-price {
+						float: right;
 					}
 				}
-			}
-		}
-
-		.note {
-			height: 90rpx;
-			line-height: 90rpx;
-			font-size: 30rpx;
-			padding-left: 30rpx;
-			position: relative;
-			background-color: #fff;
-			margin: 18rpx 0;
-			border-radius: 14rpx;
-			color: #414960;
-
-			.note-input {
-				position: absolute;
-				top: 20rpx;
-				right: 8rpx;
-			}
-		}
-
-		.conclusion {
-			background-color: #fff;
-			// height: 215rpx;
-			padding: 23rpx 30rpx 50rpx 60rpx;
-			box-sizing: border-box;
-
-			.agreement-box {
-				color: #414960;
-				font-size: 24rpx;
-				line-height: 50rpx;
-				// margin-bottom: 45rpx;
-
-				.agreement-radio {
-					float: left;
-					margin-top: 10rpx;
-				}
-
-				.color-txt {
-					color: #ffaa00
-				}
-			}
-
-			.total-amount {
-				font-size: 24rpx;
-				color: #414960;
-				margin-left: -8rpx;
-
-				.amount-icon {
-					display: inline-block;
-					width: 30rpx;
-				}
-
-				.amount-btn {
-					display: inline-block;
-					// width: 219rpx;
-					// height: 87rpx;
-					padding: 29rpx 50rpx;
-					// line-height: 87rpx;
-					background: #ffaa00;
-					color: #fff;
-					text-align: center;
-					margin-left: 20rpx;
-					border-radius: 43rpx;
-					font-size: 30rpx;
-				}
-
-				.color-red {
-					font-size: 38rpx;
-					color: #FF5B56;
-					margin: 0 22rpx 0 0;
-
-				}
-			}
-		}
-
-		.detail-btn-box {
-			position: fixed;
-			width: 100%;
-			// left: 0;
-			bottom: 0;
-			background-color: #fff;
-			height: 102rpx;
-			padding-bottom: 40rpx;
-			padding-right: 41rpx;
-			display: flex;
-			// text-align: center;
-			// justify-content: center;
-			flex-direction: row-reverse;
-
-			.btn {
-				// width: 143rpx;
-				height: 53rpx;
-				line-height: 53rpx;
-				font-size: 24rpx;
-				border-radius: 10rpx;
-				padding: 0rpx 24rpx;
-				text-align: center;
-				border: 1px solid #414960;
-				margin: 30rpx 14rpx;
 			}
 		}
 	}
+
+	.note {
+		height: 90rpx;
+		line-height: 90rpx;
+		font-size: 30rpx;
+		padding-left: 30rpx;
+		position: relative;
+		background-color: #fff;
+		margin: 18rpx 0;
+		border-radius: 14rpx;
+		color: #414960;
+
+		// .note-input {
+		// 	position: absolute;
+		// 	top: 20rpx;
+		// 	right: 8rpx;
+		// }
+		display: flex;
+		justify-content: space-between;
+		.note-text{
+			margin-right: 30rpx;
+			max-width: 70%;
+			white-space: wrap;
+			// border: 1px solid red;
+			word-break: break-all;
+			overflow: auto;
+			line-height: 80rpx;
+		}
+	}
+
+	.conclusion {
+		background-color: #fff;
+		// height: 215rpx;
+		padding: 23rpx 30rpx 50rpx 60rpx;
+		box-sizing: border-box;
+
+		.agreement-box {
+			color: #414960;
+			font-size: 24rpx;
+			line-height: 50rpx;
+			// margin-bottom: 45rpx;
+
+			.agreement-radio {
+				float: left;
+				margin-top: 10rpx;
+			}
+
+			.color-txt {
+				color: #FF6633
+			}
+		}
+
+		.total-amount {
+			font-size: 24rpx;
+			color: #414960;
+			margin-left: -8rpx;
+
+			.amount-icon {
+				display: inline-block;
+				width: 30rpx;
+			}
+
+			.amount-btn {
+				display: inline-block;
+				// width: 219rpx;
+				// height: 87rpx;
+				padding: 29rpx 50rpx;
+				// line-height: 87rpx;
+				background: #FF6633;
+				color: #fff;
+				text-align: center;
+				margin-left: 20rpx;
+				border-radius: 43rpx;
+				font-size: 30rpx;
+			}
+
+			.color-red {
+				font-size: 38rpx;
+				color: #FF5B56;
+				margin: 0 22rpx 0 0;
+
+			}
+		}
+	}
+
+	.detail-btn-box {
+		position: fixed;
+		width: 100%;
+		// left: 0;
+		bottom: 0;
+		background-color: #fff;
+		height: 102rpx;
+		padding-bottom: 40rpx;
+		padding-right: 41rpx;
+		display: flex;
+		// text-align: center;
+		// justify-content: center;
+		flex-direction: row-reverse;
+
+		.btn {
+			// width: 143rpx;
+			height: 53rpx;
+			line-height: 53rpx;
+			font-size: 24rpx;
+			border-radius: 10rpx;
+			padding: 0rpx 24rpx;
+			text-align: center;
+			border: 1px solid #414960;
+			margin: 30rpx 14rpx;
+		}
+	}
+
+	.imgae_wh {
+		width: 160rpx;
+		height: 160rpx;
+	}
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<view class="page goods-detail-page" :style="buyStatus ?'overflow:hidden':'overflow:scroll' ">
+	<view class="page goods-detail-page" :style="buyStatus ? 'overflow:hidden' : 'overflow:scroll'" style="background-color: #f6f6fb;">
 		<!-- 轮播大图  商品详情 -->
 		<u-swiper :list="goods_data.images" :autoplay="false" radius="0" height="750rpx" />
 		<!-- 简介 -->
@@ -55,7 +55,7 @@
 		</view>
 		<!-- 商品详情、租赁说明，常用说明 -->
 		<view class="detail-box">
-			<u-tabs :list="tabList" @click="tabClick" :scrollable="false" lineColor="#ffaa00" :inactiveStyle='{
+			<u-tabs :list="tabList" @click="tabClick" :scrollable="false" lineColor="#FF6633" :inactiveStyle='{
 						color: "#61687C",
 						transform: "scale(1)"}' :activeStyle="{
 						 transform: 'scale(1.05)'
@@ -166,8 +166,8 @@
 
 		onLoad(obj) {
 			this.lingquan()
-			this.params = obj
-			let options = my.getLaunchOptionsSync();
+		this.params = obj;
+		let options = uni.getLaunchOptionsSync();
 			this.paramsid = options.query
 			this.tokenexpir()
 		},
@@ -186,7 +186,7 @@
 				}
 				this.$request(opt).then(res => {
 					var dingyueid = res.data
-					my.requestSubscribeMessage({
+				uni.requestSubscribeMessage({
 						//优惠券到期提醒，优惠券领取提醒
 						entityIds: dingyueid,
 						fail: (res) => {
@@ -239,7 +239,7 @@
 				uni.switchTab({
 					url: '/pages/index/index'
 				})
-				// my.hideBackHome();
+			// uni.hideBackHome();
 			},
 			cellModal() {
 				this.couponsStatus = true
@@ -272,15 +272,22 @@
 				}
 				this.$request(opt).then(res => {
 					var dingyueid = res.data
-					my.requestSubscribeMessage({
-						//好友完成租机通知
-						entityIds: dingyueid,
-						complete: (res) => {
-							this.goodsId = this.goods_data.id
-							this.buyStatus = true
-						}
-					});
-
+				// 支付宝小程序专用
+				// #ifdef MP-ALIPAY
+				my.requestSubscribeMessage({
+					//好友完成租机通知
+					entityIds: dingyueid,
+					complete: (res) => {
+						this.goodsId = this.goods_data.id
+						this.buyStatus = true
+					}
+				});
+				// #endif
+				// app端专用
+				// #ifndef MP-ALIPAY
+				this.goodsId = this.goods_data.id
+				this.buyStatus = true
+				// #endif
 				})
 			},
 			BuyClose() {
@@ -313,7 +320,7 @@
 					this.detailtarget.content = this.goods_data.content
 					this.collectlist = {
 						icon: res.data.is_like == "1" ? "star-fill" : "star",
-						fontColor: res.data.is_like == "1" ? "#ffaa00" : "#61687C"
+						fontColor: res.data.is_like == "1" ? "#FF6633" : "#61687C"
 					}
 				})
 			},
@@ -342,7 +349,7 @@
 				this.$request(opt).then(res => {
 					this.collectlist = {
 						icon: this.collectlist.icon == "star" ? "star-fill" : "star",
-						fontColor: this.collectlist.fontColor == "#ffaa00" ? "#61687C" : "#ffaa00"
+						fontColor: this.collectlist.fontColor == "#FF6633" ? "#61687C" : "#FF6633"
 					}
 					let msg = this.collectlist.icon == "star" ? '取消收藏成功' : res.msg
 					this.$refs.uToast.show({
@@ -373,8 +380,14 @@
 	}
 
 	.goods-tags {
-		display: flex;
-		gap: 10rpx;
+	display: flex;
+	// #ifdef MP-ALIPAY
+	gap: 10rpx;
+	// #endif
+	// #ifndef MP-ALIPAY
+	// width: 40%;
+	// justify-content: space-between;
+	// #endif
 	}
 
 	.goods-tag {
@@ -386,6 +399,9 @@
 		padding: 4rpx 10rpx;
 		border: .5px solid #4D79FF;
 		background: rgba(77, 121, 255, 0.1);
+	// #ifndef MP-ALIPAY
+	margin-right: 15rpx;
+	// #endif
 	}
 
 	.tag-red {
@@ -427,7 +443,7 @@
 			padding: 12rpx 30rpx 24rpx 30rpx;
 			margin: 12px 12px 0 12px;
 			border-radius: 14rpx 14rpx 0 0;
-			background: linear-gradient(270deg, #FFAA00 0%, #FF612F 100%);
+			background: linear-gradient(270deg, #FF6633 0%, #ff4141 100%);
 
 			.price-company {
 				font-size: 24rpx;
@@ -561,7 +577,7 @@
 
 			.buy-btn {
 				height: 81rpx;
-				background: #ffaa00;
+				background: #FF6633;
 				border-radius: 20rpx;
 				line-height: 81rpx;
 				text-align: center;

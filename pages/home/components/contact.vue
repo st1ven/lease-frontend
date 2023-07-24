@@ -1,12 +1,18 @@
 <template>
 	<view>
-		<u-popup mode="center" :round="10" closeable :show="contactStatus" :safeAreaInsetBottom="false"
-			@close="setStatus(false)">
-			<view class="contact-item">
+		<u-popup mode="center" :round="10" closeable :show="contactStatus" :safeAreaInsetBottom="false" @close="setStatus(false)">
+			<view class="contact-item" @click="iphoneFunc">
 				<u-icon size="28" name="phone-fill" />
 				<view class="content">
 					<text class="title">联系电话</text>
-					<text class="number" @click="iphoneFunc">{{iphoneNum}}</text>
+					<text class="number">
+						<!-- ifdef H5 -->
+						<a :href="'tel:'+ iphoneNum">	{{ iphoneNum }}</a>
+						<!-- endif -->
+						<!-- ifndef H5 -->
+						{{ iphoneNum }}
+						<!-- endif -->
+					</text>
 				</view>
 			</view>
 			<view class="line" />
@@ -40,10 +46,12 @@
 				console.log(this.iphoneNum,'iphoneNum','--------')
 				if(this.iphoneNum){
 					let iphoneNum = this.iphoneNum
-					 my.makePhoneCall({
-					    number:   iphoneNum//仅为示例
-					});
-
+				uni.makePhoneCall({
+					number: iphoneNum//仅为示例
+				});
+				// #ifndef MP-ALIPAY
+				plus.device.dial(iphoneNum, false);
+				// #endif
 				}
 			},
 			setStatus(status) {

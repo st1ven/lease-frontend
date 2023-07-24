@@ -65,7 +65,7 @@
 				console.log('触发了 onUseImmediately 事件')
 			
 				// 可以跳转到自定义的页面
-				my.navigateTo({
+				uni.navigateTo({
 				  url: '/pages/goods-detail/index',
 				})
 			},
