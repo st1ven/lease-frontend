@@ -10,7 +10,8 @@ function replaceStringInFile(filePath, searchString, replaceString) {
         const newContent = fileContent.replace(new RegExp(config[searchString].AppId, 'gi'), config[replaceString].AppId)
 					.replace(new RegExp(config[searchString].Name, 'gi'), config[replaceString].Name)
 					.replace(new RegExp(config[searchString].Color, 'gi'), config[replaceString].Color)
-					.replace(new RegExp(searchString, 'gi'), replaceString);
+					.replace(new RegExp(searchString.'.', 'gi'), replaceString.'.')
+					.replace(new RegExp(searchString.'/', 'gi'), replaceString.'/');
         fs.writeFileSync(filePath, newContent);
         console.log(`替换文件：${filePath}`);
     }
