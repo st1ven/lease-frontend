@@ -11,7 +11,7 @@
 		</view>
 		<view class="gonggao" v-if="imagee.dynamic != '0'">
 			<view class="content">
-				<text class="zulin">租赁<text style="color: #FF6633;">动态</text></text>
+				<text class="zulin">租赁<text style="color: #ff6633;">动态</text></text>
 				<text v-if="(imagee.gonggao).length < 15 " class="tishi">{{imagee.gonggao}}</text>
 				<u-notice-bar v-else :text="''+imagee.gonggao+''" direction="row" icon=" " bgColor=" " speed="60"
 					color="#414960"></u-notice-bar>
@@ -119,7 +119,7 @@
 		</view>
 
 		<view v-if="loadding" style="padding-top: 20px;">
-			<u-loading-icon color="#FF6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+			<u-loading-icon color="#ff6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 		</view>
 		<view class="zhuanqu" v-for="(item) in phoneList" :key="item.id">
 			<view class="bannerbig">
@@ -183,7 +183,7 @@
 			<text class="line"></text>
 		</view>
 		<view v-if="loaadding" style="padding-top: 20px;">
-			<u-loading-icon color="#FF6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+			<u-loading-icon color="#ff6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 		</view>
 		<view class="recommend-goods" style="margin-top: 10px;">
 			<view class="recommend-goods-ul">

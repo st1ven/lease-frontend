@@ -55,7 +55,7 @@
 		</view>
 		<!-- 商品详情、租赁说明，常用说明 -->
 		<view class="detail-box">
-			<u-tabs :list="tabList" @click="tabClick" :scrollable="false" lineColor="#FF6633" :inactiveStyle='{
+			<u-tabs :list="tabList" @click="tabClick" :scrollable="false" lineColor="#ff6633" :inactiveStyle='{
 						color: "#61687C",
 						transform: "scale(1)"}' :activeStyle="{
 						 transform: 'scale(1.05)'
@@ -320,7 +320,7 @@
 					this.detailtarget.content = this.goods_data.content
 					this.collectlist = {
 						icon: res.data.is_like == "1" ? "star-fill" : "star",
-						fontColor: res.data.is_like == "1" ? "#FF6633" : "#61687C"
+						fontColor: res.data.is_like == "1" ? "#ff6633" : "#61687C"
 					}
 				})
 			},
@@ -349,7 +349,7 @@
 				this.$request(opt).then(res => {
 					this.collectlist = {
 						icon: this.collectlist.icon == "star" ? "star-fill" : "star",
-						fontColor: this.collectlist.fontColor == "#FF6633" ? "#61687C" : "#FF6633"
+						fontColor: this.collectlist.fontColor == "#ff6633" ? "#61687C" : "#ff6633"
 					}
 					let msg = this.collectlist.icon == "star" ? '取消收藏成功' : res.msg
 					this.$refs.uToast.show({
@@ -443,7 +443,7 @@
 			padding: 12rpx 30rpx 24rpx 30rpx;
 			margin: 12px 12px 0 12px;
 			border-radius: 14rpx 14rpx 0 0;
-			background: linear-gradient(270deg, #FF6633 0%, adjust-hue(#FF6633, 20deg) 100%);
+			background: linear-gradient(270deg, #ff6633 0%, adjust-hue(#ff6633, 20deg) 100%);
 
 			.price-company {
 				font-size: 24rpx;
@@ -577,7 +577,7 @@
 
 			.buy-btn {
 				height: 81rpx;
-				background: #FF6633;
+				background: #ff6633;
 				border-radius: 20rpx;
 				line-height: 81rpx;
 				text-align: center;

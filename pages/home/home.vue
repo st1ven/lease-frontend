@@ -73,7 +73,7 @@
 			<text class="line"></text>
 		</view>
 		<view v-if="loading" style="padding-top: 20px;">
-			<u-loading-icon color="#FF6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+			<u-loading-icon color="#ff6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 		</view>
 		<view class="recommend-goods" style="margin-top: 10px;">
 			<view class="recommend-goods-ul">
@@ -481,7 +481,7 @@ export default {
 
 .user-info {
 	background: url('../../static/base/jzz/header.png');
-	background-color: #FF6633;
+	background-color: #ff6633;
 	background-size: 20vh;
 	background-repeat: no-repeat;
 	background-position: 100% 0;

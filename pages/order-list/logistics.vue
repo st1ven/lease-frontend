@@ -13,11 +13,11 @@
 			</view>
 		</view>
 		<view class="logistics-box">
-			<u-steps current="0" direction="column" activeColor="#FF6633" inactiveColor="#9FA3B0" :dot="true">
+			<u-steps current="0" direction="column" activeColor="#ff6633" inactiveColor="#9FA3B0" :dot="true">
 				<view class="" v-for="(item,index) in stepList" :key="index">
 					<u-steps-item :title="item.time" :desc="item.context" v-if="index==0">
 						<text class="slot-icon" slot="icon">
-							<u-icon name="checkmark-circle-fill" color="#FF6633" size="30rpx"></u-icon>
+							<u-icon name="checkmark-circle-fill" color="#ff6633" size="30rpx"></u-icon>
 						</text>
 					</u-steps-item>
 					<u-steps-item :title="item.time" :desc="item.context" v-else></u-steps-item>
@@ -124,7 +124,7 @@
 				color: #171B25;
 
 				.copy {
-					color: #FF6633;
+					color: #ff6633;
 					margin-left: 15rpx;
 				}
 
@@ -142,7 +142,7 @@
 		}
 
 		/deep/ .u-text__value--main {
-			color: #FF6633;
+			color: #ff6633;
 			margin-bottom: 5rpx;
 		}
 

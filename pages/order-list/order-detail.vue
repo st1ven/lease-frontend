@@ -193,7 +193,7 @@
 			<view class="agreement-box">
 				<view class="agreement-radio">
 					<u-checkbox-group>
-						<u-checkbox label="我已阅读并同意" size="22" @change="radioChange" activeColor="#FF6633" :name="agreementFlag"
+						<u-checkbox label="我已阅读并同意" size="22" @change="radioChange" activeColor="#ff6633" :name="agreementFlag"
 							shape="circle" v-model="agreementFlag"></u-checkbox>
 					</u-checkbox-group>
 				</view>
@@ -1031,7 +1031,7 @@ export default {
 
 .shiming {
 	padding: 16px 16px;
-	background: #FF6633;
+	background: #ff6633;
 	color: #fff;
 	text-align: center;
 	font-size: 16px;
@@ -1056,7 +1056,7 @@ export default {
 	// height: 100vh;
 	.order-status {
 		height: 209rpx;
-		background: #FF6633;
+		background: #ff6633;
 		border-radius: 0 0 30rpx 30rpx;
 
 		.status-box {
@@ -1094,7 +1094,7 @@ export default {
 
 					.time-m,
 					.time-s {
-						color: #FF6633;
+						color: #ff6633;
 						padding: 3rpx 6rpx;
 						border-radius: 10rpx;
 						font-size: 22rpx;
@@ -1208,7 +1208,7 @@ export default {
 
 				.date-icon {
 					border-radius: 50%;
-					background-color: #FF6633;
+					background-color: #ff6633;
 					position: relative;
 
 					.icon-box {
@@ -1220,7 +1220,7 @@ export default {
 						left: 13rpx;
 						top: 13rpx;
 						font-size: 20rpx;
-						color: #FF6633;
+						color: #ff6633;
 					}
 				}
 
@@ -1402,7 +1402,7 @@ export default {
 			}
 
 			.color-txt {
-				color: #FF6633
+				color: #ff6633
 			}
 		}
 
@@ -1425,7 +1425,7 @@ export default {
 				// height: 87rpx;
 				padding: 29rpx 50rpx;
 				// line-height: 87rpx;
-				background: #FF6633;
+				background: #ff6633;
 				color: #fff;
 				text-align: center;
 				margin-left: 20rpx;

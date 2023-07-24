@@ -94,7 +94,7 @@
 				<iz-buy-buyout :goodsku="goodskuid" :goodid="good_id"></iz-buy-buyout>
 			</u-popup>
 			<view class="" v-if="tijiaorenzheng">
-				<u-loading-icon color="#FF6633" text="正在提交请稍后..." size="16" :vertical="true" textSize="14">
+				<u-loading-icon color="#ff6633" text="正在提交请稍后..." size="16" :vertical="true" textSize="14">
 				</u-loading-icon>
 			</view>
 			<view v-if="totalNum != 0 && tokenstatus != ''">
@@ -544,7 +544,7 @@ export default {
 		.buy-ok {
 			width: 100%;
 			height: 80rpx;
-			background: #FF6633;
+			background: #ff6633;
 			border-radius: 20rpx;
 			text-align: center;
 			line-height: 80rpx;
@@ -615,9 +615,9 @@ export default {
 			}
 
 			.on {
-				color: #FF6633;
-				border: 1px solid #FF6633;
-				background-color: rgba($color: #FF6633, $alpha: 0.1);
+				color: #ff6633;
+				border: 1px solid #ff6633;
+				background-color: rgba($color: #ff6633, $alpha: 0.1);
 			}
 		}
 	}
@@ -644,7 +644,7 @@ export default {
 
 .shimings {
 	padding: 16px 16px;
-	background: #FF6633;
+	background: #ff6633;
 	color: #fff;
 	text-align: center;
 	font-size: 16px;
@@ -662,7 +662,7 @@ export default {
 	// height: 87rpx;
 	padding: 29rpx 50rpx;
 	// line-height: 87rpx;
-	background: #FF6633;
+	background: #ff6633;
 	color: #fff;
 	text-align: center;
 	margin-left: 20rpx;

@@ -2,7 +2,7 @@
 	<!-- 续租 -->
 	<view class="coupons-page" style="background-color: #f6f6fb;">
 		<view class="coupons-tab">
-			<u-tabs lineColor="#FF6633" :list="list1" @click="click" :scrollable="false"></u-tabs>
+			<u-tabs lineColor="#ff6633" :list="list1" @click="click" :scrollable="false"></u-tabs>
 		</view>
 		<view class="coupons-item" >
 			<iz-coupons-item :type="0" :status="status" />

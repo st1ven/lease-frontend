@@ -6,11 +6,11 @@
 			<view class="desc">您是否遇到了以下问题？</view>
 		</view>
 		<view class="help-tab">
-			<u-tabs :list="tableList" @click="click" :scrollable="false" lineColor="#FF6633"></u-tabs>
+			<u-tabs :list="tableList" @click="click" :scrollable="false" lineColor="#ff6633"></u-tabs>
 		</view>
 		<view class="help-ul">
 			<view v-if="loading" style="padding-top: 20px;">
-				<u-loading-icon color="#FF6633" text="正在加载..." size="16" :vertical="true" textSize="14">
+				<u-loading-icon color="#ff6633" text="正在加载..." size="16" :vertical="true" textSize="14">
 				</u-loading-icon>
 			</view>
 			<!-- #ifndef APP-PLUS-->
@@ -170,7 +170,7 @@
 		/* #ifdef APP-PLUS */
 		padding-top: 48px;
 		/* #endif */
-		background-color: #FF6633;
+		background-color: #ff6633;
 		// height: 100vh;
 
 		.help-header {

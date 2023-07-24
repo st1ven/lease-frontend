@@ -5,7 +5,7 @@
 			<view class="collection-li" v-for="(item,index) in list" :key="index" @click="liClick(item)">
 				<view class="li-checkbox">
 					<u-checkbox-group :v-model="item" @change="checkboxChange(item,index)">
-						<u-checkbox activeColor="#FF6633" shape="circle" :checked="item.disabled"></u-checkbox>
+						<u-checkbox activeColor="#ff6633" shape="circle" :checked="item.disabled"></u-checkbox>
 					</u-checkbox-group>
 				</view>
 				<view class="li-img">
@@ -25,7 +25,7 @@
 			<view class="bottom-l box">
 				<view class="checkbox">
 					<u-checkbox-group @change="allChange(list)">
-						<u-checkbox activeColor="#FF6633" shape="circle" label="全选" :checked="allCheckFlag"></u-checkbox>
+						<u-checkbox activeColor="#ff6633" shape="circle" label="全选" :checked="allCheckFlag"></u-checkbox>
 					</u-checkbox-group>
 				</view>
 			</view>

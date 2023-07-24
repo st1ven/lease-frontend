@@ -118,7 +118,7 @@
 			line-height: 80rpx;
 			border-radius: 20rpx;
 			color: #fff;
-			background: #FF6633;
+			background: #ff6633;
 		}
 
 		.input-li {
@@ -224,7 +224,7 @@
 					width: 170rpx;
 					padding-left: 18rpx;
 					font-size: 32rpx;
-					color: #FF6633;
+					color: #ff6633;
 				}
 
 				.li-input {

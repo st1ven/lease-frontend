@@ -350,7 +350,7 @@
 						top: 50%;
 						width: 10rpx;
 						height: 38rpx;
-						background: #FF6633;
+						background: #ff6633;
 						transform: translateY(-50%);
 					}
 
@@ -399,7 +399,7 @@
 			}
 
 			view.on {
-				color: #FF6633;
+				color: #ff6633;
 			}
 		}
 	}

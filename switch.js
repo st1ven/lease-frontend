@@ -2,46 +2,53 @@ const config = require('./common/config');
 const fs = require('fs');
 const path = require('path');
 
-function replaceStringInFile(filePath, searchString, replaceString) {
-    const fileExt = path.extname(filePath).toLowerCase();
+function replaceTextInFiles(directory, searchValue, replaceValue) {
+	const files = fs.readdirSync(directory);
 
-    if (fileExt === '.js' || fileExt === '.json' || fileExt === '.css' || fileExt === '.scss' || fileExt === '.vue' || fileExt === '.html') {
-        const fileContent = fs.readFileSync(filePath, 'utf8');
-        const newContent = fileContent.replace(new RegExp(config[searchString].AppId, 'gi'), config[replaceString].AppId)
-					.replace(new RegExp(config[searchString].Name, 'gi'), config[replaceString].Name)
-					.replace(new RegExp(config[searchString].Color, 'gi'), config[replaceString].Color)
-					.replace(new RegExp(searchString.'.', 'gi'), replaceString.'.')
-					.replace(new RegExp(searchString.'/', 'gi'), replaceString.'/');
-        fs.writeFileSync(filePath, newContent);
-        console.log(`替换文件：${filePath}`);
-    }
+	files.forEach((file) => {
+		const filePath = path.join(directory, file);
+		const fileExt = path.extname(filePath).toLowerCase();
+		const stats = fs.statSync(filePath);
+
+		if (stats.isDirectory()) {
+			// 排除目录
+			if (file === 'uni_modules' || file === 'node_modules' || file === '.git' || file === 'unpackage' ||
+				file === '.hbuilderx') {
+				return;
+			}
+			// 递归处理子目录
+			replaceTextInFiles(filePath, searchValue, replaceValue);
+		} else {
+			// 排除配置文件
+			if (file === 'config.js' && directory.endsWith('/common')) {
+				return;
+			}
+			// 限制后缀文件
+			if (fileExt === '.js' || fileExt === '.json' || fileExt === '.css' || fileExt === '.scss' ||
+				fileExt === '.vue' || fileExt === '.html') {
+				// 读取文件内容
+				let content = fs.readFileSync(filePath, 'utf8');
+				// 替换文本
+				content = content.replace(new RegExp(config[searchValue].AppId, 'gi'), config[replaceValue].AppId)
+					.replace(new RegExp(config[searchValue].Name, 'gi'), config[replaceValue].Name)
+					.replace(new RegExp(config[searchValue].Color, 'gi'), config[replaceValue].Color)
+					.replace(new RegExp('config.' + searchValue, 'gi'), 'config.' + replaceValue)
+					.replace(new RegExp('base/' + searchValue, 'gi'), 'base/' + replaceValue);
+				// 写入替后的内容
+				fs.writeFileSync(filePath, content, 'utf8');
+			}
+		}
+	});
 }
 
-function traverseDirectory(dirPath, searchString, replaceString) {
-    const files = fs.readdirSync(dirPath);
+// 获取命令行参数
+const searchValue = process.argv[2];
+const replaceValue = process.argv[3];
 
-    files.forEach(file => {
-        const filePath = path.join(dirPath, file);
-        const stats = fs.statSync(filePath);
-        
-        if (stats.isDirectory() && (file !== 'uni_modules' || file !== '.git')) {
-            traverseDirectory(filePath, searchString, replaceString);
-        } else if (stats.isFile() 
-            && !(file === 'config.js' && dirPath.includes('/common'))) {
-            replaceStringInFile(filePath, searchString, replaceString);
-        }
-    });
+if (searchValue === undefined || replaceValue === undefined) {
+	console.error('请输入参数，示例：node switch.js fengwo jzz');
+	process.exit(1);
 }
 
-function replaceInDirectory(dirPath, searchString, replaceString) {
-    traverseDirectory(dirPath, searchString, replaceString);
-    console.log('替换完成');
-}
-
-const searchString = process.argv[2];
-const replaceString = process.argv[3];
-if (searchString == undefined || replaceString == undefined) {
-  console.error('请输入参数，示例：node switch.js fengwo jzz');
-  process.exit(1);
-}
-replaceInDirectory(__dirname, searchString, replaceString);
+// 执行替换操作
+replaceTextInFiles(__dirname, searchValue, replaceValue);

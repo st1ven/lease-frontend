@@ -435,7 +435,7 @@ export default {
 	text-align: center;
 }
 .bottom-btn{
-	background-color: #FF6633;
+	background-color: #ff6633;
 	color: #fff;
 	// text-align: center;
 	width: 100%;
@@ -529,7 +529,7 @@ export default {
 			line-height: 80rpx;
 			border-radius: 20rpx;
 			color: #fff;
-			background: #FF6633;
+			background: #ff6633;
 		}
 
 		.input-li {
@@ -565,7 +565,7 @@ export default {
 				line-height: 60rpx;
 				font-size: 24rpx;
 				text-align: right;
-				color: #FF6633;
+				color: #ff6633;
 				display: flex;
 				justify-content: center;
 				align-items: center;

@@ -15,7 +15,7 @@
 					</get-coupon>
 				</view>
 				<view v-if="loadding" style="padding-top: 20px;">
-					<u-loading-icon  color="#FF6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+					<u-loading-icon  color="#ff6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 				</view>
 				<image :src="xinxi.background_image" mode="widthFix" style="width: 100%;"></image>
 					

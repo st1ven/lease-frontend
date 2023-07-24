@@ -66,7 +66,7 @@
 							<u-alert :description="'补充信息可加速审核，大幅提高审核通过率'" type="warning" fontSize="22rpx"></u-alert>
 						</view>
 						<view class="order-btn" v-if="tabList[activeIndex].inx == '1'">
-							<view class="btn ml-20" style="background: #FF6633; color: #fff; border: 1px solid #FF6633;"
+							<view class="btn ml-20" style="background: #ff6633; color: #fff; border: 1px solid #ff6633;"
 								@click="jumpAuth()">补充信息</view>
 							<view class="btn ml-20" v-if="item.is_authentication == 0" @click="getIDNumber(item)">去认证</view>
 							<view class="btn ml-20" @click="opencancelorder(item)">取消订单</view>
@@ -132,23 +132,23 @@
 			</view>
 		</view>
 		<view class="" v-if="quxiaoquan" style="padding-top: 20px;">
-			<u-loading-icon color="#FF6633" text="正在取消..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+			<u-loading-icon color="#ff6633" text="正在取消..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 		</view>
 		<u-popup :show="show" :round="10" mode="bottom" :closeable="true" @close="close">
 			<view class="quxiaoyuanyin">请选择取消原因</view>
 			<view style="padding: 30px;">
 				<u-radio-group placement="column">
-					<u-radio activeColor="#FF6633" labelColor="#61687C" :customStyle="{ marginBottom: '8px', padding: '10px' }"
+					<u-radio activeColor="#ff6633" labelColor="#61687C" :customStyle="{ marginBottom: '8px', padding: '10px' }"
 						v-for="(item, index) in radiolist1" :key="index" :label="item" labelSize='18px' :name="item"
 						@change="groupChange" shape="square">
 					</u-radio>
 				</u-radio-group>
 			</view>
 			<view class="" v-if="quxiaoquan" style="padding-top: 20px;">
-				<u-loading-icon color="#FF6633" text="正在取消..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+				<u-loading-icon color="#ff6633" text="正在取消..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 			</view>
 			<view class="querenquxiao">
-				<view style="color: #FF6633;" @click="queren()">确定取消</view>
+				<view style="color: #ff6633;" @click="queren()">确定取消</view>
 				<view style="color: #D5D7DC;">|</view>
 				<view style="color: #61687C;" @click="show = false">暂不取消</view>
 			</view>
@@ -927,9 +927,9 @@ export default {
 	// overflow-x: auto;
 	.active {
 		font-weight: bold;
-		color: #FF6633 !important;
-		border-bottom: 2px solid #FF6633;
-		background: rgba($color: #FF6633, $alpha: 0.1) !important;
+		color: #ff6633 !important;
+		border-bottom: 2px solid #ff6633;
+		background: rgba($color: #ff6633, $alpha: 0.1) !important;
 	}
 
 	.btn {
@@ -965,9 +965,9 @@ export default {
 
 	.active {
 		font-weight: bold;
-		color: #FF6633 !important;
-		border-bottom: 2px solid #FF6633;
-		background: rgba($color: #FF6633, $alpha: 0.1) !important;
+		color: #ff6633 !important;
+		border-bottom: 2px solid #ff6633;
+		background: rgba($color: #ff6633, $alpha: 0.1) !important;
 	}
 
 	.btns+.btns {
@@ -1026,7 +1026,7 @@ export default {
 	}
 
 	.type {
-		color: #FF6633;
+		color: #ff6633;
 		font-size: 24rpx;
 		margin-left: auto;
 	}

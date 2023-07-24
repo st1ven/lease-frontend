@@ -42,7 +42,7 @@
 				进入人脸认证
 			</view>
 			<view class="" v-if="renzheng" style="padding-top: 20px;">
-				<u-loading-icon color="#FF6633" text="正在同步实名认证结果" size="16" :vertical="true" textSize="14"></u-loading-icon>
+				<u-loading-icon color="#ff6633" text="正在同步实名认证结果" size="16" :vertical="true" textSize="14"></u-loading-icon>
 			</view>
 			
 		</view>
@@ -217,7 +217,7 @@
 
 		.head {
 			height: 382rpx;
-			background: #FF6633;
+			background: #ff6633;
 			color: #fff;
 			text-align: center;
 			padding-top: 60rpx;
@@ -291,7 +291,7 @@
 			.btn {
 				height: 88rpx;
 				line-height: 88rpx;
-				background-color: #FF6633;
+				background-color: #ff6633;
 				color: #fff;
 				font-size: 30rpx;
 				text-align: center;

@@ -281,8 +281,8 @@
 	}
 
 	.custom-style {
-		background-color: #FF6633;
-		border: #FF6633;
+		background-color: #ff6633;
+		border: #ff6633;
 		color: #fff;
 	}
 

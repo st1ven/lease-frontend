@@ -525,7 +525,7 @@ export default {
 }
 
 .title {
-	color: #FF6633;
+	color: #ff6633;
 	padding: 36rpx 0;
 	font-size: 36rpx;
 	text-align: center;
@@ -567,7 +567,7 @@ export default {
 	width: 170rpx;
 	padding-left: 18rpx;
 	font-size: 32rpx;
-	color: #FF6633;
+	color: #ff6633;
 }
 
 .li-input {

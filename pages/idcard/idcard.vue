@@ -286,7 +286,7 @@ export default {
 
 		.idCard-txt {
 			font-size: 30rpx;
-			color: #FF6633;
+			color: #ff6633;
 			position: absolute;
 			left: 50%;
 			bottom: 60rpx;
@@ -297,7 +297,7 @@ export default {
 	.btn {
 		width: 80%;
 		height: 81rpx;
-		background: #FF6633;
+		background: #ff6633;
 		border-radius: 14rpx;
 		line-height: 81rpx;
 		margin: 81rpx auto;

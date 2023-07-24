@@ -29,7 +29,7 @@
 			"style": {
 				"navigationBarTitleText": "我的",
 				"backgroundColor": "#f6f6fb",
-				"navigationBarBackgroundColor": "#FF6633",
+				"navigationBarBackgroundColor": "#ff6633",
 				"app-plus": {
 					"titleNView": false
 				},
@@ -42,7 +42,7 @@
 			"path": "pages/service/index",
 			"style": {
 				"navigationBarTitleText": "客服",
-				"navigationBarBackgroundColor": "#FF6633",
+				"navigationBarBackgroundColor": "#ff6633",
 				"app-plus": {
 					"titleNView": false
 				},
@@ -420,7 +420,7 @@
 	],
 	"tabBar": {
 		"color": "#61687c",
-		"selectedColor": "#FF6633",
+		"selectedColor": "#ff6633",
 		"list": [{
 				"text": "首页",
 				"pagePath": "pages/index/index",

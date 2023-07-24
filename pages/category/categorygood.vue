@@ -5,7 +5,7 @@
 			<u-scroll-list :indicator="false" style="background-color: #fff;">
 				<view class="uscroll" v-for="(item, index) in tarlist" :key="index" @click="fenleibig(item.id,index)">
 					<image :src="item.image" mode="widthFix" style="width: 80rpx; margin: 0px 8px;" ></image>
-					<text v-if="activetext == index" style="font-size: 12px;font-weight:bold;color: #FF6633;">{{item.name}}</text>
+					<text v-if="activetext == index" style="font-size: 12px;font-weight:bold;color: #ff6633;">{{item.name}}</text>
 					<text v-else style="font-size: 12px; color: #61687C;">{{item.name}}</text>
 				</view>
 			</u-scroll-list>
@@ -21,7 +21,7 @@
 			<!-- 内容 -->
 			<view class="content" >
 				<view v-if="loading" style="padding: 10px 0;">
-					<u-loading-icon color="#FF6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
+					<u-loading-icon color="#ff6633" text="正在加载..." size="16" :vertical="true" textSize="14"></u-loading-icon>
 				</view>
 				<view v-for="(item,inx) in targetList" :key="inx" class="cate-item" @click="more(item)">
 					<view class="contentview">
@@ -241,7 +241,7 @@
 			top: 50%;
 			width: 10rpx;
 			height: 38rpx;
-			background: #FF6633;
+			background: #ff6633;
 			transform: translateY(-50%);
 			border-radius: 0 10rpx 10rpx 0;
 		}
@@ -287,9 +287,9 @@
 		}
 
 		.tag-orange {
-			color: #FF6633;
-			border: .5px solid #FF6633;
-			background: rgba(255, 170, 0, 0.1);
+			color: #ff7833;
+			border: .5px solid #ff7833;
+			background: rgba(255, 120, 51, 0.1);
 		}
 
 		.tag-purple {

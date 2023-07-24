@@ -305,7 +305,7 @@
 		}
 
 		.btn-no {
-			background-color: #FF6633;
+			background-color: #ff6633;
 		}
 
 		.iz-coupons-item {

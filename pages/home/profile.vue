@@ -13,7 +13,7 @@
 					<u-icon name="arrow-right" color="#9FA3B0" size="24rpx"></u-icon>
 					<u-picker title="请选择在租设备台数" :show="show_zaizu" :columns="zaizu_map"
 						@confirm="(e) => confirm(e, 'zaizu')" @cancel="cancel('show_zaizu')" visibleItemCount="8"
-						cancelColor="#414960" confirmColor="#FF6633">
+						cancelColor="#414960" confirmColor="#ff6633">
 					</u-picker>
 				</view>
 				<view v-if="profile.zaizu">
@@ -24,7 +24,7 @@
 						<u-icon name="arrow-right" color="#9FA3B0" size="24rpx"></u-icon>
 						<u-picker title="请选择最早租赁时间" :show="show_zulinshijian" :columns="zulinshijian_map"
 							@confirm="(e) => confirm(e, 'zulinshijian')" @cancel="cancel('show_v')" visibleItemCount="8"
-							cancelColor="#414960" confirmColor="#FF6633">
+							cancelColor="#414960" confirmColor="#ff6633">
 						</u-picker>
 					</view>
 				</view>
@@ -35,7 +35,7 @@
 			<view class="form" v-if="!loading">
 				<view class="form-li">
 					<text style="min-width: 176rpx;">征信状况</text>
-					<u-radio-group activeColor="#FF6633" v-model="profile.zhengxin" placement="row">
+					<u-radio-group activeColor="#ff6633" v-model="profile.zhengxin" placement="row">
 						<u-radio :customStyle="{marginRight: '48rpx'}" labelSize="28rpx"
 							v-for="(item, index) in zhengxin_map" :key="index" :label="item.name" :name="item.name"
 							@change="(e) => radioChange(e, 'zhengxin')">
@@ -49,7 +49,7 @@
 					<u-icon name="arrow-right" color="#9FA3B0" size="24rpx"></u-icon>
 					<u-picker title="请选择芝麻信用分区间" :show="show_zhima" :columns="zhima_map"
 						@confirm="(e) => confirm(e, 'zhima')" @cancel="cancel('show_zhima')" visibleItemCount="8"
-						cancelColor="#414960" confirmColor="#FF6633">
+						cancelColor="#414960" confirmColor="#ff6633">
 					</u-picker>
 				</view>
 				<view class="form-li" @click="show_gongjijin = true">
@@ -59,7 +59,7 @@
 					<u-icon name="arrow-right" color="#9FA3B0" size="24rpx"></u-icon>
 					<u-picker title="请选择公积金余额区间" :show="show_gongjijin" :columns="gongjijin_map"
 						@confirm="(e) => confirm(e, 'gongjijin')" @cancel="cancel('show_gongjijin')" visibleItemCount="8"
-						cancelColor="#414960" confirmColor="#FF6633">
+						cancelColor="#414960" confirmColor="#ff6633">
 					</u-picker>
 				</view>
 				<view class="form-li" @click="show_huabei = true">
@@ -69,7 +69,7 @@
 					<u-icon name="arrow-right" color="#9FA3B0" size="24rpx"></u-icon>
 					<u-picker title="请选择花呗额度区间" :show="show_huabei" :columns="huabei_map"
 						@confirm="(e) => confirm(e, 'huabei')" @cancel="cancel('show_huabei')" visibleItemCount="8"
-						cancelColor="#414960" confirmColor="#FF6633">
+						cancelColor="#414960" confirmColor="#ff6633">
 					</u-picker>
 				</view>
 				<view class="form-li" @click="show_xinyongka = true">
@@ -79,7 +79,7 @@
 					<u-icon name="arrow-right" color="#9FA3B0" size="24rpx"></u-icon>
 					<u-picker title="请选择信用卡额度区间" :show="show_xinyongka" :columns="xinyongka_map"
 						@confirm="(e) => confirm(e, 'xinyongka')" @cancel="cancel('show_xinyongka')" visibleItemCount="8"
-						cancelColor="#414960" confirmColor="#FF6633">
+						cancelColor="#414960" confirmColor="#ff6633">
 					</u-picker>
 				</view>
 				<view class="form-li" @click="show_yinhang = true">
@@ -89,7 +89,7 @@
 					<u-icon name="arrow-right" color="#9FA3B0" size="24rpx"></u-icon>
 					<u-picker title="请选择银行贷款额度区间" :show="show_yinhang" :columns="yinhang_map"
 						@confirm="(e) => confirm(e, 'yinhang')" @cancel="cancel('show_yinhang')" visibleItemCount="8"
-						cancelColor="#414960" confirmColor="#FF6633">
+						cancelColor="#414960" confirmColor="#ff6633">
 					</u-picker>
 				</view>
 			</view>
@@ -107,7 +107,7 @@
 				</view>
 				<view class="form-li" style="height: auto; margin-top: 16rpx;">
 					<text>收入方式</text>
-					<u-radio-group activeColor="#FF6633" v-model="profile.income_type" placement="column">
+					<u-radio-group activeColor="#ff6633" v-model="profile.income_type" placement="column">
 						<u-radio :customStyle="{marginBottom: '16rpx'}" labelSize="28rpx"
 							v-for="(item, index) in income_type_map" :key="index" :label="item.name" :name="item.name"
 							@change="(e) => radioChange(e, 'income_type')">
@@ -121,7 +121,7 @@
 					<u-icon name="arrow-right" color="#9FA3B0" size="24rpx"></u-icon>
 					<u-picker title="请选择月收入状况" :show="show_income" :columns="income_map"
 						@confirm="(e) => confirm(e, 'income')" @cancel="cancel('show_income')" visibleItemCount="8"
-						cancelColor="#414960" confirmColor="#FF6633">
+						cancelColor="#414960" confirmColor="#ff6633">
 					</u-picker>
 				</view>
 			</view>
@@ -131,7 +131,7 @@
 			<view class="form" v-if="!loading">
 				<view class="form-li">
 					<text>婚姻状况</text>
-					<u-radio-group activeColor="#FF6633" v-model="profile.marriage" placement="row">
+					<u-radio-group activeColor="#ff6633" v-model="profile.marriage" placement="row">
 						<u-radio :customStyle="{marginRight: '48rpx'}" labelSize="28rpx"
 							v-for="(item, index) in marriage_map" :key="index" :label="item.name" :name="item.name"
 							@change="(e) => radioChange(e, 'marriage')">
@@ -140,7 +140,7 @@
 				</view>
 				<view class="form-li">
 					<text>车贷状况</text>
-					<u-radio-group activeColor="#FF6633" v-model="profile.car" placement="row">
+					<u-radio-group activeColor="#ff6633" v-model="profile.car" placement="row">
 						<u-radio :customStyle="{marginRight: '48rpx'}" labelSize="28rpx"
 							v-for="(item, index) in car_map" :key="index" :label="item.name" :name="item.name"
 							@change="(e) => radioChange(e, 'car')">
@@ -149,7 +149,7 @@
 				</view>
 				<view class="form-li" style="height: auto; margin-top: 16rpx;">
 					<text>住所性质</text>
-					<u-radio-group activeColor="#FF6633" v-model="profile.accommodation" placement="column">
+					<u-radio-group activeColor="#ff6633" v-model="profile.accommodation" placement="column">
 						<u-radio :customStyle="{marginBottom: '16rpx'}" labelSize="28rpx"
 							v-for="(item, index) in accommodation_map" :key="index" :label="item.name" :name="item.name"
 							@change="(e) => radioChange(e, 'accommodation')">
@@ -158,7 +158,7 @@
 				</view>
 				<view class="form-li" v-if="profile.accommodation == '自购房'">
 					<text>房贷状况</text>
-					<u-radio-group activeColor="#FF6633" v-model="profile.house" placement="row">
+					<u-radio-group activeColor="#ff6633" v-model="profile.house" placement="row">
 						<u-radio :customStyle="{marginRight: '48rpx'}" labelSize="28rpx"
 							v-for="(item, index) in house_map" :key="index" :label="item.name" :name="item.name"
 							@change="(e) => radioChange(e, 'house')">
@@ -354,7 +354,7 @@
 		line-height: 80rpx;
 		border-radius: 20rpx;
 		color: #fff;
-		background: #FF6633;
+		background: #ff6633;
 	}
 
 	/deep/ .u-textarea__count {

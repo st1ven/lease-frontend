@@ -23,7 +23,7 @@
 					</view>
 					<view class="form-li">
 						<text>关系</text>
-						<u-radio-group activeColor="#FF6633" v-model="item.relationship" placement="row">
+						<u-radio-group activeColor="#ff6633" v-model="item.relationship" placement="row">
 							<u-radio :customStyle="{marginRight: '48rpx'}" labelSize="28rpx"
 								v-for="(item1, index1) in relationship_map" :key="index1" :label="item1.name"
 								:name="item1.name" @change="(e) => radioChange(e, index)">
@@ -38,8 +38,8 @@
 						非紧急情况下，我们不会打扰，请您放心
 					</view>
 					<view class="button" @click="add(index)">
-						<u-icon name="plus" size="12" color="#FF6633" label="立即添加" labelPos="right" labelSize="14"
-							labelColor="#FF6633"></u-icon>
+						<u-icon name="plus" size="12" color="#ff6633" label="立即添加" labelPos="right" labelSize="14"
+							labelColor="#ff6633"></u-icon>
 					</view>
 				</view>
 				<view class="form" v-else>
@@ -58,7 +58,7 @@
 					</view>
 					<view class="form-li">
 						<text>关系</text>
-						<u-radio-group activeColor="#FF6633" v-model="item.relationship" placement="row">
+						<u-radio-group activeColor="#ff6633" v-model="item.relationship" placement="row">
 							<u-radio :customStyle="{marginRight: '48rpx'}" labelSize="28rpx"
 								v-for="(item1, index1) in relationship_map" :key="index1" :label="item1.name"
 								:name="item1.name" @change="(e) => radioChange(e, index)">
@@ -205,7 +205,7 @@
 			line-height: 80rpx;
 			border-radius: 20rpx;
 			color: #fff;
-			background: #FF6633;
+			background: #ff6633;
 		}
 
 		.form {
@@ -261,7 +261,7 @@
 				top: 52rpx;
 				right: 30rpx;
 				border-radius: 50rpx;
-				border: 1px solid #FF6633;
+				border: 1px solid #ff6633;
 				padding: 8rpx 16rpx;
 			}
 		}

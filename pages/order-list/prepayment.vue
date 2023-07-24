@@ -8,7 +8,7 @@
 				<view class="li-top">
 					<view class="txt-checkbox">
 						<u-checkbox-group>
-							<u-checkbox size="40rpx" activeColor="#FF6633" :disabled="item.checkboxFlag"
+							<u-checkbox size="40rpx" activeColor="#ff6633" :disabled="item.checkboxFlag"
 								@change="liClick(item, index, true)" :checked="item.checked" :shape="'circle'">
 							</u-checkbox>
 						</u-checkbox-group>
@@ -299,7 +299,7 @@ export default {
 				}
 
 				.pay {
-					color: #FF6633;
+					color: #ff6633;
 				}
 			}
 
@@ -353,7 +353,7 @@ export default {
 		}
 
 		.prepayment-btn.on {
-			background: #FF6633;
+			background: #ff6633;
 		}
 	}
 

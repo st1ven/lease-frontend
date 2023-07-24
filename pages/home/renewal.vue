@@ -234,7 +234,7 @@
 			}
 
 			.li.on {
-				background-color: #FF6633;
+				background-color: #ff6633;
 				color: #fff;
 			}
 
@@ -291,7 +291,7 @@
 			color: #fff;
 			margin: 48rpx auto;
 			line-height: 88rpx;
-			background: #FF6633;
+			background: #ff6633;
 			border-radius: 14rpx;
 		}
 	}
