@@ -207,12 +207,6 @@
 			}
 		},
 		{
-			"path": "pages/index/web",
-			"style": {
-				"navigationBarTitleText": "跳转"
-			}
-		},
-		{
 			"path": "pages/search/search",
 			"style": {
 				"navigationBarTitleText": "搜索",
@@ -411,7 +405,7 @@
 				"enablePullDownRefresh": false,
 				"backgroundColor": "#f6f6fb"
 			}
-		},{
+		}, {
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "",
@@ -430,33 +424,33 @@
 		"list": [{
 				"text": "首页",
 				"pagePath": "pages/index/index",
-				"iconPath": "static/tab-icon/index.png",
-				"selectedIconPath": "static/tab-icon/index-s.png"
+				"iconPath": "static/base/jzz/tab-icon/index.png",
+				"selectedIconPath": "static/base/jzz/tab-icon/index-s.png"
 			},
 			{
 				"text": "分类",
 				// "pagePath": "pages/category/category",
 				"pagePath": "pages/category/categorygood",
-				"iconPath": "static/tab-icon/category.png",
-				"selectedIconPath": "static/tab-icon/category-s.png"
+				"iconPath": "static/base/jzz/tab-icon/category.png",
+				"selectedIconPath": "static/base/jzz/tab-icon/category-s.png"
 			},
 			{
 				"text": "客服",
 				"pagePath": "pages/service/index",
-				"iconPath": "static/tab-icon/service.png",
-				"selectedIconPath": "static/tab-icon/service-s.png"
+				"iconPath": "static/base/jzz/tab-icon/service.png",
+				"selectedIconPath": "static/base/jzz/tab-icon/service-s.png"
 			},
 			{
 				"text": "我的",
 				"pagePath": "pages/home/home",
-				"iconPath": "static/tab-icon/home.png",
-				"selectedIconPath": "static/tab-icon/home-s.png"
+				"iconPath": "static/base/jzz/tab-icon/home.png",
+				"selectedIconPath": "static/base/jzz/tab-icon/home-s.png"
 			}
 		]
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uView",
+		"navigationBarTitleText": "",
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF"
 	},

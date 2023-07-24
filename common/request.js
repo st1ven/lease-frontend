@@ -1,4 +1,6 @@
-const BASE_URL = "https://jzz.jiulove.cn"; //域名抽取
+import config from '@/common/config'
+
+const BASE_URL = config.jzz.Api;
 const HEADER = {
 	'content-type': 'multipart/form-data'
 }; //头部

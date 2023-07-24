@@ -480,7 +480,7 @@ export default {
 }
 
 .user-info {
-	background: url('../../static/image/header.png');
+	background: url('../../static/base/jzz/header.png');
 	background-color: #FF6633;
 	background-size: 20vh;
 	background-repeat: no-repeat;

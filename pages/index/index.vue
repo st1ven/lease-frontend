@@ -83,7 +83,7 @@
 		<!-- 生活号 -->
 		<!-- #ifdef MP-ALIPAY -->
 		<view class="" style="padding: 10px 12px 0;">
-			<lifestyle sceneId="2549dcc7030844a88cdfa772e46859f4" />
+			<lifestyle :sceneId="$config.jzz.lifeSceneId" />
 		</view>
 		<!-- #endif -->
 		<!-- 热门推荐 -->
@@ -231,12 +231,13 @@
 				loaadding: true,
 				backgroundcolor: '',
 				latefee: [],
+				$config: this.$config,
 				// #ifdef MP-ALIPAY
 				canUse: uni.canIUse('lifestyle'),
 				show: true,
 				checkFollow: true,
 				templateId: ''
-				// #endif 
+				// #endif
 			}
 		},
 		onPageScroll(object) {

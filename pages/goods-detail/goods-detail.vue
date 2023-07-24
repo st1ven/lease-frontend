@@ -443,7 +443,7 @@
 			padding: 12rpx 30rpx 24rpx 30rpx;
 			margin: 12px 12px 0 12px;
 			border-radius: 14rpx 14rpx 0 0;
-			background: linear-gradient(270deg, #FF6633 0%, #ff4141 100%);
+			background: linear-gradient(270deg, #FF6633 0%, adjust-hue(#FF6633, 20deg) 100%);
 
 			.price-company {
 				font-size: 24rpx;

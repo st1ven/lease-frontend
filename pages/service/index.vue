@@ -13,7 +13,7 @@
 				<u-loading-icon color="#FF6633" text="正在加载..." size="16" :vertical="true" textSize="14">
 				</u-loading-icon>
 			</view>
-			<!-- #ifndef  APP-PLUS-->
+			<!-- #ifndef APP-PLUS-->
 			<u-collapse accordion :border="true" :isLink="true">
 				<view v-for="(item,index) in ulList" :key="index">
 					<u-collapse-item :border="false" :isLink="true">
@@ -26,24 +26,25 @@
 				</view>
 			</u-collapse>
 			<!-- #endif -->
-			<!-- #ifdef  APP-PLUS-->
+			<!-- #ifdef APP-PLUS-->
 			<u-collapse accordion :border="true" :isLink="true" arrow :head-style="headStyle">
-					<u-collapse-item :border="false" :isLink="true" v-for="(item,index) in ulList" :key="index" :title="item.title" >
-						<text class="u-collapse-content">{{item.content}}</text>
-					</u-collapse-item>
+				<u-collapse-item :border="false" :isLink="true" v-for="(item,index) in ulList" :key="index"
+					:title="item.title">
+					<text class="u-collapse-content">{{item.content}}</text>
+				</u-collapse-item>
 			</u-collapse>
 			<!-- #endif -->
 		</view>
 		<view class="help-footer">
 			<!-- #ifdef MP-ALIPAY -->
-			<view class="help-button">
-				<image style="width: 40rpx;" src="../../static/image/service.png" mode="widthFix"></image>
+			<view class="help-button" v-if="$config.jzz.serviceInstid">
+				<image style="width: 40rpx;" src="../../static/base/jzz/service.png" mode="widthFix"></image>
 				平台在线客服
-				<contact-button tnt-inst-id="6NO_URj2" scene="SCE01241131" color="transparent" />
+				<contact-button :tnt-inst-id="$config.jzz.serviceInstid" :scene="$config.jzz.serviceScene" color="transparent" />
 			</view>
 			<!-- #endif -->
 			<view class="help-button" @click="phoneCall">
-				<image style="width: 40rpx;" src="../../static/image/phonecall.png" mode="widthFix"></image>
+				<image style="width: 40rpx;" src="../../static/base/jzz/phonecall.png" mode="widthFix"></image>
 				平台热线客服
 			</view>
 		</view>
@@ -65,7 +66,8 @@
 				iphoneNum: '',
 				headStyle: {
 					// border:'1px solid red'
-				}
+				},
+				$config: this.$config
 			}
 		},
 		onLoad() {
@@ -183,7 +185,7 @@
 			/* #ifndef MP-ALIPAY  */
 			height: 10vh;
 			/* #endif */
-			background: url('../../static/image/header.png');
+			background: url('../../static/base/jzz/header.png');
 			background-size: 20vh;
 			background-repeat: no-repeat;
 			background-position: 100% 0;
@@ -217,18 +219,11 @@
 			display: flex;
 			background: #fff;
 			justify-content: space-between;
-			// #ifdef MP-ALIPAY
 			gap: 12px;
 			padding: 64rpx 12px 24rpx 12px;
 			margin: -1px 0;
-			// #endif
-			// #ifndef MP-ALIPAY
-			padding: 0 12rpx;
-			// #endif
-			
 		}
 
-		// #ifdef MP-ALIPAY
 		.help-button {
 			position: relative;
 			display: flex;
@@ -243,25 +238,7 @@
 			background: #F1F2F5;
 			border-radius: 10px;
 		}
-		// #endif
-		// #ifndef MP-ALIPAY
-		.help-button {
-			position: relative;
-			display: flex;
-			gap: 16rpx;
-			justify-content: center;
-			align-items: center;
-			// width: 48%;
-			flex: 1;
-			padding: 30rpx 0;
-			font-size: 16px;
-			font-weight: bold;
-			color: #fff;
-			background: #FF6633;
-			border-radius: 10px;
-			margin-top: 10rpx;
-		}
-		// #endif
+
 		.help-time {
 			color: #9FA3B0;
 			font-size: 12px;

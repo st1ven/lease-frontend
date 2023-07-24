@@ -215,12 +215,6 @@
 		</u-modal>
 		<u-toast ref="uToast"></u-toast>
 		<Contact ref="contact" />
-		<!-- #ifdef MP-ALIPAY -->
-		<view class="" style="position: fixed;right: 20px;z-index: 99999;bottom: 25%;">
-			<contact-button tnt-inst-id="x8o_S4gv" size="32" scene="SCE01231099"
-				icon="https://jzz-oss.jiulove.cn/uploads/20220628/05bdd6d39638781a4b48ab75fe6389b5.png" />
-		</view>
-		<!-- #endif -->
 
 		<uni-popup ref="yhPopup" 
 		type="bottom" 

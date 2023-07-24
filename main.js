@@ -12,15 +12,15 @@ import store from './store'
 
 // 引入全局uView
 import uView from '@/uni_modules/uview-ui'
-
-import mixin from './common/mixin'
+import config from '@/common/config'
+import mixin from '@/common/mixin'
 import {
 	$request,
 	unique,
 	$UploadFile
 } from 'common/request.js'
 
-
+Vue.prototype.$config = config
 Vue.prototype.$store = store
 Vue.prototype.$request = $request
 Vue.prototype.$unique = unique

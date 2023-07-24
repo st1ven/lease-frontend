@@ -81,8 +81,6 @@ export default {
 				url: '/bindidcard'
 			}
 			this.$request(opt).then(res => {
-				// this.positiveSrc = res.data.idcard_front || "https://api.jiulove.cn/wzy/idcard1.png"
-				// this.reverseSrc = res.data.idcard_back || "https://api.jiulove.cn/wzy/idcard2.png"
 				this.positiveSrc = res.data.idcard_front || ''
 				this.reverseSrc = res.data.idcard_back || ''
 				if (res.data.idcard_front) {

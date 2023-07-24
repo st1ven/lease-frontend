@@ -420,7 +420,6 @@
 		justify-content: center;
 		width: 750rpx;
 		height: 466rpx;
-		background-image: url('https://jzz-oss.jiulove.cn/uploads/20220801/2b5c800370debabc81faa2233714e73c.png');
 		background-size: 100%;
 
 		&-rate {
